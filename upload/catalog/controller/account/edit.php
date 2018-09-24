@@ -44,6 +44,8 @@ class ControllerAccountEdit extends Controller {
 			'text' => $this->language->get('text_edit'),
 			'href' => $this->url->link('account/edit', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

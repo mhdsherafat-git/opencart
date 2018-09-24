@@ -42,6 +42,10 @@ class ControllerAccountVoucher extends Controller {
 			'text' => $this->language->get('text_voucher'),
 			'href' => $this->url->link('account/voucher', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$data['text_agree'] = $this->language->get('text_agree');
 
 		$data['help_amount'] = sprintf($this->language->get('help_amount'), $this->currency->format($this->config->get('config_voucher_min'), $this->session->data['currency']), $this->currency->format($this->config->get('config_voucher_max'), $this->session->data['currency']));
 
@@ -171,6 +175,10 @@ class ControllerAccountVoucher extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('account/voucher')
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$data['text_message'] = $this->language->get('text_message');
 
 		$data['continue'] = $this->url->link('checkout/cart');
 

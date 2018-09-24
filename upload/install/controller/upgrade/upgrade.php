@@ -16,6 +16,8 @@ class ControllerUpgradeUpgrade extends Controller {
 		$data['text_user'] = $this->language->get('text_user');
 		$data['text_setting'] = $this->language->get('text_setting');
 		$data['text_store'] = $this->language->get('text_store');
+		$data['text_end_1'] = $this->language->get('text_end_1');
+		$data['text_end_2'] = $this->language->get('text_end_2');
 		
 		$data['entry_progress'] = $this->language->get('entry_progress');
 		

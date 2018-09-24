@@ -33,6 +33,8 @@ class ControllerAccountOrder extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('account/order', $url, true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
@@ -134,6 +136,8 @@ class ControllerAccountOrder extends Controller {
 				'text' => $this->language->get('text_order'),
 				'href' => $this->url->link('account/order/info', 'order_id=' . $this->request->get['order_id'] . $url, true)
 			);
+			
+			$data['heading_title'] = $this->language->get('heading_title');
 
 			if (isset($this->session->data['error'])) {
 				$data['error_warning'] = $this->session->data['error'];
@@ -341,6 +345,8 @@ class ControllerAccountOrder extends Controller {
 	public function reorder() {
 		$this->load->language('account/order');
 
+		$data['heading_title'] = $this->language->get('heading_title');
+		
 		if (isset($this->request->get['order_id'])) {
 			$order_id = $this->request->get['order_id'];
 		} else {

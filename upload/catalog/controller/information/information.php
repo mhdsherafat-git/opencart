@@ -11,6 +11,8 @@ class ControllerInformationInformation extends Controller {
 			'text' => $this->language->get('text_home'),
 			'href' => $this->url->link('common/home')
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->request->get['information_id'])) {
 			$information_id = (int)$this->request->get['information_id'];

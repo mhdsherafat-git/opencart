@@ -5,6 +5,8 @@ class ControllerDesignTheme extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+		$data['direction'] = $this->language->get('direction');
+
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(

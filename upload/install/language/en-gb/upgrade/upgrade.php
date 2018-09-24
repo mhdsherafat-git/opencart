@@ -13,6 +13,8 @@ $_['text_admin']      = 'Load the admin page & press Ctrl+F5 twice to force the 
 $_['text_user']       = 'Goto Admin -> Users -> User Groups and Edit the Top Adminstrator group. Check All boxes.';
 $_['text_setting']    = 'Goto Admin and Edit the main System Settings. Update all fields and click save, even if nothing changed.';
 $_['text_store']      = 'Load the store front & press Ctrl+F5 twice to force the browser to update the css changes.';
+$_['text_end_1']   	  = 'Please consider that first Of any thing backup Of database Of shop, then you can start upgrade.';
+$_['text_end_2']   	  = 'OpenCartFarsi group is not responsible if you do\'nt consider to this items, plese first read all items.';
 $_['text_progress']   = 'Patch %s has been applied (%s of %s)';
 $_['text_success']    = 'Congratulations! You have successfuly upgraded your OpenCart installation!';
 

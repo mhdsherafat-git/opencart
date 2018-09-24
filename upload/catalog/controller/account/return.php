@@ -24,6 +24,8 @@ class ControllerAccountReturn extends Controller {
 			'text' => $this->language->get('text_account'),
 			'href' => $this->url->link('account/account', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$url = '';
 
@@ -132,6 +134,8 @@ class ControllerAccountReturn extends Controller {
 				'text' => $this->language->get('text_return'),
 				'href' => $this->url->link('account/return/info', 'return_id=' . $this->request->get['return_id'] . $url, true)
 			);
+			
+			$data['heading_title'] = $this->language->get('heading_title');
 
 			$data['return_id'] = $return_info['return_id'];
 			$data['order_id'] = $return_info['order_id'];
@@ -190,6 +194,8 @@ class ControllerAccountReturn extends Controller {
 				'text' => $this->language->get('heading_title'),
 				'href' => $this->url->link('account/return', '', true)
 			);
+			
+			$data['heading_title'] = $this->language->get('heading_title');
 
 			$url = '';
 
@@ -248,6 +254,8 @@ class ControllerAccountReturn extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('account/return/add', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

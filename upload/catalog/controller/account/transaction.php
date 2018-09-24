@@ -27,6 +27,8 @@ class ControllerAccountTransaction extends Controller {
 			'text' => $this->language->get('text_transaction'),
 			'href' => $this->url->link('account/transaction', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$this->load->model('account/transaction');
 		

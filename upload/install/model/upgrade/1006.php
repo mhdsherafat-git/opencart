@@ -2,8 +2,9 @@
 class ModelUpgrade1006 extends Model {
 	public function upgrade() {
 		// Update some language settings
-		$this->db->query("UPDATE `" . DB_PREFIX . "setting` SET `value` = 'en-gb' WHERE `key` = 'config_language' AND `value` = 'en'");
-		$this->db->query("UPDATE `" . DB_PREFIX . "setting` SET `value` = 'en-gb' WHERE `key` = 'config_admin_language' AND `value` = 'en'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "setting` SET `value` = 'fa-ir' WHERE `key` = 'config_language' AND `value` = 'fa'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "setting` SET `value` = 'fa-ir' WHERE `key` = 'config_admin_language' AND `value` = 'fa'");
+		$this->db->query("UPDATE `" . DB_PREFIX . "language` SET `code` = 'fa-ir' WHERE `code` = 'fa'");
 		$this->db->query("UPDATE `" . DB_PREFIX . "language` SET `code` = 'en-gb' WHERE `code` = 'en'");
 
 		$this->cache->delete('language');

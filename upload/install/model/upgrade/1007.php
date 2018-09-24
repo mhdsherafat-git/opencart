@@ -4,8 +4,42 @@ class ModelUpgrade1007 extends Model {
 		// Download
 		$this->db->query("ALTER TABLE `" . DB_PREFIX . "download` CHANGE `filename` `filename` varchar(140) NOT NULL");
 
-		// Download
+		// Modification
 		$this->db->query("ALTER TABLE `" . DB_PREFIX . "modification` CHANGE `xml` `xml` mediumtext NOT NULL");
+
+/* ***********Added For Upgrade System By Mojtaba Moghani************** */
+		$file = DIR_APPLICATION . 'upgrade.sql';
+
+		if (!file_exists($file)) {
+			exit('Could not load sql file: ' . $file);
+		}
+
+		$lines = file($file);
+
+		if ($lines) {
+			$sql = '';
+
+			foreach($lines as $line) {
+				if ($line && (substr($line, 0, 2) != '--') && (substr($line, 0, 1) != '#')) {
+					$sql .= $line;
+
+					if (preg_match('/;\s*$/', $line)) {
+						$sql = str_replace("DROP TABLE IF EXISTS `oc_", "DROP TABLE IF EXISTS `" . DB_PREFIX, $sql);
+						$sql = str_replace("CREATE TABLE `oc_", "CREATE TABLE `" . DB_PREFIX, $sql);
+						$sql = str_replace("INSERT INTO `oc_", "INSERT INTO `" . DB_PREFIX, $sql);
+
+						$this->db->query($sql);
+
+						$sql = '';
+					}
+				}
+			}
+
+			$this->db->query("SET CHARACTER SET utf8");
+
+			$this->db->query("SET @@session.sql_mode = 'MYSQL40'");
+		}
+/* ***********Added For Upgrade System By Mojtaba Moghani************** */
 		
 		// Extension
 		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "extension` WHERE `type` = 'theme'");

@@ -46,6 +46,8 @@ class ControllerAccountReset extends Controller {
 				'text' => $this->language->get('heading_title'),
 				'href' => $this->url->link('account/reset', '', true)
 			);
+			
+			$data['heading_title'] = $this->language->get('heading_title');
 
 			if (isset($this->error['password'])) {
 				$data['error_password'] = $this->error['password'];

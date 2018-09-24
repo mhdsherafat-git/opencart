@@ -1,6 +1,7 @@
 <?php
 // Error Reporting
 error_reporting(E_ALL);
+date_default_timezone_set('Asia/Tehran');
 
 // Check Version
 if (version_compare(phpversion(), '5.4.0', '<') == true) {
@@ -8,7 +9,7 @@ if (version_compare(phpversion(), '5.4.0', '<') == true) {
 }
 
 if (!ini_get('date.timezone')) {
-	date_default_timezone_set('UTC');
+	date_default_timezone_set('Asia/Tehran');
 }
 
 // Windows IIS Compatibility
@@ -95,6 +96,7 @@ require_once(modification(DIR_SYSTEM . 'engine/loader.php'));
 require_once(modification(DIR_SYSTEM . 'engine/model.php'));
 require_once(modification(DIR_SYSTEM . 'engine/registry.php'));
 require_once(modification(DIR_SYSTEM . 'engine/proxy.php'));
+require_once(DIR_SYSTEM . 'library/jdf.php');
 
 // Helper
 require_once(DIR_SYSTEM . 'helper/general.php');

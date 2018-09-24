@@ -37,6 +37,8 @@ class ControllerAccountForgotten extends Controller {
 			'text' => $this->language->get('text_forgotten'),
 			'href' => $this->url->link('account/forgotten', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

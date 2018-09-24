@@ -42,6 +42,8 @@ class ControllerAccountWishList extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('account/wishlist')
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->session->data['success'])) {
 			$data['success'] = $this->session->data['success'];

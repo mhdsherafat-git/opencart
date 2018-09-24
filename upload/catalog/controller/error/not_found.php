@@ -11,6 +11,8 @@ class ControllerErrorNotFound extends Controller {
 			'text' => $this->language->get('text_home'),
 			'href' => $this->url->link('common/home')
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->request->get['route'])) {
 			$url_data = $this->request->get;

@@ -21,6 +21,8 @@ class ControllerAffiliateSuccess extends Controller {
 			'text' => $this->language->get('text_success'),
 			'href' => $this->url->link('affiliate/success')
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$this->load->model('account/customer_group');
 

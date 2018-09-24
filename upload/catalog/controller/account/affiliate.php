@@ -74,6 +74,8 @@ class ControllerAccountAffiliate extends Controller {
 				'href' => $this->url->link('account/affiliate/edit', '', true)
 			);		
 		}
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 	
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

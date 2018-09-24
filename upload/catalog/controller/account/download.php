@@ -27,6 +27,8 @@ class ControllerAccountDownload extends Controller {
 			'text' => $this->language->get('text_downloads'),
 			'href' => $this->url->link('account/download', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$this->load->model('account/download');
 

@@ -63,17 +63,16 @@ class ControllerExtensionFeedGoogleBase extends Controller {
 						}
 
 						$currencies = array(
-							'USD',
-							'EUR',
-							'GBP'
+							'TOM',
+							'RLS'
 						);
 
 						if (in_array($this->session->data['currency'], $currencies)) {
 							$currency_code = $this->session->data['currency'];
 							$currency_value = $this->currency->getValue($this->session->data['currency']);
 						} else {
-							$currency_code = 'USD';
-							$currency_value = $this->currency->getValue('USD');
+							$currency_code = 'TOM';
+							$currency_value = $this->currency->getValue('TOM');
 						}
 
 						if ((float)$product['special']) {

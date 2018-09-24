@@ -47,6 +47,8 @@ class ControllerAffiliateRegister extends Controller {
 			'text' => $this->language->get('text_register'),
 			'href' => $this->url->link('affiliate/register', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('affiliate/login', '', true));
 

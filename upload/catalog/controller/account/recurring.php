@@ -34,6 +34,8 @@ class ControllerAccountRecurring extends Controller {
 			'href' => $this->url->link('account/recurring', $url, true)
 		);
 
+		$data['heading_title'] = $this->language->get('heading_title');
+		
 		if (isset($this->request->get['page'])) {
 			$page = $this->request->get['page'];
 		} else {
@@ -135,6 +137,8 @@ class ControllerAccountRecurring extends Controller {
 				'href' => $this->url->link('account/recurring/info', 'order_recurring_id=' . $this->request->get['order_recurring_id'] . $url, true),
 			);
 
+			$data['heading_title'] = $this->language->get('heading_title');
+			
 			$data['order_recurring_id'] = $this->request->get['order_recurring_id'];
 			$data['date_added'] = date($this->language->get('date_format_short'), strtotime($recurring_info['date_added']));
 
@@ -202,6 +206,8 @@ class ControllerAccountRecurring extends Controller {
 				'text' => $this->language->get('text_recurring'),
 				'href' => $this->url->link('account/recurring/info', 'order_recurring_id=' . $order_recurring_id, true)
 			);
+			
+			$data['heading_title'] = $this->language->get('heading_title');
 
 			$data['continue'] = $this->url->link('account/recurring', '', true);
 

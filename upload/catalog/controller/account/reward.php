@@ -27,6 +27,8 @@ class ControllerAccountReward extends Controller {
 			'text' => $this->language->get('text_reward'),
 			'href' => $this->url->link('account/reward', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$this->load->model('account/reward');
 

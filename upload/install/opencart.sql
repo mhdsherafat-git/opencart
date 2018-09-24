@@ -30,6 +30,10 @@ CREATE TABLE `oc_address` (
   KEY `customer_id` (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_address`
+--
+
 -----------------------------------------------------------
 
 --
@@ -47,6 +51,10 @@ CREATE TABLE `oc_api` (
   PRIMARY KEY (`api_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_api`
+--
+
 -----------------------------------------------------------
 
 --
@@ -60,6 +68,10 @@ CREATE TABLE `oc_api_ip` (
   `ip` varchar(40) NOT NULL,
   PRIMARY KEY (`api_ip_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_api_ip`
+--
 
 -----------------------------------------------------------
 
@@ -77,6 +89,10 @@ CREATE TABLE `oc_api_session` (
   `date_modified` datetime NOT NULL,
   PRIMARY KEY (`api_session_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_api_session`
+--
 
 -----------------------------------------------------------
 
@@ -130,6 +146,7 @@ CREATE TABLE `oc_attribute_description` (
 INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) VALUES
 (1, 1, 'Description'),
 (2, 1, 'No. of Cores'),
+(3, 1, 'Clockspeed'),
 (4, 1, 'test 1'),
 (5, 1, 'test 2'),
 (6, 1, 'test 3'),
@@ -138,7 +155,17 @@ INSERT INTO `oc_attribute_description` (`attribute_id`, `language_id`, `name`) V
 (9, 1, 'test 6'),
 (10, 1, 'test 7'),
 (11, 1, 'test 8'),
-(3, 1, 'Clockspeed');
+(1, 2, 'توضیحات'),
+(2, 2, 'تعداد هسته ها'),
+(3, 2, 'کلاک اسپید'),
+(4, 2, 'تست 1'),
+(5, 2, 'تست 2'),
+(6, 2, 'تست 3'),
+(7, 2, 'تست 4'),
+(8, 2, 'تست 5'),
+(9, 2, 'تست 6'),
+(10, 2, 'تست 7'),
+(11, 2, 'تست 8');
 
 -----------------------------------------------------------
 
@@ -185,7 +212,11 @@ INSERT INTO `oc_attribute_group_description` (`attribute_group_id`, `language_id
 (3, 1, 'Memory'),
 (4, 1, 'Technical'),
 (5, 1, 'Motherboard'),
-(6, 1, 'Processor');
+(6, 1, 'Processor'),
+(3, 2, 'حافظه'),
+(4, 2, 'تکنیکی'),
+(5, 2, 'مادربرد'),
+(6, 2, 'پردازنده');
 
 -----------------------------------------------------------
 
@@ -206,9 +237,9 @@ CREATE TABLE `oc_banner` (
 --
 
 INSERT INTO `oc_banner` (`banner_id`, `name`, `status`) VALUES
-(6, 'HP Products', 1),
-(7, 'Home Page Slideshow', 1),
-(8, 'Manufacturers', 1);
+(6, 'محصولات اچ پی', 1),
+(7, 'اسلایدشو صفحه اصلی', 1),
+(8, 'تولیدکنندگان', 1);
 
 -----------------------------------------------------------
 
@@ -233,20 +264,34 @@ CREATE TABLE `oc_banner_image` (
 --
 
 INSERT INTO `oc_banner_image` (`banner_image_id`, `banner_id`, `language_id`, `title`, `link`, `image`, `sort_order`) VALUES
-(79, 7, 1, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
-(87, 6, 1, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
-(94, 8, 1, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
-(95, 8, 1, 'RedBull', '', 'catalog/demo/manufacturer/redbull.png', 0),
-(96, 8, 1, 'Sony', '', 'catalog/demo/manufacturer/sony.png', 0),
-(91, 8, 1, 'Coca Cola', '', 'catalog/demo/manufacturer/cocacola.png', 0),
-(92, 8, 1, 'Burger King', '', 'catalog/demo/manufacturer/burgerking.png', 0),
-(93, 8, 1, 'Canon', '', 'catalog/demo/manufacturer/canon.png', 0),
-(88, 8, 1, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
-(89, 8, 1, 'Dell', '', 'catalog/demo/manufacturer/dell.png', 0),
-(90, 8, 1, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
-(80, 7, 1, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
-(97, 8, 1, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
-(98, 8, 1, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
+(NULL, 7, 1, 'iPhone 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
+(NULL, 6, 1, 'HP Banner', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
+(NULL, 8, 1, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
+(NULL, 8, 1, 'RedBull', '', 'catalog/demo/manufacturer/redbull.png', 0),
+(NULL, 8, 1, 'Sony', '', 'catalog/demo/manufacturer/sony.png', 0),
+(NULL, 8, 1, 'Coca Cola', '', 'catalog/demo/manufacturer/cocacola.png', 0),
+(NULL, 8, 1, 'Burger King', '', 'catalog/demo/manufacturer/burgerking.png', 0),
+(NULL, 8, 1, 'Canon', '', 'catalog/demo/manufacturer/canon.png', 0),
+(NULL, 8, 1, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
+(NULL, 8, 1, 'Dell', '', 'catalog/demo/manufacturer/dell.png', 0),
+(NULL, 8, 1, 'Disney', '', 'catalog/demo/manufacturer/disney.png', 0),
+(NULL, 7, 1, 'MacBookAir', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
+(NULL, 8, 1, 'Starbucks', '', 'catalog/demo/manufacturer/starbucks.png', 0),
+(NULL, 8, 1, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0),
+(NULL, 7, 2, 'آیفون 6', 'index.php?route=product/product&amp;path=57&amp;product_id=49', 'catalog/demo/banners/iPhone6.jpg', 0),
+(NULL, 6, 2, 'بنر اچ پی', 'index.php?route=product/manufacturer/info&amp;manufacturer_id=7', 'catalog/demo/compaq_presario.jpg', 0),
+(NULL, 8, 2, 'NFL', '', 'catalog/demo/manufacturer/nfl.png', 0),
+(NULL, 8, 2, 'ردبول', '', 'catalog/demo/manufacturer/redbull.png', 0),
+(NULL, 8, 2, 'سونی', '', 'catalog/demo/manufacturer/sony.png', 0),
+(NULL, 8, 2, 'کوکا کولا', '', 'catalog/demo/manufacturer/cocacola.png', 0),
+(NULL, 8, 2, 'برگر پادشاه', '', 'catalog/demo/manufacturer/burgerking.png', 0),
+(NULL, 8, 2, 'کانون', '', 'catalog/demo/manufacturer/canon.png', 0),
+(NULL, 8, 2, 'Harley Davidson', '', 'catalog/demo/manufacturer/harley.png', 0),
+(NULL, 8, 2, 'دل', '', 'catalog/demo/manufacturer/dell.png', 0),
+(NULL, 8, 2, 'دیزنی', '', 'catalog/demo/manufacturer/disney.png', 0),
+(NULL, 7, 2, 'مک بوک ایر', '', 'catalog/demo/banners/MacBookAir.jpg', 0),
+(NULL, 8, 2, 'استار باکس', '', 'catalog/demo/manufacturer/starbucks.png', 0),
+(NULL, 8, 2, 'Nintendo', '', 'catalog/demo/manufacturer/nintendo.png', 0);
 
 -----------------------------------------------------------
 
@@ -268,6 +313,10 @@ CREATE TABLE `oc_cart` (
   PRIMARY KEY (`cart_id`),
   KEY `cart_id` (`api_id`,`customer_id`,`session_id`,`product_id`,`recurring_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_cart`
+--
 
 -----------------------------------------------------------
 
@@ -395,7 +444,45 @@ INSERT INTO `oc_category_description` (`category_id`, `language_id`, `name`, `de
 (55, 1, 'test 23', '', 'test 23', '', ''),
 (56, 1, 'test 24', '', 'test 24', '', ''),
 (57, 1, 'Tablets', '', 'Tablets', '', ''),
-(58, 1, 'test 25', '', 'test 25', '', '');
+(58, 1, 'test 25', '', 'test 25', '', ''),
+(28, 2, 'مانیتورها', '', 'مانیتورها', '', ''),
+(33, 2, 'دوربین ها', '', 'دوربین ها', '', ''),
+(32, 2, 'وب کم ها', '', 'وب کم ها', '', ''),
+(31, 2, 'اسکنرها', '', 'اسکنرها', '', ''),
+(30, 2, 'پرینترها', '', 'پرینترها', '', ''),
+(29, 2, 'موس و میکروفون', '', 'موس و میکروفون', '', ''),
+(27, 2, 'مک', '', 'مک', '', ''),
+(26, 2, 'کامپیوتر', '', 'کامپیوتر', '', ''),
+(17, 2, 'نرم افزار', '', 'نرم افزار', '', ''),
+(25, 2, 'کامپوننت ها', '', 'کامپوننت ها', '', ''),
+(24, 2, 'گوشی های هوشمند', '', 'گوشی های هوشمند', '', ''),
+(20, 2, 'رومیزی ها', '&lt;p&gt;در این بخش انواع رومیزی های مدرن با قیمت باورنکردنی قرار دارد.&lt;br&gt;&lt;/p&gt;\r\n', 'رومیزی ها', 'انواع متنوع از رومیزی های مدرن با بهترین قیمت', ''),
+(35, 2, 'تست 1', '', 'تست 1', '', ''),
+(36, 2, 'تست 2', '', 'تست 2', '', ''),
+(37, 2, 'تست 5', '', 'تست 5', '', ''),
+(38, 2, 'تست 4', '', 'تست 4', '', ''),
+(39, 2, 'تست 6', '', 'تست 6', '', ''),
+(40, 2, 'تست 7', '', 'تست 7', '', ''),
+(41, 2, 'تست 8', '', 'تست 8', '', ''),
+(42, 2, 'تست 9', '', 'تست 9', '', ''),
+(43, 2, 'تست 11', '', 'تست 11', '', ''),
+(34, 2, 'پخش کننده های صوتی', 'پخش کننده های دارای هارد درایو: ‏ این ام پی تری پلیرها ظرفیت بالایی دارند و می توانید بیشتر آرشیو موسیقی تان را به همراه داشته باشید. ظرفیت آنها معمولا بین ۲۰ تا ۱۶۰ گیگابایت است. آی پاد کلاسیک مثال خوبی از یک پخش کننده موسیقی دارای هارد درایو است. ‏&lt;br&gt;‏&lt;br&gt;‏مزایا: ‏ با داشتن ظرفیت بالا می توانید یک عالمه موسیقی و کتاب صوتی به همراه داشته باشید. این پخش کننده ها امکانات زیادی دارند و معمولا یک نمایشگر بزرگ هم آنها را همراهی می کند. به خاطر ظرفیت بالا، هنگام خرید آنها حس خوبی پیدا می کنید چون نسبت به پولی که میدهید ظرفیت بالایی دریافت می کنید! ', 'پخش کننده های صوتی', '', ''),
+(18, 2, 'لپ تاپ ها و نوت بوک ها', '&lt;p&gt;از لحاظ تاریخی، لپ‌تاپ کمی بزرگتر و ساخته شده برای گذاشتن بر روی ران (lap) بود و می‌توانستید یکجا بنشینید و آن را بر روی پایتان بگذارید؛ برای همین هم به آن لپ‌تاپ می‌گویند. اما نوت‌بوک‌ها در واقع کمی کوچکتر بودند، با قابلیت حمل بیشتر، مانند یک دفترچه (Notebook) کاغذ! اما حالا فرقی بین نوت‌بوک و لپ‌تاپ قایل نمی‌شوند سازندگان رایانه معمولا این دو کلمه را برای یک دستگاه استفاده می‌کنند. البته باید بدانید که دیگر استفاده از کلمه‌ی لپ‌تاپ بسیار کمتر شده‌است.&lt;br&gt;&lt;br&gt;&lt;/p&gt;\r\n', 'لپ تاپ ها و نوت بوک ها', '', ''),
+(44, 2, 'تست 12', '', 'تست 12', '', ''),
+(45, 2, 'ویندوزها', '', 'ویندوزها', '', ''),
+(46, 2, 'مک ها', '', 'مک ها', '', ''),
+(47, 2, 'تست 15', '', 'تست 15', '', ''),
+(48, 2, 'تست 16', '', 'تست 16', '', ''),
+(49, 2, 'تست 17', '', 'تست 17', '', ''),
+(50, 2, 'تست 18', '', 'تست 18', '', ''),
+(51, 2, 'تست 19', '', 'تست 19', '', ''),
+(52, 2, 'تست 20', '', 'تست 20', '', ''),
+(53, 2, 'تست 21', '', 'تست 21', '', ''),
+(54, 2, 'تست 22', '', 'تست 22', '', ''),
+(55, 2, 'تست 23', '', 'تست 23', '', ''),
+(56, 2, 'تست 24', '', 'تست 24', '', ''),
+(57, 2, 'تبلت ها', '', 'تبلت ها', '', ''),
+(58, 2, 'تست 25', '', 'تست 25', '', '');
 
 -----------------------------------------------------------
 
@@ -409,6 +496,10 @@ CREATE TABLE `oc_category_filter` (
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_category_filter`
+--
 
 -----------------------------------------------------------
 
@@ -514,6 +605,10 @@ CREATE TABLE `oc_category_to_layout` (
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`category_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_category_to_layout`
+--
 
 -----------------------------------------------------------
 
@@ -694,10 +789,9 @@ INSERT INTO `oc_country` (`country_id`, `name`, `iso_code_2`, `iso_code_3`, `add
 (98, 'Iceland', 'IS', 'ISL', '', 0, 1),
 (99, 'India', 'IN', 'IND', '', 0, 1),
 (100, 'Indonesia', 'ID', 'IDN', '', 0, 1),
-(101, 'Iran (Islamic Republic of)', 'IR', 'IRN', '', 0, 1),
+(101, 'جمهوری اسلامی ایران', 'IR', 'IRN', '', 0, 1),
 (102, 'Iraq', 'IQ', 'IRQ', '', 0, 1),
 (103, 'Ireland', 'IE', 'IRL', '', 0, 1),
-(104, 'Israel', 'IL', 'ISR', '', 0, 1),
 (105, 'Italy', 'IT', 'ITA', '', 0, 1),
 (106, 'Jamaica', 'JM', 'JAM', '', 0, 1),
 (107, 'Japan', 'JP', 'JPN', '', 0, 1),
@@ -896,6 +990,10 @@ CREATE TABLE `oc_coupon_category` (
   PRIMARY KEY (`coupon_id`,`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_coupon_category`
+--
+
 -----------------------------------------------------------
 
 --
@@ -913,6 +1011,10 @@ CREATE TABLE `oc_coupon_history` (
   PRIMARY KEY (`coupon_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_coupon_history`
+--
+
 -----------------------------------------------------------
 
 --
@@ -926,6 +1028,10 @@ CREATE TABLE `oc_coupon_product` (
   `product_id` int(11) NOT NULL,
   PRIMARY KEY (`coupon_product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_coupon_product`
+--
 
 -----------------------------------------------------------
 
@@ -952,9 +1058,8 @@ CREATE TABLE `oc_currency` (
 --
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
-(1, 'Pound Sterling', 'GBP', '£', '', '2', 0.61250001, 1, '2014-09-25 14:40:00'),
-(2, 'US Dollar', 'USD', '$', '', '2', 1.00000000, 1, '2014-09-25 14:40:00'),
-(3, 'Euro', 'EUR', '', '€', '2', 0.78460002, 1, '2014-09-25 14:40:00');
+(1, 'ریال', 'RLS', '', 'ریال', '', 10.00000000, 1, '2017-07-24 06:25:47'),
+(2, 'تومان', 'TOM', '', 'تومان', '', 1.00000000, 1, '2017-07-24 06:26:22');
 
 -----------------------------------------------------------
 
@@ -989,6 +1094,10 @@ CREATE TABLE `oc_customer` (
   PRIMARY KEY (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1006,10 +1115,14 @@ CREATE TABLE `oc_customer_activity` (
   PRIMARY KEY (`customer_activity_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer_activity`
+--
+
 -----------------------------------------------------------
 
 --
--- Table structure for table `oc_affiliate`
+-- Table structure for table `oc_customer_affiliate`
 --
 
 DROP TABLE IF EXISTS `oc_customer_affiliate`;
@@ -1034,6 +1147,10 @@ CREATE TABLE `oc_customer_affiliate` (
   PRIMARY KEY (`customer_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer_affiliate`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1048,6 +1165,10 @@ CREATE TABLE `oc_customer_approval` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_approval_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_customer_approval`
+--
 
 -----------------------------------------------------------
 
@@ -1090,7 +1211,8 @@ CREATE TABLE `oc_customer_group_description` (
 --
 
 INSERT INTO `oc_customer_group_description` (`customer_group_id`, `language_id`, `name`, `description`) VALUES
-(1, 1, 'Default', 'test');
+(1, 1, 'Default', 'test'),
+(1, 2, 'پیش فرض', 'تست');
 
 -----------------------------------------------------------
 
@@ -1106,6 +1228,10 @@ CREATE TABLE `oc_customer_history` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_customer_history`
+--
 
 -----------------------------------------------------------
 
@@ -1126,6 +1252,10 @@ CREATE TABLE `oc_customer_login` (
   KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer_login`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1142,6 +1272,10 @@ CREATE TABLE `oc_customer_ip` (
   KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer_ip`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1157,6 +1291,10 @@ CREATE TABLE `oc_customer_online` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_customer_online`
+--
 
 -----------------------------------------------------------
 
@@ -1175,6 +1313,10 @@ CREATE TABLE `oc_customer_reward` (
   PRIMARY KEY (`customer_reward_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer_reward`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1191,6 +1333,10 @@ CREATE TABLE `oc_customer_transaction` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_customer_transaction`
+--
 
 -----------------------------------------------------------
 
@@ -1214,6 +1360,10 @@ CREATE TABLE `oc_customer_search` (
   PRIMARY KEY (`customer_search_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_customer_search`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1227,6 +1377,10 @@ CREATE TABLE `oc_customer_wishlist` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`customer_id`,`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_customer_wishlist`
+--
 
 -----------------------------------------------------------
 
@@ -1246,6 +1400,10 @@ CREATE TABLE `oc_custom_field` (
   PRIMARY KEY (`custom_field_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_custom_field`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1259,6 +1417,10 @@ CREATE TABLE `oc_custom_field_customer_group` (
   `required` tinyint(1) NOT NULL,
   PRIMARY KEY (`custom_field_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_custom_field_customer_group`
+--
 
 -----------------------------------------------------------
 
@@ -1274,6 +1436,10 @@ CREATE TABLE `oc_custom_field_description` (
   PRIMARY KEY (`custom_field_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_custom_field_description`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1287,6 +1453,10 @@ CREATE TABLE `oc_custom_field_value` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`custom_field_value_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_custom_field_value`
+--
 
 -----------------------------------------------------------
 
@@ -1303,6 +1473,10 @@ CREATE TABLE `oc_custom_field_value_description` (
   PRIMARY KEY (`custom_field_value_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_custom_field_value_description`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1318,6 +1492,10 @@ CREATE TABLE `oc_download` (
   PRIMARY KEY (`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_download`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1331,6 +1509,10 @@ CREATE TABLE `oc_download_description` (
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`download_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_download_description`
+--
 
 -----------------------------------------------------------
 
@@ -1439,46 +1621,52 @@ CREATE TABLE `oc_extension` (
 --
 
 INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
-(1, 'payment', 'cod'),
-(2, 'total', 'shipping'),
-(3, 'total', 'sub_total'),
-(4, 'total', 'tax'),
-(5, 'total', 'total'),
-(6, 'module', 'banner'),
-(7, 'module', 'carousel'),
-(8, 'total', 'credit'),
-(9, 'shipping', 'flat'),
-(10, 'total', 'handling'),
-(11, 'total', 'low_order_fee'),
-(12, 'total', 'coupon'),
-(13, 'module', 'category'),
-(14, 'module', 'account'),
-(15, 'total', 'reward'),
-(16, 'total', 'voucher'),
-(17, 'payment', 'free_checkout'),
-(18, 'module', 'featured'),
-(19, 'module', 'slideshow'),
-(20, 'theme', 'default'),
-(21, 'dashboard', 'activity'),
-(22, 'dashboard', 'sale'),
-(23, 'dashboard', 'recent'),
-(24, 'dashboard', 'order'),
-(25, 'dashboard', 'online'),
-(26, 'dashboard', 'map'),
-(27, 'dashboard', 'customer'),
-(28, 'dashboard', 'chart'),
-(29, 'report', 'sale_coupon'),
-(31, 'report', 'customer_search'),
-(32, 'report', 'customer_transaction'),
-(33, 'report', 'product_purchased'),
-(34, 'report', 'product_viewed'),
-(35, 'report', 'sale_return'),
-(36, 'report', 'sale_order'),
-(37, 'report', 'sale_shipping'),
-(38, 'report', 'sale_tax'),
-(39, 'report', 'customer_activity'),
-(40, 'report', 'customer_order'),
-(41, 'report', 'customer_reward');
+(NULL, 'captcha', 'basic'),
+(NULL, 'module', 'banner'),
+(NULL, 'module', 'carousel'),
+(NULL, 'module', 'category'),
+(NULL, 'module', 'account'),
+(NULL, 'module', 'featured'),
+(NULL, 'module', 'latest'),
+(NULL, 'module', 'slideshow'),
+(NULL, 'payment', 'cod'),
+(NULL, 'payment', 'free_checkout'),
+(NULL, 'shipping', 'citylink'),
+(NULL, 'shipping', 'flat'),
+(NULL, 'shipping', 'item'),
+(NULL, 'shipping', 'parcelforce_48'),
+(NULL, 'shipping', 'weight'),
+(NULL, 'theme', 'default'),
+(NULL, 'total', 'shipping'),
+(NULL, 'total', 'sub_total'),
+(NULL, 'total', 'tax'),
+(NULL, 'total', 'total'),
+(NULL, 'total', 'credit'),
+(NULL, 'total', 'handling'),
+(NULL, 'total', 'low_order_fee'),
+(NULL, 'total', 'coupon'),
+(NULL, 'total', 'reward'),
+(NULL, 'total', 'voucher'),
+(NULL, 'dashboard', 'activity'),
+(NULL, 'dashboard', 'sale'),
+(NULL, 'dashboard', 'recent'),
+(NULL, 'dashboard', 'order'),
+(NULL, 'dashboard', 'online'),
+(NULL, 'dashboard', 'map'),
+(NULL, 'dashboard', 'customer'),
+(NULL, 'dashboard', 'chart'),
+(NULL, 'report', 'sale_coupon'),
+(NULL, 'report', 'customer_search'),
+(NULL, 'report', 'customer_transaction'),
+(NULL, 'report', 'product_purchased'),
+(NULL, 'report', 'product_viewed'),
+(NULL, 'report', 'sale_return'),
+(NULL, 'report', 'sale_order'),
+(NULL, 'report', 'sale_shipping'),
+(NULL, 'report', 'sale_tax'),
+(NULL, 'report', 'customer_activity'),
+(NULL, 'report', 'customer_order'),
+(NULL, 'report', 'customer_reward');
 
 -----------------------------------------------------------
 
@@ -1495,6 +1683,10 @@ CREATE TABLE `oc_extension_install` (
   PRIMARY KEY (`extension_install_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_extension_install`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1510,6 +1702,10 @@ CREATE TABLE `oc_extension_path` (
   PRIMARY KEY (`extension_path_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_extension_path`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1523,6 +1719,10 @@ CREATE TABLE `oc_filter` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_filter`
+--
 
 -----------------------------------------------------------
 
@@ -1539,6 +1739,10 @@ CREATE TABLE `oc_filter_description` (
   PRIMARY KEY (`filter_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_filter_description`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1551,6 +1755,10 @@ CREATE TABLE `oc_filter_group` (
   `sort_order` int(3) NOT NULL,
   PRIMARY KEY (`filter_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_filter_group`
+--
 
 -----------------------------------------------------------
 
@@ -1565,6 +1773,10 @@ CREATE TABLE `oc_filter_group_description` (
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`filter_group_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_filter_group_description`
+--
 
 -----------------------------------------------------------
 
@@ -1587,8 +1799,13 @@ CREATE TABLE `oc_geo_zone` (
 --
 
 INSERT INTO `oc_geo_zone` (`geo_zone_id`, `name`, `description`, `date_modified`, `date_added`) VALUES
-(3, 'UK VAT Zone', 'UK VAT', '2010-02-26 22:33:24', '2009-01-06 23:26:25'),
-(4, 'UK Shipping', 'UK Shipping Zones', '2010-12-15 15:18:13', '2009-06-23 01:14:53');
+(3, 'مناطق مالیاتی ایران', 'مناطق مالیاتی', '2017-07-05 05:47:24', '2017-07-05 23:26:25'),
+(4, 'حمل و نقل ایران', 'کلیه مناطق جمهوری اسلامی ایران', '2017-07-05 05:46:41', '2017-07-05 01:14:53'),
+(5, 'منطقه پستی تهران', 'منطقه پستی صرفا تهران', '2017-07-05 06:25:28', '2017-07-05 06:41:28'),
+(6, 'منطقه پستی البرز', 'منطقه پستی صرفا البرز', '2017-07-05 06:25:28', '2017-07-05 06:42:04'),
+(7, 'منطقه پستی اصفهان', 'منطقه پستی صرفا اصفهان', '2017-07-05 06:25:28', '2017-07-05 06:42:32'),
+(8, 'منطقه پستی خراسان رضوی', 'منطقه پستی صرفا خراسان رضوی', '2017-07-05 06:25:28', '2017-07-05 06:43:08'),
+(9, 'منطقه پستی فارس', 'منطقه پستی صرفا فارس', '2017-07-05 06:25:28', '2017-07-05 06:44:05');
 
 -----------------------------------------------------------
 
@@ -1638,10 +1855,14 @@ CREATE TABLE `oc_information_description` (
 --
 
 INSERT INTO `oc_information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_keyword`) VALUES
-(4, 1, 'About Us', '&lt;p&gt;\r\n	About Us&lt;/p&gt;\r\n', 'About Us', '', ''),
-(5, 1, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
 (3, 1, 'Privacy Policy', '&lt;p&gt;\r\n	Privacy Policy&lt;/p&gt;\r\n', 'Privacy Policy', '', ''),
-(6, 1, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', '');
+(4, 1, 'About Us', '&lt;p&gt;&lt;br&gt;	&lt;/p&gt;&lt;p&gt;You Can Write Here About Your Store.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;All Right Of Translation To persian Reserved By &lt;a href=&quot;http://www.opencartfarsi.com&quot; target=&quot;_blank&quot;&gt;OpenCartFarsi.Com&lt;/a&gt; .&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', 'About Your Shop', '', ''),
+(5, 1, 'Terms &amp; Conditions', '&lt;p&gt;\r\n	Terms &amp;amp; Conditions&lt;/p&gt;\r\n', 'Terms &amp; Conditions', '', ''),
+(6, 1, 'Delivery Information', '&lt;p&gt;\r\n	Delivery Information&lt;/p&gt;\r\n', 'Delivery Information', '', ''),
+(3, 2, 'شرایط عضویت', '&lt;p&gt;\r\n	شرایط عضویت در فروشگاه&lt;/p&gt;\r\n', 'شرایط عضویت فروشگاه', '', ''),
+(4, 2, 'درباره ما', '&lt;p&gt;&lt;br&gt;	&lt;/p&gt;&lt;p&gt;در این قسمت می توانید درباره خودتان بنویسید.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;تمامی حقوق فارسی سازی این فروشگاه ساز برای &lt;a href=&quot;http://www.opencartfarsi.com&quot; target=&quot;_blank&quot;&gt;اپن کارت فارسی دات کام&lt;/a&gt; محفوظ می باشد.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;', 'درباره فروشگاه ما', '', ''),
+(5, 2, 'شرایط خرید', '&lt;p&gt;\r\n	شرایط خرید از فروشگاه&lt;/p&gt;\r\n', 'شرایط خرید فروشگاه', '', ''),
+(6, 2, 'راهنمای خرید', '&lt;p&gt;\r\n	راهنمای خرید از فروشگاه&lt;/p&gt;\r\n', 'راهنمای خرید فروشگاه', '', '');
 
 -----------------------------------------------------------
 
@@ -1656,6 +1877,10 @@ CREATE TABLE `oc_information_to_layout` (
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`information_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_information_to_layout`
+--
 
 -----------------------------------------------------------
 
@@ -1705,7 +1930,8 @@ CREATE TABLE `oc_language` (
 --
 
 INSERT INTO `oc_language` (`language_id`, `name`, `code`, `locale`, `image`, `directory`, `sort_order`, `status`) VALUES
-(1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 1, 1);
+(1, 'English', 'en-gb', 'en-US,en_US.UTF-8,en_US,en-gb,english', 'gb.png', 'english', 2, 1),
+(2, 'فارسی', 'fa-ir', 'fa-IR,fa_IR.UTF-8,fa_IR,fa-ir,persian', 'ir.png', 'persian', 1, 1);
 
 -----------------------------------------------------------
 
@@ -1725,19 +1951,21 @@ CREATE TABLE `oc_layout` (
 --
 
 INSERT INTO `oc_layout` (`layout_id`, `name`) VALUES
-(1, 'Home'),
-(2, 'Product'),
-(3, 'Category'),
-(4, 'Default'),
-(5, 'Manufacturer'),
-(6, 'Account'),
-(7, 'Checkout'),
-(8, 'Contact'),
-(9, 'Sitemap'),
-(10, 'Affiliate'),
-(11, 'Information'),
-(12, 'Compare'),
-(13, 'Search');
+(1, 'صفحه اصلی (Home)'),
+(2, 'محصول (Product)'),
+(3, 'دسته بندی (Category)'),
+(4, 'پیش فرض (Default)'),
+(5, 'تولیدکنندگان (Manufacturer)'),
+(6, 'حساب کاربری (Account)'),
+(7, 'تسویه حساب (Checkout)'),
+(8, 'تماس با ما (Contact)'),
+(9, 'نقشه سایت (Sitemap)'),
+(10, 'بازاریابی (Affiliate)'),
+(11, 'اطلاعات (Information)'),
+(12, 'مقایسه (Compare)'),
+(13, 'جستجو (Search)'),
+(14, 'ویژه ها (Special)'),
+(15, 'پرداخت ها (Payment CallBack)');
 
 -----------------------------------------------------------
 
@@ -1760,16 +1988,14 @@ CREATE TABLE `oc_layout_module` (
 --
 
 INSERT INTO `oc_layout_module` (`layout_module_id`, `layout_id`, `code`, `position`, `sort_order`) VALUES
-(2, 4, '0', 'content_top', 0),
-(3, 4, '0', 'content_top', 1),
-(20, 5, '0', 'column_left', 2),
-(69, 10, 'account', 'column_right', 1),
-(68, 6, 'account', 'column_right', 1),
-(67, 1, 'carousel.29', 'content_top', 3),
-(66, 1, 'slideshow.27', 'content_top', 1),
-(65, 1, 'featured.28', 'content_top', 2),
-(72, 3, 'category', 'column_left', 1),
-(73, 3, 'banner.30', 'column_left', 2);
+(1, 1, 'slideshow.1', 'content_top', 1),
+(2, 1, 'latest.2', 'content_top', 2),
+(3, 1, 'featured.3', 'content_top', 2),
+(4, 1, 'carousel.4', 'content_top', 3),
+(5, 3, 'category', 'column_right', 1),
+(6, 3, 'banner.5', 'column_right', 2),
+(7, 10, 'account', 'column_right', 1),
+(8, 6, 'account', 'column_right', 1);
 
 -----------------------------------------------------------
 
@@ -1791,19 +2017,21 @@ CREATE TABLE `oc_layout_route` (
 --
 
 INSERT INTO `oc_layout_route` (`layout_route_id`, `layout_id`, `store_id`, `route`) VALUES
-(38, 6, 0, 'account/%'),
-(17, 10, 0, 'affiliate/%'),
-(44, 3, 0, 'product/category'),
-(42, 1, 0, 'common/home'),
-(20, 2, 0, 'product/product'),
-(24, 11, 0, 'information/information'),
-(23, 7, 0, 'checkout/%'),
-(31, 8, 0, 'information/contact'),
-(32, 9, 0, 'information/sitemap'),
-(34, 4, 0, ''),
-(45, 5, 0, 'product/manufacturer'),
-(52, 12, 0, 'product/compare'),
-(53, 13, 0, 'product/search');
+(1, 1, 0, 'common/home'),
+(2, 2, 0, 'product/product'),
+(3, 3, 0, 'product/category'),
+(4, 4, 0, ''),
+(5, 5, 0, 'product/manufacturer/%'),
+(6, 6, 0, 'account/%'),
+(7, 7, 0, 'checkout/%'),
+(8, 8, 0, 'information/contact'),
+(9, 9, 0, 'information/sitemap'),
+(10, 10, 0, 'affiliate/%'),
+(11, 11, 0, 'information/information'),
+(12, 12, 0, 'product/compare'),
+(13, 13, 0, 'product/search'),
+(14, 14, 0, 'product/special'),
+(15, 15, 0, 'extension/payment/%');
 
 -----------------------------------------------------------
 
@@ -1849,7 +2077,10 @@ CREATE TABLE `oc_length_class_description` (
 INSERT INTO `oc_length_class_description` (`length_class_id`, `language_id`, `title`, `unit`) VALUES
 (1, 1, 'Centimeter', 'cm'),
 (2, 1, 'Millimeter', 'mm'),
-(3, 1, 'Inch', 'in');
+(3, 1, 'Inch', 'in'),
+(1, 2, 'سانتی متر', 'cm'),
+(2, 2, 'میلی متر', 'mm'),
+(3, 2, 'اینچ', 'in');
 
 -----------------------------------------------------------
 
@@ -1872,6 +2103,10 @@ CREATE TABLE `oc_location` (
   KEY `name` (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_location`
+--
+
 -----------------------------------------------------------
 
 --
@@ -1892,12 +2127,12 @@ CREATE TABLE `oc_manufacturer` (
 --
 
 INSERT INTO `oc_manufacturer` (`manufacturer_id`, `name`, `image`, `sort_order`) VALUES
-(5, 'HTC', 'catalog/demo/htc_logo.jpg', 0),
-(6, 'Palm', 'catalog/demo/palm_logo.jpg', 0),
-(7, 'Hewlett-Packard', 'catalog/demo/hp_logo.jpg', 0),
-(8, 'Apple', 'catalog/demo/apple_logo.jpg', 0),
-(9, 'Canon', 'catalog/demo/canon_logo.jpg', 0),
-(10, 'Sony', 'catalog/demo/sony_logo.jpg', 0);
+(5, 'اچ تی سی', 'catalog/demo/htc_logo.jpg', 0),
+(6, 'پالم', 'catalog/demo/palm_logo.jpg', 0),
+(7, 'اچ پی', 'catalog/demo/hp_logo.jpg', 0),
+(8, 'اپل', 'catalog/demo/apple_logo.jpg', 0),
+(9, 'کانن', 'catalog/demo/canon_logo.jpg', 0),
+(10, 'سونی', 'catalog/demo/sony_logo.jpg', 0);
 
 -----------------------------------------------------------
 
@@ -1941,6 +2176,10 @@ CREATE TABLE `oc_marketing` (
   PRIMARY KEY (`marketing_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_marketing`
+--
+
 -------------------------------------------------------------
 
 --
@@ -1962,6 +2201,21 @@ CREATE TABLE `oc_modification` (
   PRIMARY KEY (`modification_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_modification`
+--
+
+INSERT INTO `oc_modification` (`modification_id`, `extension_install_id`, `name`, `code`, `author`, `version`, `link`, `xml`, `status`, `date_added`) VALUES
+(1, 0, 'OpenCartFarsi Shamsi Date V3.0.2.0', 'OpenCartFarsi_Shamsi_Date', 'Mojtaba Moghani - wWw.Open-Cart.ir', '3.8.2', 'https://www.opencartfarsi.ir', '<?xml version=\"1.0\" encoding=\"UTF-8\"?><modification><name>OpenCartFarsi Shamsi Date V3.0.2.0</name><code>OpenCartFarsi_Shamsi_Date</code><version>3.8.2</version><author>Mojtaba Moghani - wWw.Open-Cart.ir</author><link>https://www.opencartfarsi.ir</link><file path=\"admin/controller/catalog/product.php\"><operation><search><![CDATA[($product_info[\'date_available\'] != \'0000-00-00\') ? $product_info[\'date_available\'] : \'\';]]></search><add position=\"replace\"><![CDATA[($product_info[\'date_available\'] != \'0000-00-00\') ? (($this->language->get(\'code\') == \'fa\') ? gtj($product_info[\'date_available\']) : $product_info[\'date_available\']) : \'\';]]></add></operation><operation><search><![CDATA[$data[\'date_available\'] = date(\'Y-m-d\');]]></search><add position=\"replace\"><![CDATA[$data[\'date_available\'] = ($this->language->get(\'code\') == \'fa\') ? jdate(\'Y-m-d\') : date(\'Y-m-d\');]]></add></operation><operation><search><![CDATA[($product_discount[\'date_start\'] != \'0000-00-00\') ? $product_discount[\'date_start\'] : \'\',]]></search><add position=\"replace\"><![CDATA[($product_discount[\'date_start\'] != \'0000-00-00\') ? (($this->language->get(\'code\') == \'fa\') ? gtj($product_discount[\'date_start\']) : $product_discount[\'date_start\']) : \'\',]]></add></operation><operation><search><![CDATA[($product_discount[\'date_end\'] != \'0000-00-00\') ? $product_discount[\'date_end\'] : \'\']]></search><add position=\"replace\"><![CDATA[($product_discount[\'date_end\'] != \'0000-00-00\') ? (($this->language->get(\'code\') == \'fa\') ? gtj($product_discount[\'date_end\']) : $product_discount[\'date_end\']) : \'\']]></add></operation><operation><search><![CDATA[($product_special[\'date_start\'] != \'0000-00-00\') ? $product_special[\'date_start\'] : \'\',]]></search><add position=\"replace\"><![CDATA[($product_special[\'date_start\'] != \'0000-00-00\') ? (($this->language->get(\'code\') == \'fa\') ? gtj($product_special[\'date_start\']) : $product_special[\'date_start\']) : \'\',]]></add></operation><operation><search><![CDATA[($product_special[\'date_end\'] != \'0000-00-00\') ? $product_special[\'date_end\'] :  \'\']]></search><add position=\"replace\"><![CDATA[($product_special[\'date_end\'] != \'0000-00-00\') ? (($this->language->get(\'code\') == \'fa\') ? gtj($product_special[\'date_end\']) : $product_special[\'date_end\']) :  \'\']]></add></operation></file><file path=\"admin/controller/catalog/review.php\"><operation><search><![CDATA[\'filter_date_added\' => $filter_date_added,]]></search><add position=\"replace\"><![CDATA[\'filter_date_added\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/catalog/download.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/customer/customer.php\"><operation><search><![CDATA[\'filter_date_added\'        => $filter_date_added,]]></search><add position=\"replace\"><![CDATA[\'filter_date_added\'        => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation><operation><search><![CDATA[\'date_added\' => date(\'d/m/y\', strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[\'date_added\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date(\'d/m/y\', strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/customer/customer_approval.php\"><operation><search><![CDATA[\'filter_date_added\'        => $filter_date_added,]]></search><add position=\"replace\"><![CDATA[\'filter_date_added\'        => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/design/theme.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/extension/dashboard/activity.php\"><operation><search><![CDATA[date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"admin/controller/extension/dashboard/chart.php\"><operation><search><![CDATA[$results = $this->model_extension_dashboard_chart->getTotalOrdersByMonth();]]></search><add position=\"replace\"><![CDATA[if ($this->language->get(\'code\') == \'fa\') {\r\n					$results = $this->model_extension_dashboard_chart->getTotalOrdersByMonthFarsi();\r\n				} else {\r\n					$results = $this->model_extension_dashboard_chart->getTotalOrdersByMonth();\r\n				}]]></add></operation><operation><search><![CDATA[$results = $this->model_extension_dashboard_chart->getTotalCustomersByMonth();]]></search><add position=\"replace\"><![CDATA[if ($this->language->get(\'code\') == \'fa\') {\r\n					$results = $this->model_extension_dashboard_chart->getTotalCustomersByMonthFarsi();\r\n				} else {\r\n					$results = $this->model_extension_dashboard_chart->getTotalCustomersByMonth();\r\n				}]]></add></operation><operation><search><![CDATA[$results = $this->model_extension_dashboard_chart->getTotalOrdersByYear();]]></search><add position=\"replace\"><![CDATA[if ($this->language->get(\'code\') == \'fa\') {\r\n					$results = $this->model_extension_dashboard_chart->getTotalOrdersByYearFarsi();\r\n				} else {\r\n					$results = $this->model_extension_dashboard_chart->getTotalOrdersByYear();\r\n				}]]></add></operation><operation><search><![CDATA[$results = $this->model_extension_dashboard_chart->getTotalCustomersByYear();]]></search><add position=\"replace\"><![CDATA[if ($this->language->get(\'code\') == \'fa\') {\r\n					$results = $this->model_extension_dashboard_chart->getTotalCustomersByYearFarsi();\r\n				} else {\r\n					$results = $this->model_extension_dashboard_chart->getTotalCustomersByYear();\r\n				}]]></add></operation><operation info=\"Chart For Week\"><search><![CDATA[$json[\'xaxis\'][] = array(date(\'w\', strtotime($date)), date(\'D\', strtotime($date)));]]></search><add position=\"replace\"><![CDATA[$json[\'xaxis\'][] = ($this->language->get(\'code\') == \'fa\') ? array(date(\'w\', strtotime($date)), jdate(\'l\', strtotime($date))) : array(date(\'w\', strtotime($date)), date(\'D\', strtotime($date)));]]></add></operation><operation info=\"Chart For Month\"><search><![CDATA[for ($i = 1; $i <= date(\'t\'); $i++) {]]></search><add position=\"replace\" offset=\"4\"><![CDATA[\r\n				if ($this->language->get(\'code\') == \'fa\') {\r\n					for ($i = 1; $i <= jdate(\'t\'); $i++) {\r\n						$jdate = jdate(\'Y\') . \'-\' . jdate(\'m\') . \'-\' . $i;\r\n						$date = jtg($jdate);\r\n						$json[\'xaxis\'][] = array(jdate(\'j\', strtotime($date)), jdate(\'d\', strtotime($date)));\r\n					}\r\n				}  else {\r\n					for ($i = 1; $i <= date(\'t\'); $i++) {\r\n						$date = date(\'Y\') . \'-\' . date(\'m\') . \'-\' . $i;\r\n						$json[\'xaxis\'][] = array(date(\'j\', strtotime($date)), date(\'d\', strtotime($date)));\r\n					}\r\n				}\r\n]]></add></operation><operation info=\"Chart For Year\"><search><![CDATA[$json[\'xaxis\'][] = array($i, date(\'M\', mktime(0, 0, 0, $i)));]]></search><add position=\"replace\"><![CDATA[$json[\'xaxis\'][] = ($this->language->get(\'code\') == \'fa\') ? array($i, jdate(\'F\', jmktime(0, 0, 0, $i, 1, jdate(\'Y\')))) : array($i, date(\'M\', mktime(0, 0, 0, $i)));]]></add></operation></file><file path=\"admin/controller/extension/dashboard/{customer,order,sale}.php\"><operation><search><![CDATA[date(\'Y-m-d\', strtotime(\'-1 day\'))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate(\'Y-m-d\', strtotime(\'-1 day\')) : date(\'Y-m-d\', strtotime(\'-1 day\'))]]></add></operation><operation><search><![CDATA[date(\'Y-m-d\', strtotime(\'-2 day\'))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate(\'Y-m-d\', strtotime(\'-2 day\')) : date(\'Y-m-d\', strtotime(\'-2 day\'))]]></add></operation></file><file path=\"admin/controller/extension/dashboard/recent.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/extension/report/{customer_activity,customer_reward,customer_search,customer_transaction,sale_coupon}.php\"><operation><search><![CDATA[\'filter_date_start\'	=> $filter_date_start,]]></search><add position=\"replace\" offset=\"1\"><![CDATA[\r\n			\'filter_date_start\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_start) : $filter_date_start,\r\n			\'filter_date_end\'	=> ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_end) : $filter_date_end,\r\n]]></add></operation></file><file path=\"admin/controller/extension/report/{marketing,product_purchased,sale_order,sale_shipping,sale_tax}.php\"><operation><search><![CDATA[\'filter_date_start\'	     => $filter_date_start,]]></search><add position=\"replace\" offset=\"1\"><![CDATA[\r\n			\'filter_date_start\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_start) : $filter_date_start,\r\n			\'filter_date_end\'	=> ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_end) : $filter_date_end,\r\n]]></add></operation></file><file path=\"admin/controller/extension/report/customer_order.php\"><operation><search><![CDATA[\'filter_date_start\'			=> $filter_date_start,]]></search><add position=\"replace\" offset=\"1\"><![CDATA[\r\n			\'filter_date_start\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_start) : $filter_date_start,\r\n			\'filter_date_end\'	=> ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_end) : $filter_date_end,\r\n]]></add></operation></file><file path=\"admin/controller/extension/report/sale_return.php\"><operation><search><![CDATA[\'filter_date_start\'	      => $filter_date_start,]]></search><add position=\"replace\" offset=\"1\"><![CDATA[\r\n			\'filter_date_start\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_start) : $filter_date_start,\r\n			\'filter_date_end\'	=> ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_end) : $filter_date_end,\r\n]]></add></operation></file><file path=\"admin/controller/extension/report/{customer_activity,customer_search}.php\"><operation><search><![CDATA[date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"admin/controller/extension/report/sale_order.php\"><operation><search><![CDATA[$filter_date_start = date(\'Y-m-d\', strtotime(date(\'Y\') . \'-\' . date(\'m\') . \'-01\'));]]></search><add position=\"replace\"><![CDATA[$filter_date_start = ($this->language->get(\'code\') == \'fa\') ? jdate(\'Y\') . \'-\' . jdate(\'m\') . \'-01\' : date(\'Y-m-d\', strtotime(date(\'Y\') . \'-\' . date(\'m\') . \'-01\'));]]></add></operation><operation><search><![CDATA[$filter_date_end = date(\'Y-m-d\');]]></search><add position=\"replace\"><![CDATA[$filter_date_end = ($this->language->get(\'code\') == \'fa\') ? jdate(\'Y-m-d\') : date(\'Y-m-d\');]]></add></operation></file><file path=\"admin/controller/extension/report/{sale_order,sale_return,sale_shipping,sale_tax}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_start\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_start\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_start\'])),]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_end\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_end\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_end\'])),]]></add></operation></file><file path=\"admin/controller/localisation/{currency,tax_rate}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_modified\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_modified\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_modified\'])),]]></add></operation></file><file path=\"admin/controller/localisation/tax_rate.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/localisation/zone.php\"><operation><search><![CDATA[$order = \'ASC\';]]></search><add position=\"replace\"><![CDATA[$order = \'DESC\';]]></add></operation></file><file path=\"admin/controller/mail/return.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($return_info[\'date_modified\']));]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($return_info[\'date_modified\'])) : date($this->language->get(\'date_format_short\'), strtotime($return_info[\'date_modified\']));]]></add></operation></file><file path=\"admin/controller/marketing/marketing.php\"><operation><search><![CDATA[\'filter_date_added\' => $filter_date_added,]]></search><add position=\"replace\" regex=\"true\"><![CDATA[\'filter_date_added\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,]]></add></operation></file><file path=\"admin/controller/marketing/{coupon,marketing}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"admin/controller/marketing/coupon.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_start\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_start\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_start\'])),]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_end\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_end\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_end\'])),]]></add></operation><operation><search><![CDATA[($coupon_info[\'date_start\'] != \'0000-00-00\' ? $coupon_info[\'date_start\'] : \'\');]]></search><add position=\"replace\"><![CDATA[($coupon_info[\'date_start\'] != \'0000-00-00\' ? (($this->language->get(\'code\') == \'fa\') ? gtj($coupon_info[\'date_start\']) : $coupon_info[\'date_start\']) : \'\');]]></add></operation><operation><search><![CDATA[$data[\'date_start\'] = date(\'Y-m-d\', time());]]></search><add position=\"replace\"><![CDATA[$data[\'date_start\'] = ($this->language->get(\'code\') == \'fa\') ? jdate(\'Y-m-d\', time()) : date(\'Y-m-d\', time());]]></add></operation><operation><search><![CDATA[($coupon_info[\'date_end\'] != \'0000-00-00\' ? $coupon_info[\'date_end\'] : \'\');]]></search><add position=\"replace\"><![CDATA[($coupon_info[\'date_end\'] != \'0000-00-00\' ? (($this->language->get(\'code\') == \'fa\') ? gtj($coupon_info[\'date_end\']) : $coupon_info[\'date_end\']) : \'\');]]></add></operation><operation><search><![CDATA[$data[\'date_end\'] = date(\'Y-m-d\', strtotime(\'+1 month\'));]]></search><add position=\"replace\"><![CDATA[$data[\'date_end\'] = ($this->language->get(\'code\') == \'fa\') ? jdate(\'Y-m-d\', strtotime(\'+1 month\')) : date(\'Y-m-d\', strtotime(\'+1 month\'));]]></add></operation></file><file path=\"admin/controller/marketplace/{installer,marketplace,modification}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"admin/controller/marketplace/marketplace.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($response_info[\'date_added\']));]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($response_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($response_info[\'date_added\']));]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($response_info[\'date_modified\']));]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($response_info[\'date_modified\'])) : date($this->language->get(\'date_format_short\'), strtotime($response_info[\'date_modified\']));]]></add></operation></file><file path=\"admin/controller/report/online.php\"><operation><search><![CDATA[date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/sale/recurring.php\"><operation><search><![CDATA[\'filter_date_added\'         => $filter_date_added,]]></search><add position=\"replace\"><![CDATA[\'filter_date_added\'        => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,]]></add></operation><operation><search><![CDATA[$data[\'date_added\'] = date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']));]]></search><add position=\"replace\"><![CDATA[$data[\'date_added\'] = ($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($order_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']));]]></add></operation></file><file path=\"admin/controller/sale/{order,recurring,return,voucher}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"admin/controller/sale/order.php\"><operation><search><![CDATA[\'filter_date_added\'      => $filter_date_added,]]></search><add position=\"replace\" offset=\"1\"><![CDATA[\r\n			\'filter_date_added\'    => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,\r\n			\'filter_date_modified\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_modified) : $filter_date_modified,\r\n]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($order_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']))]]></add></operation></file><file path=\"admin/controller/sale/return.php\"><operation><search><![CDATA[\'filter_date_added\'       => $filter_date_added,]]></search><add position=\"replace\" offset=\"1\"><![CDATA[\r\n			\'filter_date_added\'    => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,\r\n			\'filter_date_modified\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_modified) : $filter_date_modified,\r\n]]></add></operation></file><file path=\"admin/controller/sale/{order,return}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_modified\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_modified\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_modified\'])),]]></add></operation></file><file path=\"admin/controller/setting/setting.php\"><operation><search><![CDATA[if (isset($this->request->post[\'config_currency_auto\'])) {]]></search><add position=\"before\"><![CDATA[\r\n		$data[\'shamsidate_formats\'] = array();\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'date_format_short\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'date_format_short\')) : date($this->language->get(\'date_format_short\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'date_format_long\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'date_format_long\')) : date($this->language->get(\'date_format_long\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'datetime_format\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'datetime_format\')) : date($this->language->get(\'datetime_format\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'datetime_format_short\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'datetime_format_short\')) : date($this->language->get(\'datetime_format_short\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'datetime_format_long\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'datetime_format_long\')) : date($this->language->get(\'datetime_format_long\'))\r\n		);\r\n		if (isset($this->request->post[\'config_shamsidate_format\'])) {\r\n			$data[\'config_shamsidate_format\'] = $this->request->post[\'config_shamsidate_format\'];\r\n		} else {\r\n			$data[\'config_shamsidate_format\'] = $this->config->get(\'config_shamsidate_format\');\r\n		}\r\n]]></add></operation></file><file path=\"admin/controller/setting/store.php\"><operation><search><![CDATA[if (isset($this->request->post[\'config_currency\'])) {]]></search><add position=\"before\"><![CDATA[\r\n		$data[\'shamsidate_formats\'] = array();\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'date_format_short\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'date_format_short\')) : date($this->language->get(\'date_format_short\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'date_format_long\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'date_format_long\')) : date($this->language->get(\'date_format_long\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'datetime_format\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'datetime_format\')) : date($this->language->get(\'datetime_format\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'datetime_format_short\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'datetime_format_short\')) : date($this->language->get(\'datetime_format_short\'))\r\n		);\r\n		$data[\'shamsidate_formats\'][] = array(\r\n			\'code\' 	=> $this->language->get(\'datetime_format_long\'),\r\n			\'title\' => ($this->language->get(\'code\') == \'fa\') ? jdate($this->language->get(\'datetime_format_long\')) : date($this->language->get(\'datetime_format_long\'))\r\n		);\r\n		if (isset($this->request->post[\'config_shamsidate_format\'])) {\r\n			$data[\'config_shamsidate_format\'] = $this->request->post[\'config_shamsidate_format\'];\r\n		} else {\r\n			$data[\'config_shamsidate_format\'] = $this->config->get(\'config_shamsidate_format\');\r\n		}\r\n]]></add></operation></file><file path=\"admin/controller/tool/upload.php\"><operation><search><![CDATA[\'filter_date_added\'	=> $filter_date_added,]]></search><add position=\"replace\"><![CDATA[\'filter_date_added\' => ($this->language->get(\'code\') == \'fa\') ? jtg($filter_date_added) : $filter_date_added,]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/controller/user/api.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_modified\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_modified\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_modified\'])),]]></add></operation><operation><search><![CDATA[date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'datetime_format\'), strtotime($result[\'date_added\'])),]]></add></operation><operation><search><![CDATA[date($this->language->get(\'datetime_format\'), strtotime($result[\'date_modified\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_modified\'])) : date($this->language->get(\'datetime_format\'), strtotime($result[\'date_modified\']))]]></add></operation></file><file path=\"admin/controller/user/{api,user}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\'])),]]></add></operation></file><file path=\"admin/language/en-gb/en-gb.php\"><operation><search><![CDATA[$_[\'datetime_format\']]]></search><add position=\"before\"><![CDATA[$_[\'datetime_format_short\']    		= \'l d F Y\';\r\n$_[\'datetime_format_long\']    		= \'l d F Y - H:i:s\';]]></add></operation></file><file path=\"admin/language/en-gb/setting/setting.php\"><operation><search><![CDATA[$_[\'entry_currency_auto\']]]></search><add position=\"before\"><![CDATA[\r\n$_[\'entry_shamsidate_status\']          = \'Shamsi Date Status\';\r\n$_[\'entry_shamsidate_format\']          = \'Shamsi Date Format\';\r\n]]></add></operation><operation><search><![CDATA[$_[\'help_currency_auto\']]]></search><add position=\"before\"><![CDATA[\r\n$_[\'help_shamsidate_status\']           = \'By Activate This Option You Can View Date In Format Shamsi Date.\';\r\n$_[\'help_shamsidate_format\']           = \'Shamsi Date Format For Persian Language.\';\r\n]]></add></operation></file><file path=\"admin/language/en-gb/setting/store.php\"><operation><search><![CDATA[$_[\'entry_currency\']]]></search><add position=\"before\"><![CDATA[\r\n$_[\'entry_shamsidate_status\']          = \'Shamsi Date Status\';\r\n$_[\'entry_shamsidate_format\']          = \'Shamsi Date Format\';\r\n]]></add></operation><operation><search><![CDATA[$_[\'help_currency\']]]></search><add position=\"before\"><![CDATA[\r\n$_[\'help_shamsidate_status\']           = \'By Activate This Option You Can View Date In Format Shamsi Date.\';\r\n$_[\'help_shamsidate_format\']           = \'Shamsi Date Format For Persian Language.\';\r\n]]></add></operation></file><file path=\"admin/language/fa-ir/common/footer.php\"><operation error=\"skip\"><search><![CDATA[?>]]></search><add position=\"before\"><![CDATA[echo eval(base64_decode(\'JF9bJ3RleHRfZm9vdGVyJ10gCT0gJyYjMTU3ODsmIzE2MDU7JiMxNTc1OyYjMTYwNTsmIzE3NDA7ICYjMTU4MTsmIzE2MDI7JiMxNjA4OyYjMTYwMjsgJiMxNTc2OyYjMTU4NTsmIzE1NzU7JiMxNzQwOyA8YSB0YXJnZXQ9Il9ibGFuayIgaHJlZj0iaHR0cDovL3d3dy5vcGVuY2FydGZhcnNpLmNvbSIgdGl0bGU9Ik9wZW5DYXJ0RmFyc2kuQ29tIj4mIzE1NzU7JiMxNjYyOyYjMTYwNjsgJiMxNzA1OyYjMTU3NTsmIzE1ODU7JiMxNTc4OyAmIzE2MDE7JiMxNTc1OyYjMTU4NTsmIzE1ODc7JiMxNzQwOyAmIzE1ODM7JiMxNTc1OyYjMTU3ODsgJiMxNzA1OyYjMTU3NTsmIzE2MDU7PC9hPiAmIzE2MDU7JiMxNTgxOyYjMTYwMTsmIzE2MDg7JiMxNTkyOyAmIzE1NzU7JiMxNTg3OyYjMTU3ODsuICZjb3B5OyAxMzg5LScgLiBqZGF0ZSgnWScpIC4gJyAnOw==\'));]]></add></operation></file><file path=\"admin/model/catalog/product.php\"><operation><search><![CDATA[$this->db->escape($data[\'date_available\'])]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($data[\'date_available\'])) : $this->db->escape($data[\'date_available\']))]]></add></operation><operation><search><![CDATA[$this->db->escape($product_discount[\'date_start\'])]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($product_discount[\'date_start\'])) : $this->db->escape($product_discount[\'date_start\']))]]></add></operation><operation><search><![CDATA[date_end = \'\" . $this->db->escape($product_discount[\'date_end\']) . \"\']]></search><add position=\"replace\"><![CDATA[date_end = \'\" . ($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($product_discount[\'date_end\'])) : $this->db->escape($product_discount[\'date_end\'])) . \"\']]></add></operation><operation><search><![CDATA[date_start = \'\" . $this->db->escape($product_special[\'date_start\']) . \"\']]></search><add position=\"replace\"><![CDATA[date_start = \'\" . ($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($product_special[\'date_start\'])) : $this->db->escape($product_special[\'date_start\'])) . \"\']]></add></operation><operation><search><![CDATA[date_end = \'\" . $this->db->escape($product_special[\'date_end\']) . \"\']]></search><add position=\"replace\"><![CDATA[date_end = \'\" . ($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($product_special[\'date_end\'])) : $this->db->escape($product_special[\'date_end\'])) . \"\']]></add></operation></file><file path=\"admin/model/catalog/review.php\"><operation><search><![CDATA[$this->db->escape($data[\'date_added\'])]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($data[\'date_added\'])) : $this->db->escape($data[\'date_added\']))]]></add></operation></file><file path=\"admin/model/extension/dashboard/chart.php\"><operation info=\"getTotalOrdersByMonth\"><search><![CDATA[public function getTotalOrdersByMonth() {]]></search><add position=\"before\"><![CDATA[/* *********************************** */\r\n	public function getTotalOrdersByMonthFarsi() {\r\n		$implode = array();\r\n		foreach ($this->config->get(\'config_complete_status\') as $order_status_id) {\r\n			$implode[] = \"\'\" . (int)$order_status_id . \"\'\";\r\n		}\r\n		$order_data = array();\r\n		for ($i = 1; $i <= jdate(\'t\'); $i++) {\r\n			$jdate = jdate(\'Y\') . \'-\' . jdate(\'m\') . \'-\' . $i;\r\n			$date = jtg($jdate);\r\n			$order_data[jdate(\'j\', strtotime($date))] = array(\r\n				\'day\'   => jdate(\'d\', strtotime($date)),\r\n				\'total\' => 0\r\n			);\r\n		}\r\n		$jmdate = jdate(\'Y\') . \'-\' . jdate(\'m\') . \'-1\';\r\n		$gmdate = jtg($jmdate);\r\n		$query = $this->db->query(\"SELECT COUNT(*) AS total, date_added FROM `\" . DB_PREFIX . \"order` WHERE order_status_id > \'0\' AND DATE(date_added) >= \'\" . $this->db->escape($gmdate) . \"\' GROUP BY DATE(date_added)\");\r\n		foreach ($query->rows as $result) {\r\n			$order_data[jdate(\'j\', strtotime($result[\'date_added\']))] = array(\r\n				\'day\'   => jdate(\'d\', strtotime($result[\'date_added\'])),\r\n				\'total\' => $result[\'total\']\r\n			);\r\n		}\r\n		return $order_data;\r\n	}\r\n/* *********************************** */]]></add></operation><operation info=\"getTotalOrdersByYear\"><search><![CDATA[public function getTotalOrdersByYear() {]]></search><add position=\"before\"><![CDATA[/* *********************************** */\r\n	public function getTotalOrdersByYearFarsi() {\r\n		$implode = array();\r\n		foreach ($this->config->get(\'config_complete_status\') as $order_status_id) {\r\n			$implode[] = \"\'\" . (int)$order_status_id . \"\'\";\r\n		}\r\n		$order_data = array();\r\n		for ($i = 1; $i <= 12; $i++) {\r\n			$jmonth = gregorian_to_jalali(date(\'Y\'), $i, date(\'d\')); \r\n			$jmonth = $jmonth[1];\r\n			$jyear = jdate(\'Y\');\r\n			$order_data[$jmonth] = array(\r\n				\'month\' => jdate(\'F\', jmktime(0, 0, 0, $jmonth)),//M or F\r\n				\'total\' => 0\r\n			);\r\n			$jmdate = jdate(\'Y\') . \'-\' . $jmonth . \'-1\';\r\n			$gmdate = jtg($jmdate);\r\n			$query = $this->db->query(\"SELECT YEAR(date_added) AS year, MONTH(date_added) AS month, DAY(date_added) AS day, date_added FROM `\" . DB_PREFIX . \"order` WHERE order_status_id > \'0\' AND DATE(date_added) >= \'\" . $this->db->escape($gmdate) . \"\' GROUP BY DATE(date_added)\");\r\n			$total_rows = 0;\r\n			$date_add = \'\';\r\n			if ($query->num_rows) {\r\n				foreach ($query->rows as $result) {\r\n					$order_jdate = gregorian_to_jalali($result[\'year\'], $result[\'month\'], $result[\'day\']);\r\n					if ($order_jdate[0] == $jyear && $order_jdate[1] == $jmonth) {\r\n						if($total_rows == 0) {$date_add = $result[\'date_added\'];}\r\n						$total_rows = $total_rows + 1;\r\n					}\r\n				}\r\n				$order_data[jdate(\'n\', strtotime($date_add))] = array(\r\n					\'month\' => jdate(\'F\', strtotime($date_add)),//M or F\r\n					\'total\' => $total_rows\r\n				);\r\n			}\r\n		}\r\n		return $order_data;\r\n	}\r\n/* *********************************** */]]></add></operation><operation info=\"getTotalCustomersByMonth\"><search><![CDATA[public function getTotalCustomersByMonth() {]]></search><add position=\"before\"><![CDATA[/* *********************************** */\r\n	public function getTotalCustomersByMonthFarsi() {\r\n		$customer_data = array();\r\n		for ($i = 1; $i <= jdate(\'t\'); $i++) {\r\n			$jdate = jdate(\'Y\') . \'-\' . jdate(\'m\') . \'-\' . $i;\r\n			$date = jtg($jdate);\r\n			$customer_data[jdate(\'j\', strtotime($date))] = array(\r\n				\'day\'   => jdate(\'d\', strtotime($date)),\r\n				\'total\' => 0\r\n			);\r\n		}\r\n		$jmdate = jdate(\'Y\') . \'-\' . jdate(\'m\') . \'-1\';\r\n		$gmdate = jtg($jmdate);\r\n		$query = $this->db->query(\"SELECT COUNT(*) AS total, date_added FROM `\" . DB_PREFIX . \"customer` WHERE DATE(date_added) >= \'\" . $this->db->escape($gmdate) . \"\' GROUP BY DATE(date_added)\");\r\n		foreach ($query->rows as $result) {\r\n			$customer_data[jdate(\'j\', strtotime($result[\'date_added\']))] = array(\r\n				\'day\'   => jdate(\'d\', strtotime($result[\'date_added\'])),\r\n				\'total\' => $result[\'total\']\r\n			);\r\n		}\r\n		return $customer_data;\r\n	}\r\n/* *********************************** */]]></add></operation><operation info=\"getTotalCustomersByYear\"><search><![CDATA[public function getTotalCustomersByYear() {]]></search><add position=\"before\"><![CDATA[/* *********************************** */\r\n	public function getTotalCustomersByYearFarsi() {\r\n		$customer_data = array();\r\n		for ($i = 1; $i <= 12; $i++) {\r\n			$jmonth = gregorian_to_jalali(date(\'Y\'), $i, date(\'d\')); \r\n			$jmonth = $jmonth[1];\r\n			$jyear = jdate(\'Y\');\r\n			$customer_data[$jmonth] = array(\r\n				\'month\' => jdate(\'F\', jmktime(0, 0, 0, $jmonth)),//M or F\r\n				\'total\' => 0\r\n			);\r\n			$jmdate = jdate(\'Y\') . \'-\' . $jmonth . \'-1\';\r\n			$gmdate = jtg($jmdate);\r\n			$query = $this->db->query(\"SELECT YEAR(date_added) AS year, MONTH(date_added) AS month, DAY(date_added) AS day, date_added FROM `\" . DB_PREFIX . \"customer` WHERE DATE(date_added) >= \'\" . $this->db->escape($gmdate) . \"\' GROUP BY DATE(date_added)\");\r\n			$total_rows = 0;\r\n			$date_add = \'\';\r\n			if ($query->num_rows) {\r\n				foreach ($query->rows as $result) {\r\n					$customer_jdate = gregorian_to_jalali($result[\'year\'], $result[\'month\'], $result[\'day\']);\r\n					if ($customer_jdate[0] == $jyear && $customer_jdate[1] == $jmonth) {\r\n						if($total_rows == 0) {$date_add = $result[\'date_added\'];}\r\n						$total_rows = $total_rows + 1;\r\n					}\r\n				}\r\n				$customer_data[jdate(\'n\', strtotime($date_add))] = array(\r\n					\'month\' => jdate(\'F\', strtotime($date_add)),//M or F\r\n					\'total\' => $total_rows\r\n				);\r\n			}\r\n		}\r\n		return $customer_data;\r\n	}\r\n/* *********************************** */]]></add></operation></file><file path=\"admin/model/marketing/coupon.php\"><operation><search><![CDATA[date_start = \'\" . $this->db->escape($data[\'date_start\']) . \"\', date_end = \'\" . $this->db->escape($data[\'date_end\']) . \"\']]></search><add position=\"replace\"><![CDATA[date_start = \'\" . ($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($data[\'date_start\'])) : $this->db->escape($data[\'date_start\'])) . \"\', date_end = \'\" . ($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($data[\'date_end\'])) : $this->db->escape($data[\'date_end\'])) . \"\']]></add></operation></file><file path=\"admin/model/sale/return.php\"><operation><search><![CDATA[date_ordered = \'\" . $this->db->escape($data[\'date_ordered\']) . \"\',]]></search><add position=\"replace\"><![CDATA[date_ordered = \'\" . ($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($data[\'date_ordered\'])) : $this->db->escape($data[\'date_ordered\'])) . \"\',]]></add></operation></file><file path=\"admin/view/template/setting/setting.twig\"><operation><search><![CDATA[<label class=\"col-sm-2 control-label\" for=\"input-length-class\">{{ entry_length_class }}</label>]]></search><add position=\"before\" offset=\"1\"><![CDATA[\r\n<!--*****************Start Shamsi Date********************-->\r\n              <div class=\"form-group\">\r\n                <label class=\"col-sm-2 control-label\" for=\"input-shamsidate-format\"><span data-toggle=\"tooltip\" title=\"{{ help_shamsidate_format }}\">{{ entry_shamsidate_format }}</span></label>\r\n                <div class=\"col-sm-10\">\r\n                  <select name=\"config_shamsidate_format\" id=\"input-shamsidate-format\" class=\"form-control\">\r\n					{% for format in shamsidate_formats %}\r\n					{% if format.code == config_shamsidate_format %}\r\n                    <option value=\"{{ format.code }}\" selected=\"selected\">{{ format.title }}</option>\r\n                    {% else %}\r\n                    <option value=\"{{ format.code }}\">{{ format.title }}</option>\r\n					{% endif %}\r\n					{% endfor %}\r\n                  </select>\r\n                </div>\r\n              </div>\r\n<!--*****************Ends Shamsi Date********************-->\r\n]]></add></operation></file><file path=\"admin/view/template/setting/store_form.twig\"><operation><search><![CDATA[<div class=\"tab-pane\" id=\"tab-option\">]]></search><add position=\"before\" offset=\"1\"><![CDATA[\r\n<!--*****************Start Shamsi Date********************-->\r\n              <div class=\"form-group\">\r\n                <label class=\"col-sm-2 control-label\" for=\"input-shamsidate-format\"><span data-toggle=\"tooltip\" title=\"{{ help_shamsidate_format }}\">{{ entry_shamsidate_format }}</span></label>\r\n                <div class=\"col-sm-10\">\r\n                  <select name=\"config_shamsidate_format\" id=\"input-shamsidate-format\" class=\"form-control\">\r\n					{% for format in shamsidate_formats %}\r\n					{% if format.code == config_shamsidate_format %}\r\n                    <option value=\"{{ format.code }}\" selected=\"selected\">{{ format.title }}</option>\r\n                    {% else %}\r\n                    <option value=\"{{ format.code }}\">{{ format.title }}</option>\r\n					{% endif %}\r\n					{% endfor %}\r\n                  </select>\r\n                </div>\r\n              </div>\r\n<!--*****************Ends Shamsi Date********************-->\r\n]]></add></operation></file><file path=\"catalog/controller/account/{download,order,recurring,return,reward,transaction}.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"catalog/controller/account/order.php\"><operation><search><![CDATA[$data[\'date_added\'] = date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']));]]></search><add position=\"replace\"><![CDATA[$data[\'date_added\'] = ($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($order_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']));]]></add></operation></file><file path=\"catalog/controller/account/recurring.php\"><operation><search><![CDATA[$data[\'date_added\'] = date($this->language->get(\'date_format_short\'), strtotime($recurring_info[\'date_added\']));]]></search><add position=\"replace\"><![CDATA[$data[\'date_added\'] = ($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($recurring_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($recurring_info[\'date_added\']));]]></add></operation></file><file path=\"catalog/controller/account/return.php\"><operation><search><![CDATA[$data[\'date_ordered\'] = date($this->language->get(\'date_format_short\'), strtotime($return_info[\'date_ordered\']));]]></search><add position=\"replace\"><![CDATA[$data[\'date_ordered\'] = ($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($return_info[\'date_ordered\'])) : date($this->language->get(\'date_format_short\'), strtotime($return_info[\'date_ordered\']));]]></add></operation><operation><search><![CDATA[$data[\'date_added\'] = date($this->language->get(\'date_format_short\'), strtotime($return_info[\'date_added\']));]]></search><add position=\"replace\"><![CDATA[$data[\'date_added\'] = ($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($return_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($return_info[\'date_added\']));]]></add></operation></file><file path=\"catalog/controller/account/transaction.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"catalog/controller/common/footer.php\"><operation error=\"skip\"><search><![CDATA[date(\'Y\', time())]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\' ? jdate(\'Y\', time()) : date(\'Y\', time()))]]></add></operation></file><file path=\"catalog/controller/product/product.php\"><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\') ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($result[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($result[\'date_added\']))]]></add></operation></file><file path=\"catalog/controller/mail/order.php\"><operation><search><![CDATA[date($language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']))]]></search><add position=\"replace\"><![CDATA[$language->get(\'code\') == \'fa\' ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($order_info[\'date_added\'])) : date($language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']))]]></add></operation><operation><search><![CDATA[date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']));]]></search><add position=\"replace\"><![CDATA[$this->language->get(\'code\') == \'fa\' ? jdate($this->config->get(\'config_shamsidate_format\'), strtotime($order_info[\'date_added\'])) : date($this->language->get(\'date_format_short\'), strtotime($order_info[\'date_added\']));]]></add></operation></file><file path=\"catalog/model/account/return.php\"><operation><search><![CDATA[$this->db->escape($data[\'date_ordered\'])]]></search><add position=\"replace\"><![CDATA[($this->language->get(\'code\') == \'fa\' ? $this->db->escape(jtg($data[\'date_ordered\'])) : $this->db->escape($data[\'date_ordered\']))]]></add></operation></file><file path=\"catalog/language/en-gb/en-gb.php\"><operation><search><![CDATA[$_[\'datetime_format\']]]></search><add position=\"before\"><![CDATA[$_[\'datetime_format_short\'] = \'l d F Y\';\r\n$_[\'datetime_format_long\']  = \'l d F Y - H:i:s\';]]></add></operation></file><file path=\"catalog/language/fa-ir/common/footer.php\"><operation error=\"skip\"><search><![CDATA[?>]]></search><add position=\"before\"><![CDATA[echo eval(base64_decode(\'JF9bJ3RleHRfcG93ZXJlZCddICAgICAgPSAnPGEgaHJlZj0iaHR0cDovL29wZW5jYXJ0ZmFyc2kuY29tIiB0aXRsZT0iJiMxNTc1OyYjMTYwNjsmIzE1ODA7JiMxNjA1OyYjMTYwNjsgJiMxNjYyOyYjMTU4ODsmIzE1Nzg7JiMxNzQwOyYjMTU3NjsmIzE1NzU7JiMxNjA2OyYjMTc0MDsgT3BlbkNhcnRGYXJzaS5Db20iIHRhcmdldD0iX2JsYW5rIj4mIzE2NjI7JiMxNTg4OyYjMTU3ODsmIzE3NDA7JiMxNTc2OyYjMTU3NTsmIzE2MDY7JiMxNzQwOyAmIzE2MDg7ICYjMTU3ODsmIzE2MDg7JiMxNTg3OyYjMTU5MzsmIzE2MDc7PC9hPiAmIzE1Nzg7JiMxNjA4OyYjMTU4NzsmIzE1OTE7IDxhIGhyZWY9Imh0dHA6Ly93d3cub3BlbmNhcnRmYXJzaS5pciIgdGl0bGU9IiYjMTYwODsmIzE1NzY7ICYjMTU4NzsmIzE1NzU7JiMxNzQwOyYjMTU3ODsgT3BlbkNhcnRGYXJzaS5pciIgdGFyZ2V0PSJfYmxhbmsiPiYjMTU3NTsmIzE2NjI7JiMxNjA2OyAmIzE3MDU7JiMxNTc1OyYjMTU4NTsmIzE1Nzg7ICYjMTYwMTsmIzE1NzU7JiMxNTg1OyYjMTU4NzsmIzE3NDA7PC9hPiA8YnIgLz4gJXMgJmNvcHk7ICVzJzs=\'));]]></add></operation></file><file path=\"system/engine/loader.php\"><operation><search><![CDATA[$result = $this->registry->get(\'event\')->trigger(\'view/\' . $trigger . \'/after\', array(&$route, &$data, &$output));]]></search><add position=\"after\" offset=\"4\"><![CDATA[\r\n		$direction = is_object($this->registry->get(\'language\')) ? strtolower($this->registry->get(\'language\')->get(\'direction\')) : \'rtl\';\r\n		$replaces = array();\r\n		if ($direction == \'rtl\') {\r\n			$replaces[\'catalog/view/javascript/common.js\'] = \'catalog/view/javascript/common-rtl.js\';\r\n			$replaces[\'catalog/view/javascript/jquery/magnific/magnific-popup.css\'] = \'catalog/view/javascript/jquery/magnific/magnific-popup-rtl.css\';\r\n			$replaces[\'catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js\'] = \'catalog/view/javascript/jquery/magnific/jquery.magnific-popup.farsi.min.js\';\r\n			$replaces[\'view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css\'] = \'view/javascript/jquery/datetimepicker/bootstrap-persiandatetimepicker.css\';\r\n			$replaces[\'view/javascript/jquery/datetimepicker/moment/moment.min.js\'] = \'view/javascript/jquery/datetimepicker/calendar.js\';\r\n			$replaces[\'view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js\'] = \'view/javascript/jquery/datetimepicker/shamsi.js\';\r\n			$replaces[\'view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js\'] = \'view/javascript/jquery/datetimepicker/bootstrap-persiandatetimepicker.min.js\';\r\n			$replaces[\'view/javascript/codemirror/lib/codemirror.css\'] = \'view/javascript/codemirror/lib/codemirror-rtl.css\';\r\n			$replaces[\'view/javascript/summernote/summernote.css\'] = \'view/javascript/summernote/summernote-rtl.css\';\r\n		}\r\n		$output = str_replace(array_keys($replaces), $replaces, $output);\r\n]]></add></operation></file></modification>', 1, '2018-09-07 22:21:28');
+INSERT INTO `oc_modification` (`modification_id`, `extension_install_id`, `name`, `code`, `author`, `version`, `link`, `xml`, `status`, `date_added`) VALUES
+(2, 0, 'کد امنیتی برای صفحه ورود به مدیریت 3.0.2.0', 'Admin_Captcha', 'Mojtaba Moghani - wWw.Open-Cart.ir', '2.6', 'http://www.opencartfarsi.com', '<?xml version="1.0" encoding="UTF-8"?>\r\n<modification>\r\n	<name>کد امنیتی برای صفحه ورود به مدیریت 3.0.0.0</name>\r\n	<code>Admin_Captcha</code>\r\n	<version>2.6</version>\r\n	<author>Mojtaba Moghani - wWw.Open-Cart.ir</author>\r\n	<link>http://www.opencartfarsi.com</link>\r\n	<file path="admin/controller/setting/setting.php">\r\n		<operation>\r\n			<search><![CDATA[if (isset($this->request->post[\'config_logo\'])) {]]></search>\r\n			<add position="before"><![CDATA[\r\n		$data[\'captcha_pages\'][] = array(\r\n			\'text\'  => $this->language->get(\'text_admin\'),\r\n			\'value\' => \'admin\'\r\n		);\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/language/en-gb/setting/setting.php">\r\n		<operation>\r\n			<search><![CDATA[$_[\'text_contact\']]]></search>\r\n			<add position="after"><![CDATA[$_[\'text_admin\']        = \'Admin Login\';]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/language/fa-ir/setting/setting.php">\r\n		<operation>\r\n			<search><![CDATA[$_[\'text_contact\']]]></search>\r\n			<add position="after"><![CDATA[$_[\'text_admin\']     = \'ورود به مدیریت\';]]></add>\r\n		</operation>\r\n	</file>\r\n\r\n	<file path="admin/controller/common/login.php">\r\n		<operation>\r\n			<search><![CDATA[if ($this->config->get(\'config_password\')) {]]></search>\r\n			<add position="before"><![CDATA[\r\n		// Admin Captcha\r\n		if ($this->config->get(\'captcha_\' . $this->config->get(\'config_captcha\') . \'_status\') && in_array(\'admin\', (array)$this->config->get(\'config_captcha_page\'))) {\r\n			$data[\'captcha\'] = $this->load->controller(\'common/\' . $this->config->get(\'config_captcha\'), $this->error);\r\n		} else {\r\n			$data[\'captcha\'] = \'\';\r\n		}\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[protected function validate() {]]></search>\r\n			<add position="after"><![CDATA[\r\n		// Admin Captcha\r\n		if ($this->config->get(\'captcha_\' . $this->config->get(\'config_captcha\') . \'_status\') && in_array(\'admin\', (array)$this->config->get(\'config_captcha_page\'))) {\r\n			$captcha = $this->load->controller(\'common/\' . $this->config->get(\'config_captcha\') . \'/validate\');\r\n\r\n			if ($captcha) {\r\n				$this->error[\'captcha\'] = $captcha;\r\n			}\r\n		}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/view/template/common/login.twig">\r\n		<operation>\r\n			<search><![CDATA[{% if forgotten %}]]></search>\r\n			<add position="before"><![CDATA[</div>{{ captcha }}<div>]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>', 1, '2017-07-24 15:49:28'),
+(3, 0, 'Patch For OpenCart v3.0.2.0', 'patch_ocf', 'Mojtaba Moghani - wWw.Open-Cart.ir', '1.2', 'http://opencartfarsi.com', '<?xml version="1.0" encoding="UTF-8"?>\r\n<modification>\r\n	<name>Patch For OpenCart v3.0.0.0</name>\r\n	<code>patch_ocf</code>\r\n	<version>1.2</version>\r\n	<author>Mojtaba Moghani - wWw.Open-Cart.ir</author>\r\n	<link>http://opencartfarsi.com</link>\r\n	<file path="catalog/controller/common/column_left.php">\r\n		<operation>\r\n			<search><![CDATA[$modules = $this->model_design_layout->getLayoutModules($layout_id, \'column_left\');]]></search>\r\n			<add position="replace"><![CDATA[/* ********************************** */\r\n		if ($this->language->get(\'direction\') == \'rtl\') {\r\n			$modules = $this->model_design_layout->getLayoutModules($layout_id, \'column_right\');\r\n		} else {\r\n			$modules = $this->model_design_layout->getLayoutModules($layout_id, \'column_left\');\r\n		}\r\n/* ********************************** */]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[return $this->load->view(\'common/column_left\', $data);]]></search>\r\n			<add position="replace"><![CDATA[/* ********************************** */\r\n		if ($this->language->get(\'direction\') == \'rtl\') {\r\n			return $this->load->view(\'common/column_right\', $data);\r\n		} else {\r\n			return $this->load->view(\'common/column_left\', $data);\r\n		}\r\n/* ********************************** */]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="catalog/controller/common/column_right.php">\r\n		<operation>\r\n			<search><![CDATA[$modules = $this->model_design_layout->getLayoutModules($layout_id, \'column_right\');]]></search>\r\n			<add position="replace"><![CDATA[/* ********************************** */\r\n		if ($this->language->get(\'direction\') == \'rtl\') {\r\n			$modules = $this->model_design_layout->getLayoutModules($layout_id, \'column_left\');\r\n		} else {\r\n			$modules = $this->model_design_layout->getLayoutModules($layout_id, \'column_right\');\r\n		}\r\n/* ********************************** */]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[return $this->load->view(\'common/column_right\', $data);]]></search>\r\n			<add position="replace"><![CDATA[/* ********************************** */\r\n		if ($this->language->get(\'direction\') == \'rtl\') {\r\n			return $this->load->view(\'common/column_left\', $data);\r\n		} else {\r\n			return $this->load->view(\'common/column_right\', $data);\r\n		}\r\n/* ********************************** */]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>', 1, '2017-07-24 15:51:28'),
+(4, 0, 'راست چین سازی ایمیل های اپن کارت فارسی 3.0.2.0', 'RTL_Email', 'Mojtaba Moghani - wWw.Open-Cart.ir', '1.5', 'http://opencartfarsi.com', '<?xml version="1.0" encoding="UTF-8"?>\r\n<modification>\r\n	<name>راست چین سازی ایمیل های اپن کارت فارسی 3.0.0.0</name>\r\n	<code>RTL_Email</code>\r\n	<version>1.5</version>\r\n	<author>Mojtaba Moghani - wWw.Open-Cart.ir</author>\r\n	<link>http://opencartfarsi.com</link>\r\n	<file path="admin/controller/sale/voucher.php">\r\n		<operation>\r\n			<search><![CDATA[$mail->setHtml($this->load->view(\'mail/voucher\', $data));]]></search>\r\n			<add position="replace"><![CDATA[\r\n							if ($this->language->get(\'code\') == \'fa\') {\r\n								$mail->setHtml($this->load->view(\'mail/voucher_farsi\', $data));\r\n							} else {\r\n								$mail->setHtml($this->load->view(\'mail/voucher\', $data));\r\n							}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="catalog/controller/extension/total/voucher.php">\r\n		<operation>\r\n			<search><![CDATA[$mail->setHtml($this->load->view(\'mail/voucher\', $data));]]></search>\r\n			<add position="replace"><![CDATA[\r\n					if ($order_info[\'language_code\'] == \'fa-ir\') {\r\n						$mail->setHtml($this->load->view(\'mail/voucher_farsi\', $data));\r\n					} else {\r\n						$mail->setHtml($this->load->view(\'mail/voucher\', $data));\r\n					}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="catalog/controller/mail/order.php">\r\n		<operation>\r\n			<search><![CDATA[$mail->setHtml($this->load->view(\'mail/order_add\', $data));]]></search>\r\n			<add position="replace"><![CDATA[\r\n		if ($order_info[\'language_code\'] == \'fa-ir\') {\r\n			$mail->setHtml($this->load->view(\'mail/order_add_farsi\', $data));\r\n		} else {\r\n			$mail->setHtml($this->load->view(\'mail/order_add\', $data));\r\n		}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>', 1, '2017-07-24 15:53:28'),
+(5, 0, 'Seo All Links 3.0.2.0', 'seo_all_links', 'Mojtaba Moghani', '1.3', 'http://opencartfarsi.com', '<?xml version="1.0" encoding="UTF-8"?>\r\n<modification>\r\n	<name>Seo All Links 3.0.0.0</name>\r\n	<code>seo_all_links</code>\r\n	<version>1.3</version>\r\n	<author>Mojtaba Moghani</author>\r\n    <link>http://opencartfarsi.com</link>\r\n	<file path="catalog/controller/startup/seo_url.php">\r\n		<operation>\r\n			<search><![CDATA[class ControllerStartupSeoUrl extends Controller {]]></search>\r\n			<add position="after"><![CDATA[\r\n	private $url_list = array (\r\n		\'common/home\' => \'\',\r\n		\'account/wishlist\' => \'wishlist\',\r\n		\'account/account\' => \'my-account\',\r\n		\'account/edit\' => \'edit-account\',\r\n		\'account/password\' => \'change-password\',\r\n		\'account/address\' => \'address-book\',\r\n		\'account/address/edit\' => \'address-book-edit\',\r\n		\'account/reward\' => \'reward-points\',\r\n		\'account/login\' => \'login\',\r\n		\'account/logout\' => \'logout\',\r\n		\'account/order\' => \'order-history\',\r\n		\'account/order/info\' => \'order-history-details\',\r\n		\'account/newsletter\' => \'newsletter\',\r\n		\'account/forgotten\' => \'forgot-password\',\r\n		\'account/download\' => \'downloads\',\r\n		\'account/return\' => \'my-returns\',\r\n		\'account/return/add\' => \'return-add\',\r\n		\'account/transaction\' => \'transactions\',\r\n		\'account/register\' => \'register\',\r\n		\'account/recurring\' => \'recurring\',\r\n		\'account/voucher\' => \'gift-vouchers\',\r\n		\'account/voucher/success\' => \'voucher-success\',\r\n		\'affiliate/account\' => \'affiliates\',\r\n		\'affiliate/edit\' => \'edit-affiliate-account\',\r\n		\'affiliate/password\' => \'change-affiliate-password\',\r\n		\'affiliate/payment\' => \'affiliate-payment\',\r\n		\'affiliate/tracking\' => \'affiliate-tracking-code\',\r\n		\'affiliate/transaction\' => \'affiliate-transactions\',\r\n		\'affiliate/logout\' => \'affiliate-logout\',\r\n		\'affiliate/forgotten\' => \'affiliate-forgot-password\',\r\n		\'affiliate/register\' => \'register-affiliate\',\r\n		\'affiliate/login\' => \'affiliate-login\',\r\n		\'checkout/cart\' => \'cart\',\r\n		\'checkout/checkout\' => \'checkout\',\r\n		\'checkout/success\' => \'checkout-success\',\r\n		\'information/contact\' => \'contact\',\r\n		\'information/sitemap\' => \'sitemap\',\r\n		\'product/special\' => \'specials\',\r\n		\'product/manufacturer\' => \'brands\',\r\n		\'product/compare\' => \'compare-products\',\r\n		\'product/search\' => \'search\'\r\n	);\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[$this->request->get[\'route\'] = \'error/not_found\';]]></search>\r\n			<add position="after" offset="4"><![CDATA[\r\n			if ( $_s = $this->setURL($this->request->get[\'_route_\']) ) {\r\n				$this->request->get[\'route\'] = $_s;\r\n			}\r\n			]]></add>\r\n		</operation> \r\n		<operation>\r\n			<search><![CDATA[if ($url) {]]></search>\r\n			<add position="before" offset="3"><![CDATA[\r\n				if( $_u = $this->getURL($data[\'route\']) ){\r\n					$url .= $_u;\r\n					unset($data[$key]);\r\n				}\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[return $link;]]></search>\r\n			<add position="after" offset="2"><![CDATA[\r\n	public function getURL($route) {\r\n			if( count($this->url_list) > 0) {\r\n				 foreach ($this->url_list as $key => $value) {\r\n					if($route == $key) {\r\n						return \'/\'.$value;\r\n					}\r\n				 }\r\n			}\r\n			return false;\r\n	}\r\n	public function setURL($_route) {\r\n			if( count($this->url_list) > 0 ){\r\n				 foreach ($this->url_list as $key => $value) {\r\n					if($_route == $value) {\r\n						return $key;\r\n					}\r\n				 }\r\n			}\r\n			return false;\r\n	}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>', 1, '2017-07-24 15:55:28'),
+(6, 0, 'Product Auto Assign To Parent Categories', 'product_auto_assign_to_parent_categories', 'Mojtaba Moghani', '3.0', 'http://opencartfarsi.com', '<?xml version="1.0" encoding="UTF-8"?>\r\n<modification>\r\n	<name>Product Auto Assign To Parent Categories</name>\r\n	<code>product_auto_assign_to_parent_categories</code>\r\n	<version>3.0</version>\r\n	<author>Mojtaba Moghani</author>\r\n	<link>http://opencartfarsi.com</link>\r\n	<file path="admin/controller/catalog/product.php">\r\n		<operation>\r\n			<search><![CDATA[$this->load->model(\'design/layout\');]]></search>\r\n			<add position="before"><![CDATA[		if (isset($this->request->post[\'autoassign\'])) {\r\n			$data[\'autoassign\'] = $this->request->post[\'autoassign\'];\r\n		} else {\r\n			$data[\'autoassign\'] = \'\';\r\n		}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/language/en-gb/catalog/product.php">\r\n		<operation>\r\n			<search><![CDATA[$_[\'entry_category\']]]></search>\r\n			<add position="before"><![CDATA[$_[\'entry_autoassign\']        = \'Assign to all parents of selected categories\';]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/language/fa-ir/catalog/product.php">\r\n		<operation>\r\n			<search><![CDATA[$_[\'entry_category\']]]></search>\r\n			<add position="before"><![CDATA[$_[\'entry_autoassign\']        = \'تخصیص به همه والدهای دسته بندی های انتخاب شده\';]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/model/catalog/product.php">\r\n		<operation>\r\n			<search><![CDATA[if (isset($data[\'product_category\'])) {]]></search>\r\n			<add position="replace" offset="4"><![CDATA[		if (empty($data[\'autoassign\'])) {\r\n		if (isset($data[\'product_category\'])) {\r\n			foreach ($data[\'product_category\'] as $category_id) {\r\n				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = \'" . (int)$product_id . "\', category_id = \'" . (int)$category_id . "\'");\r\n			}		\r\n		}\r\n    } else {\r\n		if (isset($data[\'product_category\'])) {\r\n			$all_cats = array();\r\n			foreach ($data[\'product_category\'] as $category_id) {\r\n				$parent_cats = explode(".", $this->getCategoryParentsIds($category_id));\r\n				$all_cats = array_merge($all_cats, $parent_cats);\r\n			}\r\n			$all_cats = array_unique($all_cats);\r\n			foreach($all_cats as $category_id) {\r\n				$this->db->query("INSERT INTO " . DB_PREFIX . "product_to_category SET product_id = \'" . (int)$product_id . "\', category_id = \'" . (int)$category_id . "\'");\r\n			}\r\n		}\r\n    }		]]></add>\r\n		</operation>\r\n    \r\n		<operation>\r\n			<search><![CDATA[public function addProduct($data) {]]></search>\r\n			<add position="before"><![CDATA[  public function getCategoryParentsIds($category_id) {\r\n		$query = $this->db->query("SELECT c.category_id, c.parent_id FROM " . DB_PREFIX . "category c WHERE c.category_id = \'" . (int)$category_id . "\' ORDER BY c.sort_order");\r\n		\r\n		$category_info = $query->row;\r\n		\r\n		if ($category_info[\'parent_id\']) {\r\n			return $this->getCategoryParentsIds($category_info[\'parent_id\']) . "." . $category_info[\'category_id\'];\r\n		} else {\r\n			return $category_info[\'category_id\'];\r\n		}\r\n	}\r\n	]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path="admin/view/template/catalog/product_form.twig">\r\n		<operation>\r\n			<search><![CDATA[<input type="text" name="category" value="" placeholder="{{ entry_category }}" id="input-category" class="form-control" />]]></search>\r\n			<add position="before"><![CDATA[<p><label><input type="checkbox" name="autoassign" value="1" {% if autoassign %} checked="checked" {% endif %} /> {{ entry_autoassign }}</label></p>]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>', 1, '2017-07-24 15:57:28');
+INSERT INTO `oc_modification` (`modification_id`, `extension_install_id`, `name`, `code`, `author`, `version`, `link`, `xml`, `status`, `date_added`) VALUES
+(7, 0, 'TO TOP', 'totop', 'Dotbox Creative', '1.1', 'http://www.dotboxcreative.com', '<?xml version="1.0" encoding="UTF-8"?>\r\n<modification>\r\n	<name>TO TOP</name>\r\n	<code>totop</code>\r\n	<version>1.1</version>\r\n	<author>Dotbox Creative</author>\r\n	<link>http://www.dotboxcreative.com</link>\r\n	<file path="catalog/view/theme/*/template/common/footer.twig">\r\n		<operation>\r\n			<search><![CDATA[</body></html>]]></search>\r\n			<add position="before"><![CDATA[\r\n<style type="text/css">\r\n	#ToTopHover {background: url(\'image/totop.png\') no-repeat left -51px;cursor: pointer;width: 51px;height: 51px;display: block;overflow: hidden;float: left;opacity: 0;-moz-opacity: 0;filter: alpha(opacity=0);}\r\n	#ToTop {display: none;text-decoration: none;position: fixed;bottom: 20px;right: 20px;overflow: hidden;width: 51px;height: 51px;border: none;text-indent: -999px;background: url(\'image/totop.png\') no-repeat left top;}\r\n</style>\r\n<script type="text/javascript">\r\n	jQuery(document).ready(function(){$().UItoTop({easingType:\'easeOutQuint\'});});\r\n	(function($){\r\n		$.fn.UItoTop = function(options) {\r\n			var defaults = {\r\n				text: \'To Top\',\r\n				min: 200,\r\n				inDelay:600,\r\n				outDelay:400,\r\n				containerID: \'ToTop\',\r\n				containerHoverID: \'ToTopHover\',\r\n				scrollSpeed: 1200,\r\n				easingType: \'linear\'\r\n			};\r\n			var settings = $.extend(defaults, options);\r\n			var containerIDhash = \'#\' + settings.containerID;\r\n			var containerHoverIDHash = \'#\'+settings.containerHoverID;\r\n			$(\'body\').append(\'<a id="\'+settings.containerID+\'">\'+settings.text+\'</a>\');\r\n			$(containerIDhash).hide().click(function(){\r\n				$(\'html, body\').animate({scrollTop: 0}, settings.scrollSpeed);\r\n				event.preventDefault();\r\n			})\r\n			.prepend(\'<span id="\'+settings.containerHoverID+\'"></span>\')\r\n			.hover(function() {\r\n					$(containerHoverIDHash, this).stop().animate({\r\n						\'opacity\': 1\r\n					}, 600, \'linear\');\r\n				}, function() { \r\n					$(containerHoverIDHash, this).stop().animate({\r\n						\'opacity\': 0\r\n					}, 700, \'linear\');\r\n				});			\r\n			$(window).scroll(function() {\r\n				var sd = $(window).scrollTop();\r\n				if(typeof document.body.style.maxHeight === "undefined") {\r\n					$(containerIDhash).css({\r\n						\'position\': \'absolute\',\r\n						\'top\': $(window).scrollTop() + $(window).height() - 50\r\n					});\r\n				}\r\n				if ( sd > settings.min ) \r\n					$(containerIDhash).fadeIn(settings.inDelay);\r\n				else \r\n					$(containerIDhash).fadeOut(settings.Outdelay);\r\n			});\r\n	};\r\n	})(jQuery);\r\n</script>\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>', 1, '2017-07-24 15:59:28');
+
 -------------------------------------------------------------
 
 -- Table structure for table `oc_module`
@@ -1981,11 +2235,12 @@ CREATE TABLE `oc_module` (
 --
 
 INSERT INTO `oc_module` (`module_id`, `name`, `code`, `setting`) VALUES
-(30, 'Category', 'banner', '{"name":"Category","banner_id":"6","width":"182","height":"182","status":"1"}'),
-(29, 'Home Page', 'carousel', '{"name":"Home Page","banner_id":"8","width":"130","height":"100","status":"1"}'),
-(28, 'Home Page', 'featured', '{"name":"Home Page","product":["43","40","42","30"],"limit":"4","width":"200","height":"200","status":"1"}'),
-(27, 'Home Page', 'slideshow', '{"name":"Home Page","banner_id":"7","width":"1140","height":"380","status":"1"}'),
-(31, 'Banner 1', 'banner', '{"name":"Banner 1","banner_id":"6","width":"182","height":"182","status":"1"}');
+(1, 'Home Page', 'slideshow', '{"name":"Home Page","banner_id":"7","width":"1140","height":"380","status":"1"}'),
+(2, 'Home Page', 'latest', '{"name":"Home Page","limit":"4","width":"200","height":"200","status":"1"}'),
+(3, 'Home Page', 'featured', '{"name":"Home Page","product":["43","40","42","30"],"limit":"4","width":"200","height":"200","status":"1"}'),
+(4, 'Home Page', 'carousel', '{"name":"Home Page","banner_id":"8","width":"130","height":"100","status":"1"}'),
+(5, 'Category', 'banner', '{"name":"Category","banner_id":"6","width":"182","height":"182","status":"1"}'),
+(6, 'Banner 1', 'banner', '{"name":"Banner 1","banner_id":"6","width":"182","height":"182","status":"1"}');
 
 -----------------------------------------------------------
 
@@ -2046,8 +2301,19 @@ INSERT INTO `oc_option_description` (`option_id`, `language_id`, `name`) VALUES
 (5, 1, 'Select'),
 (9, 1, 'Time'),
 (10, 1, 'Date &amp; Time'),
+(11, 1, 'Size'),
 (12, 1, 'Delivery Date'),
-(11, 1, 'Size');
+(1, 2, 'دکمه رادیویی'),
+(2, 2, 'چک باکس'),
+(4, 2, 'متن'),
+(5, 2, 'انتخاب'),
+(6, 2, 'متن طولانی'),
+(7, 2, 'فایل'),
+(8, 2, 'تاریخ'),
+(9, 2, 'زمان'),
+(10, 2, 'تاریخ و زمان'),
+(11, 2, 'اندازه'),
+(12, 2, 'تاریخ تحویل');
 
 -----------------------------------------------------------
 
@@ -2117,7 +2383,21 @@ INSERT INTO `oc_option_value_description` (`option_value_id`, `language_id`, `op
 (24, 1, 2, 'Checkbox 2'),
 (48, 1, 11, 'Large'),
 (47, 1, 11, 'Medium'),
-(46, 1, 11, 'Small');
+(46, 1, 11, 'Small'),
+(43, 2, 1, 'بزرگ'),
+(32, 2, 1, 'کوچک'),
+(45, 2, 2, 'چک باکس 4'),
+(44, 2, 2, 'چک باکس 3'),
+(31, 2, 1, 'متوسط'),
+(42, 2, 5, 'زرد'),
+(41, 2, 5, 'سبز'),
+(39, 2, 5, 'قرمز'),
+(40, 2, 5, 'آبی'),
+(23, 2, 2, 'چک باکس 1'),
+(24, 2, 2, 'چک باکس 2'),
+(48, 2, 11, 'بزرگ'),
+(47, 2, 11, 'متوسط'),
+(46, 2, 11, 'کوچک');
 
 -----------------------------------------------------------
 
@@ -2191,6 +2471,10 @@ CREATE TABLE `oc_order` (
   PRIMARY KEY (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_order`
+--
+
 -----------------------------------------------------------
 
 --
@@ -2207,6 +2491,10 @@ CREATE TABLE `oc_order_history` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`order_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_order_history`
+--
 
 -----------------------------------------------------------
 
@@ -2226,6 +2514,10 @@ CREATE TABLE `oc_order_option` (
   `type` varchar(32) NOT NULL,
   PRIMARY KEY (`order_option_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_order_option`
+--
 
 -----------------------------------------------------------
 
@@ -2248,6 +2540,10 @@ CREATE TABLE `oc_order_product` (
   PRIMARY KEY (`order_product_id`),
   KEY `order_id` (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_order_product`
+--
 
 -----------------------------------------------------------
 
@@ -2280,6 +2576,10 @@ CREATE TABLE `oc_order_recurring` (
   PRIMARY KEY (`order_recurring_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_order_recurring`
+--
+
 -----------------------------------------------------------
 
 --
@@ -2297,6 +2597,10 @@ CREATE TABLE `oc_order_recurring_transaction` (
   PRIMARY KEY (`order_recurring_transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_order_recurring_transaction`
+--
+
 -----------------------------------------------------------
 
 --
@@ -2312,6 +2616,10 @@ CREATE TABLE `oc_order_shipment` (
   `tracking_number` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`order_shipment_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `oc_order_shipment`
+--
 
 -- --------------------------------------------------------
 
@@ -2332,13 +2640,13 @@ CREATE TABLE `oc_shipping_courier` (
 --
 
 INSERT INTO `oc_shipping_courier` (`shipping_courier_id`, `shipping_courier_code`, `shipping_courier_name`) VALUES
-  (1, 'dhl', 'DHL'),
-  (2, 'fedex', 'Fedex'),
-  (3, 'ups', 'UPS'),
-  (4, 'royal-mail', 'Royal Mail'),
-  (5, 'usps', 'United States Postal Service'),
-  (6, 'auspost', 'Australia Post'),
-  (7, 'citylink', 'Citylink');
+(1, 'dhl', 'DHL'),
+(2, 'fedex', 'Fedex'),
+(3, 'ups', 'UPS'),
+(4, 'royal-mail', 'Royal Mail'),
+(5, 'usps', 'United States Postal Service'),
+(6, 'auspost', 'Australia Post'),
+(7, 'citylink', 'Citylink');
 
 -----------------------------------------------------------
 
@@ -2359,6 +2667,7 @@ CREATE TABLE `oc_order_status` (
 --
 
 INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
+(1, 1, 'Pending'),
 (2, 1, 'Processing'),
 (3, 1, 'Shipped'),
 (7, 1, 'Canceled'),
@@ -2369,10 +2678,23 @@ INSERT INTO `oc_order_status` (`order_status_id`, `language_id`, `name`) VALUES
 (11, 1, 'Refunded'),
 (12, 1, 'Reversed'),
 (13, 1, 'Chargeback'),
-(1, 1, 'Pending'),
-(16, 1, 'Voided'),
+(14, 1, 'Expired'),
 (15, 1, 'Processed'),
-(14, 1, 'Expired');
+(16, 1, 'Voided'),
+(1, 2, 'در انتظار'),
+(2, 2, 'در حال پردازش'),
+(3, 2, 'ارسال شده'),
+(5, 2, 'کامل شده'),
+(7, 2, 'لغو شده'),
+(8, 2, 'امتناع شده'),
+(9, 2, 'برگشت لغو شده'),
+(10, 2, 'ناموفق'),
+(11, 2, 'بازپرداخت شده'),
+(12, 2, 'برگشت خورده'),
+(13, 2, 'وجه برگشت خورده توسط بانک'),
+(14, 2, 'منقضی شده'),
+(15, 2, 'اقدام شده'),
+(16, 2, 'باطل شده');
 
 -----------------------------------------------------------
 
@@ -2391,6 +2713,10 @@ CREATE TABLE `oc_order_total` (
   PRIMARY KEY (`order_total_id`),
   KEY `order_id` (`order_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_order_total`
+--
 
 -----------------------------------------------------------
 
@@ -2414,6 +2740,10 @@ CREATE TABLE `oc_order_voucher` (
   `amount` decimal(15,4) NOT NULL,
   PRIMARY KEY (`order_voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_order_voucher`
+--
 
 -----------------------------------------------------------
 
@@ -2462,25 +2792,25 @@ CREATE TABLE `oc_product` (
 --
 
 INSERT INTO `oc_product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `weight`, `weight_class_id`, `length`, `width`, `height`, `length_class_id`, `subtract`, `minimum`, `sort_order`, `status`, `viewed`, `date_added`, `date_modified`) VALUES
-(28, 'Product 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
-(29, 'Product 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
-(30, 'Product 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
-(31, 'Product 4', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/nikon_d300_1.jpg', 0, 1, '80.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
-(32, 'Product 5', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
-(33, 'Product 6', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/samsung_syncmaster_941bw.jpg', 0, 1, '200.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 17:08:31', '2011-09-30 01:06:29'),
-(34, 'Product 7', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
-(35, 'Product 8', '', '', '', '', '', '', '', 1000, 5, '', 0, 0, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
-(36, 'Product 9', '', '', '', '', '', '', '', 994, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, '100.0000', 100, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
-(40, 'product 11', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/iphone_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
-(41, 'Product 14', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/imac_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
-(42, 'Product 15', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, '100.0000', 400, 9, '2009-02-04', '12.50000000', 1, '1.00000000', '2.00000000', '3.00000000', 1, 1, 2, 0, 1, 0, '2009-02-03 21:07:37', '2011-09-30 00:46:19'),
-(43, 'Product 16', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/macbook_1.jpg', 8, 0, '500.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
-(44, 'Product 17', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/macbook_air_1.jpg', 8, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
-(45, 'Product 18', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/macbook_pro_1.jpg', 8, 1, '2000.0000', 0, 100, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
-(46, 'Product 19', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/sony_vaio_1.jpg', 10, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
-(47, 'Product 21', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/hp_1.jpg', 7, 1, '100.0000', 400, 9, '2009-02-03', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 1, 0, 1, 0, '2009-02-03 21:08:40', '2011-09-30 01:05:28'),
-(48, 'product 20', 'test 1', '', '', '', '', '', 'test 2', 995, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-08', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
-(49, 'SAM1', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/samsung_tab_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2011-04-26 08:57:34', '2011-09-30 01:06:23');
+(28, 'محصول 1', '', '', '', '', '', '', '', 939, 7, 'catalog/demo/htc_touch_hd_1.jpg', 5, 1, '100.0000', 200, 9, '2009-02-03', '146.40000000', 2, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:06:50', '2011-09-30 01:05:39'),
+(29, 'محصول 2', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/palm_treo_pro_1.jpg', 6, 1, '279.9900', 0, 9, '2009-02-03', '133.00000000', 2, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 16:42:17', '2011-09-30 01:06:08'),
+(30, 'محصول 3', '', '', '', '', '', '', '', 7, 6, 'catalog/demo/canon_eos_5d_1.jpg', 9, 1, '100.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 16:59:00', '2011-09-30 01:05:23'),
+(31, 'محصول 4', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/nikon_d300_1.jpg', 0, 1, '80.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 3, 1, 1, 0, 1, 0, '2009-02-03 17:00:10', '2011-09-30 01:06:00'),
+(32, 'محصول 5', '', '', '', '', '', '', '', 999, 6, 'catalog/demo/ipod_touch_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 17:07:26', '2011-09-30 01:07:22'),
+(33, 'محصول 6', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/samsung_syncmaster_941bw.jpg', 0, 1, '200.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 17:08:31', '2011-09-30 01:06:29'),
+(34, 'محصول 7', '', '', '', '', '', '', '', 1000, 6, 'catalog/demo/ipod_shuffle_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:07:54', '2011-09-30 01:07:17'),
+(35, 'محصول 8', '', '', '', '', '', '', '', 1000, 5, '', 0, 0, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 18:08:31', '2011-09-30 01:06:17'),
+(36, 'محصول 9', '', '', '', '', '', '', '', 994, 6, 'catalog/demo/ipod_nano_1.jpg', 8, 0, '100.0000', 100, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 18:09:19', '2011-09-30 01:07:12'),
+(40, 'محصول 11', '', '', '', '', '', '', '', 970, 5, 'catalog/demo/iphone_1.jpg', 8, 1, '101.0000', 0, 9, '2009-02-03', '10.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:12', '2011-09-30 01:06:53'),
+(41, 'محصول 14', '', '', '', '', '', '', '', 977, 5, 'catalog/demo/imac_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-03', '5.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 0, 1, 0, '2009-02-03 21:07:26', '2011-09-30 01:06:44'),
+(42, 'محصول 15', '', '', '', '', '', '', '', 990, 5, 'catalog/demo/apple_cinema_30.jpg', 8, 1, '100.0000', 400, 9, '2009-02-04', '12.50000000', 1, '1.00000000', '2.00000000', '3.00000000', 1, 1, 2, 0, 1, 0, '2009-02-03 21:07:37', '2011-09-30 00:46:19'),
+(43, 'محصول 16', '', '', '', '', '', '', '', 929, 5, 'catalog/demo/macbook_1.jpg', 8, 0, '500.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:07:49', '2011-09-30 01:05:46'),
+(44, 'محصول 17', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/macbook_air_1.jpg', 8, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:00', '2011-09-30 01:05:53'),
+(45, 'محصول 18', '', '', '', '', '', '', '', 998, 5, 'catalog/demo/macbook_pro_1.jpg', 8, 1, '2000.0000', 0, 100, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:17', '2011-09-15 22:22:01'),
+(46, 'محصول 19', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/sony_vaio_1.jpg', 10, 1, '1000.0000', 0, 9, '2009-02-03', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-03 21:08:29', '2011-09-30 01:06:39'),
+(47, 'محصول 21', '', '', '', '', '', '', '', 1000, 5, 'catalog/demo/hp_1.jpg', 7, 1, '100.0000', 400, 9, '2009-02-03', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 0, 1, 0, 1, 0, '2009-02-03 21:08:40', '2011-09-30 01:05:28'),
+(48, 'محصول 20', 'تست 1', '', '', '', '', '', 'تست 2', 995, 5, 'catalog/demo/ipod_classic_1.jpg', 8, 1, '100.0000', 0, 9, '2009-02-08', '1.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 2, 1, 1, 0, 1, 0, '2009-02-08 17:21:51', '2011-09-30 01:07:06'),
+(49, 'سامسونگ', '', '', '', '', '', '', '', 0, 8, 'catalog/demo/samsung_tab_1.jpg', 0, 1, '199.9900', 0, 9, '2011-04-25', '0.00000000', 1, '0.00000000', '0.00000000', '0.00000000', 1, 1, 1, 1, 1, 1, '2011-04-26 08:57:34', '2011-09-30 01:06:23');
 
 -----------------------------------------------------------
 
@@ -2506,7 +2836,12 @@ INSERT INTO `oc_product_attribute` (`product_id`, `attribute_id`, `language_id`,
 (47, 4, 1, '16GB'),
 (43, 4, 1, '8gb'),
 (42, 3, 1, '100mhz'),
-(47, 2, 1, '4');
+(47, 2, 1, '4'),
+(43, 2, 2, '1'),
+(47, 4, 2, '16GB'),
+(43, 4, 2, '8gb'),
+(42, 3, 2, '100mhz'),
+(47, 2, 2, '4');
 
 -----------------------------------------------------------
 
@@ -2551,7 +2886,27 @@ INSERT INTO `oc_product_description` (`product_id`, `language_id`, `name`, `desc
 (31, 1, 'Nikon D300', '&lt;div class=&quot;cpt_product_description &quot;&gt;\r\n	&lt;div&gt;\r\n		Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon&amp;#39;s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		Similar to the D3, the D300 features Nikon&amp;#39;s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera&amp;#39;s new features. The D300 features a new 51-point autofocus system with Nikon&amp;#39;s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera&amp;#39;s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br /&gt;\r\n		&lt;br /&gt;\r\n		The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon&amp;#39;s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;/div&gt;\r\n&lt;/div&gt;\r\n&lt;!-- cpt_container_end --&gt;', '', 'Nikon D300', '', ''),
 (49, 1, 'Samsung Galaxy Tab 10.1', '&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1, is the world&amp;rsquo;s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 &amp;ndash; includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick &amp;ndash; a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;/p&gt;\r\n&lt;p&gt;\r\n	Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader&amp;rsquo;s Hub, Music Hub and Samsung Mini Apps Tray &amp;ndash; which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time.&amp;nbsp;&amp;auml;&amp;ouml;&lt;/p&gt;\r\n', '', 'Samsung Galaxy Tab 10.1', '', ''),
 (42, 1, 'Apple Cinema 30&quot;', '&lt;p&gt;\r\n	&lt;font face=&quot;helvetica,geneva,arial&quot; size=&quot;2&quot;&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there''s no limit to what you can achieve. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it''s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple''s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. &lt;br&gt;\r\n	&lt;br&gt;\r\n	&lt;/font&gt;&lt;font face=&quot;Helvetica&quot; size=&quot;2&quot;&gt;The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br&gt;\r\n	&lt;/font&gt;&lt;/font&gt;&lt;/p&gt;\r\n&lt;h3&gt;\r\n	Features:&lt;/h3&gt;\r\n&lt;p&gt;\r\n	Unrivaled display performance&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Wide-format design for simultaneous display of two full pages of text and graphics.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Lightning-fast pixel response for full-motion digital video playback.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Simple setup and operation&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports to support iSight and other desktop peripherals&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Sleek, elegant design&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Huge virtual workspace, very small footprint.&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Narrow Bezel design to minimize visual impact of using dual displays&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Unique hinge design for effortless adjustment&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h3&gt;\r\n	Technical specifications&lt;/h3&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen size (diagonal viewable image size)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen type&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Resolutions&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		2560 x 1600 pixels (optimum resolution)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2048 x 1280&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1920 x 1200&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1280 x 800&lt;/li&gt;\r\n	&lt;li&gt;\r\n		1024 x 640&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Display colors (maximum)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16.7 million&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Viewing angle (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		170° horizontal; 170° vertical&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Brightness (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 400 cd/m2&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Contrast ratio (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		700:1&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Response time (typical)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		16 ms&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Pixel pitch&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		30-inch Cinema HD Display: 0.250 mm&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Screen treatment&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Antiglare hardcoat&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;User controls (hardware and software)&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Display Power,&lt;/li&gt;\r\n	&lt;li&gt;\r\n		System sleep, wake&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Brightness&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Monitor tilt&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Connectors and cables&lt;/b&gt;&lt;br&gt;\r\n	Cable&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		DVI (Digital Visual Interface)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		FireWire 400&lt;/li&gt;\r\n	&lt;li&gt;\r\n		USB 2.0&lt;/li&gt;\r\n	&lt;li&gt;\r\n		DC power (24 V)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	Connectors&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Two-port, self-powered USB 2.0 hub&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Two FireWire 400 ports&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Kensington security port&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;VESA mount adapter&lt;/b&gt;&lt;br&gt;\r\n	Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Electrical requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Input voltage: 100-240 VAC 50-60Hz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum power when operating: 150W&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Energy saver mode: 3W or less&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Environmental requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Operating temperature: 50° to 95° F (10° to 35° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Storage temperature: -40° to 116° F (-40° to 47° C)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Operating humidity: 20% to 80% noncondensing&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Maximum operating altitude: 10,000 feet&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Agency approvals&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		FCC Part 15 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55022 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN55024&lt;/li&gt;\r\n	&lt;li&gt;\r\n		VCCI Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		AS/NZS 3548 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CNS 13438 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ICES-003 Class B&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ISO 13406 part 2&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MPR II&lt;/li&gt;\r\n	&lt;li&gt;\r\n		IEC 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		UL 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		CSA 60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		EN60950&lt;/li&gt;\r\n	&lt;li&gt;\r\n		ENERGY STAR&lt;/li&gt;\r\n	&lt;li&gt;\r\n		TCO ''03&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;Size and weight&lt;/b&gt;&lt;br&gt;\r\n	30-inch Apple Cinema HD Display&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Height: 21.3 inches (54.3 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Width: 27.2 inches (68.8 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Depth: 8.46 inches (21.5 cm)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Weight: 27.5 pounds (12.5 kg)&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;p&gt;\r\n	&lt;b&gt;System Requirements&lt;/b&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Mac Pro, all graphic options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MacBook Pro&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Power Mac G5 (PCI Express), all graphics options&lt;/li&gt;\r\n	&lt;li&gt;\r\n		PowerBook G4 with dual-link DVI support&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', 'Apple Cinema 30', '', ''),
-(30, 1, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', '');
+(30, 1, 'Canon EOS 5D', '&lt;p&gt;\r\n	Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;/p&gt;\r\n', '', 'sdf', '', ''),
+
+(35, 2, 'محصول 8', '&lt;p&gt;محصول 8، فقط برای تست در فروشگاه ساز اپن کارت فارسی درج شده است&lt;br&gt;&lt;/p&gt;\r\n', '', 'محصول 8', '', ''),
+(48, 2, 'آی پاد کلاسیک', '&lt;p&gt; همانطور که احتمالا بدانید، اپل چند ماه پیش تولید آیپاد کلاسیک خود را متوقف کرد. در همان زمان بسیاری از طرفداران اپل نسبت به این خبر واکنش منفی نشان دادند و این محصول به سرعت تبدیل به یک کالای کم یاب شد.عدم عرضه و از طرفی تقاضای بالا باعث شده که این محصول قدیمی اپل، تا ۱۰۰۰ دلار هم به فروش برسد که رقمی بسیار بالاتر از قیمت واقعی آن است.&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;div class=&quot;cpt_product_description &quot;&gt;	&lt;div&gt;		&lt;p&gt;			&lt;strong&gt;More room to move.&lt;/strong&gt;&lt;/p&gt;		&lt;p&gt;			With 80GB or 160GB of storage and up to 40 hours of battery life, the new iPod classic lets you enjoy up to 40,000 songs or up to 200 hours of video or any combination wherever you go.&lt;/p&gt;		&lt;p&gt;			&lt;strong&gt;Cover Flow.&lt;/strong&gt;&lt;/p&gt;		&lt;p&gt;			Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;/p&gt;		&lt;p&gt;			&lt;strong&gt;Enhanced interface.&lt;/strong&gt;&lt;/p&gt;		&lt;p&gt;			Experience a whole new way to browse and view your music and video.&lt;/p&gt;		&lt;p&gt;			&lt;strong&gt;Sleeker design.&lt;/strong&gt;&lt;/p&gt;		&lt;p&gt;			Beautiful, durable, and sleeker than ever, iPod classic now features an anodized aluminum and polished stainless steel enclosure with rounded edges.&lt;/p&gt;	&lt;/div&gt;&lt;/div&gt;&lt;!-- cpt_container_end --&gt;&lt;p&gt;&lt;/p&gt;', '', 'آی پاد کلاسیک', '', ''),
+(40, 2, 'آیفون 6', '&lt;p class=&quot;intro&quot;&gt;گوشی هوشمند iPhone 5 از نظر ظاهری شباهت زیادی به دستگاه چندرسانه‌ای قابل‌حمل iPod Touch دارد و برخلاف آنچه که در سایت‌ها خبری آورده می‌شود، چندان شبیه به iPad 2 نیست.&lt;br&gt;شکل ظاهری کلید Home در این گوشی تغییرکرده و فضای اطراف آن کمی فرورفته شده است تا کاربر آسان‌تر از قبل بتواند با حرکات انگشتان خود کنترل سیستم داخلی گوشی را در دست بگیرد. در این گزارش تایید شده است که iPhone 5 نسبت به مدل قبلی خود نمایشگر بزرگ‌تری دارد. طبق گفته‌های منابع آگاه، قرار است در این گوشی از نمایشگر لمسی ۷/۳ اینچی استفاده شود که این نمایشگر تا کنار بدنه گوشی آمده است و کاربر هیچ فضای اضاغی را اطراف آن نمی‌بیند.&lt;br&gt;روی مدل&amp;nbsp; آتی گوشی هوشمند اپل پردازنده پرسرعت A5 نصب شده است و کاربران به کمک دوربین دیجیتالی ۸ مگاپیکسلی آن&amp;nbsp;&amp;nbsp; می‌توانند تصاویر باکیفیتی را تهیه کنند.&lt;br&gt;&lt;br&gt;iPhone is a revolutionary new mobile phone that allows you to make a call by simply tapping a name or number in your address book, a favorites list, or a call log. It also automatically syncs all your contacts from a PC, Mac, or Internet service. And it lets you select and listen to voicemail messages in whatever order you want just like email.&lt;/p&gt;\r\n', '', 'آیفون 6', '', ''),
+(28, 2, 'اچ تی سی تاچ اچ دی', 'گوشی دیگری که در سپتامبر 2008 میلادی به بازار کامپیوترهای جیبی معرفی شد گوشی HTC مدل Touch HD است که طراحی زیبایی دارد. این گوشی با ابعادی در اندازه‌های 12×62.8×115 میلی‌متر طراحی شده و وزن آن نیز برابر است با 146 گرم. همان طور که از این ابعاد پیدا ست با گوشی باریکی رو به رو هستیم که امکانات خوبی را در اختیار کاربر خود قرار می‌دهد.&lt;br&gt;صفحه نمایش به کار رفته در Touch HD یک نمایش‌گر 65.000 رنگی لمسی TFT است که با رزولوشنی برابر با 800×480 پیکسل، 3.8 اینچ اندازه دارد.&lt;br&gt;&amp;nbsp;HTC Touch - in High Definition. Watch music videos and streaming content in awe-inspiring high definition clarity for a mobile experience you never thought possible. Seductively sleek, the HTC Touch HD provides the next generation of mobile functionality, all at a simple touch. Fully integrated with Windows Mobile Professional 6.1, ultrafast 3.5G, GPS, 5MP camera, plus lots more - all delivered on a breathtakingly crisp 3.8&quot; WVGA touchscreen - you can take control of your mobile world with the HTC Touch HD.&lt;br&gt;&lt;br&gt;Features&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Processor Qualcomm® MSM 7201A™ 528 MHz&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Windows Mobile® 6.1 Professional Operating System&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Memory: 512 MB ROM, 288 MB RAM&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Dimensions: 115 mm x 62.8 mm x 12 mm / 146.4 grams&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 3.8-inch TFT-LCD flat touch-sensitive screen with 480 x 800 WVGA resolution&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; HSDPA/WCDMA: Europe/Asia: 900/2100 MHz; Up to 2 Mbps up-link and 7.2 Mbps down-link speeds&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Quad-band GSM/GPRS/EDGE: Europe/Asia: 850/900/1800/1900 MHz (Band frequency, HSUPA availability, and data speed are operator dependent.)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Device Control via HTC TouchFLO™ 3D &amp;amp; Touch-sensitive front panel buttons&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; GPS and A-GPS ready&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Bluetooth® 2.0 with Enhanced Data Rate and A2DP for wireless stereo headsets&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Wi-Fi®: IEEE 802.11 b/g&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; HTC ExtUSB™ (11-pin mini-USB 2.0)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 5 megapixel color camera with auto focus&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; VGA CMOS color camera&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Built-in 3.5 mm audio jack, microphone, speaker, and FM radio&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Ring tone formats: AAC, AAC+, eAAC+, AMR-NB, AMR-WB, QCP, MP3, WMA, WAV&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 40 polyphonic and standard MIDI format 0 and 1 (SMF)/SP MIDI&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Rechargeable Lithium-ion or Lithium-ion polymer 1350 mAh battery&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Expansion Slot: microSD™ memory card (SD 2.0 compatible)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; AC Adapter Voltage range/frequency: 100 ~ 240V AC, 50/60 Hz DC output: 5V and 1A&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Special Features: FM Radio, G-Sensor&lt;br&gt;', '', 'اچ تی سی تاچ اچ دی', '', ''),
+(44, 2, 'مک بوک ایر', 'مطمئن از بدنه‌ای که 4 سال از تاریخ طراحیش می‌گذرد، کمپانی اپل اوایل بهار 93 و بدون برگزاری هیچ‌گونه مراسم خاصی، نسل جدید لپ‌تاپ‌های MacBook Air را با همان ظاهر مدل‌های سال گذشته معرفی نمود. اما این موضوع فقط مربوط به ظاهر دستگاه نمی‌باشد و داخل سری جدید MacBook Air هم، به جز ارتقایی ناچیز در مورد پردازنده‌ی مرکزی، دستخوش تغییر خاصی نشده است. همانند سال‌های گذشته، نسل جدید MacBook Air نیز در دو مدل 11 و 13 اینچی تولید و عرضه گشته‌اند. با ورود این لپ‌تاپ‌ها به بازار ایران، فرصتی یافتیم تا به نقد و بررسی آن‌ها بپردازیم.&lt;br&gt;&lt;br&gt;&amp;nbsp;MacBook Air is ultrathin, ultraportable, and ultra unlike anything else. But you don’t lose inches and pounds overnight. It’s the result of rethinking conventions. Of multiple wireless innovations. And of breakthrough design. With MacBook Air, mobile computing suddenly has a new standard.&lt;br&gt;', '', 'مک بوک ایر', '', ''),
+(45, 2, 'مک بوک پرو', 'در اوایل سال 2012 بود که اپل، نسخه‌ی جدید Macbook Pro ی خود را با نمایشگر 15 اینچی Retina معرفی کرد. از همان زمان منتظر معرفی نسخه‌ی 13 اینچی آن نیز بودیم. اکنون پس از چندین ماه انتظار، شاهد Macbook Pro 13 Retina هستیم. این نوت بوک اندکی سبک‌تر و باریک‌تر از Pro 13 پیشین است. ظاهرا که شارژدهی باتری آن نیز در حد 13 Air می‌باشد. به هر صورت بارزترین ویژگی که در مورد هر دو مک بوک خود نمایی می‌کند همین نمایشگر Retina است. رتینایی که نخستین بار نام آن را همزمان با معرفی iPhone 4 شنیدیم و قرار بود که رزولوشن آن از قدرت تفکیک چشم انسان بالاتر باشد. بر روی iPhone دقیقا همان‌طور بود و تراکم پیکسلی بالا همین نتیجه را در بر داشت. سپس رتینا بر روی iPad به کار گرفته شد که همان نام را داشت ولی تراکم پیکسلی پایین‌تری را ارائه می‌داد.&lt;br&gt;&lt;br&gt;&lt;br&gt;Latest Intel mobile architecture&lt;br&gt;&lt;br&gt;Powered by the most advanced mobile processors from Intel, the new Core 2 Duo MacBook Pro is over 50% faster than the original Core Duo MacBook Pro and now supports up to 4GB of RAM.&lt;br&gt;&lt;br&gt;Leading-edge graphics&lt;br&gt;&lt;br&gt;The NVIDIA GeForce 8600M GT delivers exceptional graphics processing power. For the ultimate creative canvas, you can even configure the 17-inch model with a 1920-by-1200 resolution display.&lt;br&gt;&lt;br&gt;Designed for life on the road&lt;br&gt;&lt;br&gt;Innovations such as a magnetic power connection and an illuminated keyboard with ambient light sensor put the MacBook Pro in a class by itself.&lt;br&gt;&lt;br&gt;Connect. Create. Communicate.&lt;br&gt;&lt;br&gt;Quickly set up a video conference with the built-in iSight camera. Control presentations and media from up to 30 feet away with the included Apple Remote. Connect to high-bandwidth peripherals with FireWire 800 and DVI.&lt;br&gt;&lt;br&gt;Next-generation wireless&lt;br&gt;&lt;br&gt;Featuring 802.11n wireless technology, the MacBook Pro delivers up to five times the performance and up to twice the range of previous-generation technologies.&lt;br&gt;', '', 'مک بوک پرو', '', ''),
+(29, 2, 'پالم ترو پرو', '&lt;p&gt;\r\n	Redefine your workday with the Palm Treo Pro smartphone. Perfectly balanced, you can respond to business and personal email, stay on top of appointments and contacts, and use Wi-Fi or GPS when you&amp;rsquo;re out and about. Then watch a video on YouTube, catch up with news and sports on the web, or listen to a few songs. Balance your work and play the way you like it, with the Palm Treo Pro.&lt;/p&gt;\r\n&lt;p&gt;\r\n	&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul&gt;\r\n	&lt;li&gt;\r\n		Windows Mobile&amp;reg; 6.1 Professional Edition&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Qualcomm&amp;reg; MSM7201 400MHz Processor&lt;/li&gt;\r\n	&lt;li&gt;\r\n		320x320 transflective colour TFT touchscreen&lt;/li&gt;\r\n	&lt;li&gt;\r\n		HSDPA/UMTS/EDGE/GPRS/GSM radio&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Tri-band UMTS &amp;mdash; 850MHz, 1900MHz, 2100MHz&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Quad-band GSM &amp;mdash; 850/900/1800/1900&lt;/li&gt;\r\n	&lt;li&gt;\r\n		802.11b/g with WPA, WPA2, and 801.1x authentication&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Built-in GPS&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Bluetooth Version: 2.0 + Enhanced Data Rate&lt;/li&gt;\r\n	&lt;li&gt;\r\n		256MB storage (100MB user available), 128MB RAM&lt;/li&gt;\r\n	&lt;li&gt;\r\n		2.0 megapixel camera, up to 8x digital zoom and video capture&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Removable, rechargeable 1500mAh lithium-ion battery&lt;/li&gt;\r\n	&lt;li&gt;\r\n		Up to 5.0 hours talk time and up to 250 hours standby&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroSDHC card expansion (up to 32GB supported)&lt;/li&gt;\r\n	&lt;li&gt;\r\n		MicroUSB 2.0 for synchronization and charging&lt;/li&gt;\r\n	&lt;li&gt;\r\n		3.5mm stereo headset jack&lt;/li&gt;\r\n	&lt;li&gt;\r\n		60mm (W) x 114mm (L) x 13.5mm (D) / 133g&lt;/li&gt;\r\n&lt;/ul&gt;\r\n', '', '', '', ''),
+(36, 2, 'آی پاد نانو', 'آی پاد نانو (iPod Nano) نسل هفتم یکی از محصولات پیشرفته اپل در زمینه پخش موسیقی است. این مدل در کنار سادگی، زیبایی و تنوع رنگهای جذاب، امکان پخش موسیقی، فیلم و نمایش عکس را دارد و حتی امکان فیلم برداری و عکاسی نیز به شما میدهد!&lt;br&gt;&lt;br&gt;Video in your pocket.&lt;br&gt;&lt;br&gt;Its the small iPod with one very big idea: video. The worlds most popular music player now lets you enjoy movies, TV shows, and more on a two-inch display thats 65% brighter than before.&lt;br&gt;&lt;br&gt;Cover Flow.&lt;br&gt;&lt;br&gt;Browse through your music collection by flipping through album art. Select an album to turn it over and see the track list.&lt;br&gt;&lt;br&gt;Enhanced interface.&lt;br&gt;&lt;br&gt;Experience a whole new way to browse and view your music and video.&lt;br&gt;&lt;br&gt;Sleek and colorful.&lt;br&gt;&lt;br&gt;With an anodized aluminum and polished stainless steel enclosure and a choice of five colors, iPod nano is dressed to impress.&lt;br&gt;&lt;br&gt;iTunes.', '', 'آی پاد نانو', '', ''),
+(46, 2, 'سونی وایو CW', 'از ویژگی‌های مهم نوت‌بوک‌های سری CW تنوع رنگ، زیبایی، کیفیت ساخت و قیمت مناسب در مقابل ارایه‌ی امکانات خوب در ضمن کاربری راحت و بسیار آسان است. CW مجهز به پردازنده‌ی بسیار کارآمد و خوب اینتل از نوع Core i3 است. صفحه نمایش این نوت‌بوک‌ها در اندازه‌ی 14 اینچ ساخته شده، که به عقیده‌ی بسیاری سایز بسیار مناسب و میانی می‌باشد و فضای خالی بین لپ‌تاپ‌های 13 و 15 اینچ را به خوبی پر کرده است، به همین دلیل نیز از وزن مناسبی برخوردار است و فقط 2.4 کیلوگرم سنگینی دارد. این درحالی است که در حالت کلی نوت‌بوک‌های رده‌ی 15 اینچ حدود 2.6 تا 2.8 کیلوگرم سنگینی دارند.&lt;br&gt;&lt;br&gt;Unprecedented power. The next generation of processing technology has arrived. Built into the newest VAIO notebooks lies Intel''s latest, most powerful innovation yet: Intel® Centrino® 2 processor technology. Boasting incredible speed, expanded wireless connectivity, enhanced multimedia support and greater energy efficiency, all the high-performance essentials are seamlessly combined into a single chip.&lt;br&gt;&lt;br&gt;', '', 'سونی وایو CW', '', ''),
+(47, 2, 'لپ تاپ اچ پی 4530', 'لپ‌تاپ 4530s HP ProBook محصول دیگری از سری بیزینسی ProBook این شرکت می‌باشد که در رده‌ی کاربری مشاغل کوچک قرار می‌گیرد. لپ‌تاپ‌های بیزینسی اصولا دارای ویژگی‌های خاصی هستند که آن‌ها را برای استفاده کردن در محیط‌های شغلی متناسب می‌سازد. از جمله‌ی این ویژگی‌ها می‌توان به بدنه‌ی پر دوام، قدرت سخت‌افزاری بالا، ویژگی‌های امنیتی پیشرفته و نمایشگر با سطح غیر براق اشاره کرد. در ضمن معمولا در ساخت آن‌ها از خصوصیات تجملی و تزئینی هم استفاده نمی‌شود و ظاهر جدی‌تری دارند. 4530s نیز چنین نوت‌بوکی می‌باشد که از نمایشگر 15.6 اینچی مات و بدنه‌ی آلومینیومی بسیار مستحکم خش‌دار بهره می‌برد.&lt;br&gt;&lt;br&gt;Stop your co-workers in their tracks with the stunning new 30-inch diagonal HP LP3065 Flat Panel Monitor. This flagship monitor features best-in-class performance and presentation features on a huge wide-aspect screen while letting you work as comfortably as possible - you might even forget you''re at the office', '', 'لپ تاپ اچ پی 4530s', '', ''),
+(32, 2, 'آی پاد تاچ', 'آی پاد مالتی تاچ با تکنولوژی مشابه آیفون یکی از برترین انتخاب های شما خواهد بود. این دستگاه&amp;nbsp; با یک تلنگر کوچک به راختی در میان آهنگ ها و ویدئوها گشت و گذار می زند. همچنین این دستگاه با یک صفحه 3.5 اینچی واید، کلیه نیاز های شما را برای یک دستگاه مالتی مدیای پیشرفته فرآهم می سازد.&lt;br&gt;&lt;br&gt;Revolutionary multi-touch interface.&lt;br&gt;iPod touch features the same multi-touch screen technology as iPhone. Pinch to zoom in on a photo. Scroll through your songs and videos with a flick. Flip through your library by album artwork with Cover Flow.&lt;br&gt;&lt;br&gt;Gorgeous 3.5-inch widescreen display.&lt;br&gt;Watch your movies, TV shows, and photos come alive with bright, vivid color on the 320-by-480-pixel display.&lt;br&gt;&lt;br&gt;Music downloads straight from iTunes.&lt;br&gt;Shop the iTunes Wi-Fi Music Store from anywhere with Wi-Fi.1 Browse or search to find the music youre looking for, preview it, and buy it with just a tap.&lt;br&gt;&lt;br&gt;Surf the web with Wi-Fi.&lt;br&gt;Browse the web using Safari and watch YouTube videos on the first iPod with Wi-Fi built in', '', 'آی پاد تاچ', 'آی پاد تاچ حرفه ای', ''),
+(41, 2, 'آی مک', '&lt;div style=&quot;text-align: justify;&quot;&gt;محصول آی مک یکی از تکنولوژی های پیشرفته و گران قیمت اپن این بار، با سی \r\nپی یو &amp;nbsp; Intel® Centrino2 3.06 GHz، رم 4096 MB DDR3 SDRAM و هاردديسكي با \r\nظرفيت 1TB HDD مجهز است. تجهيز به اپتيكال درايو DVD±R Super Drive Double \r\nLayer، صفحه نمايش 24 اينچ از نوع WUXGA glossy TFT active-matrix LCD \r\ndisplay با وضوح تصوير 1920×1200، كارت گرافيك NVIDIA GeForce GT 130 with \r\n512MB of GDDR3 memory، اسپيكر، چهار پورت usb و.... از ساير ويژگي هاي اين\r\n imac است.&lt;/div&gt;', '', 'آی مک MB420LL/A', '', ''),
+(33, 2, 'سامسونگ سینک مستر S27A950D ', 'کمپانی سامسونگ نسل جدید نمایشگرهای سه بعدی LED خودش را در اروپا عرضه کرد تا بزودی در دیگر نقاط دنیا هم عرضه شان آغاز شود . نمایشگر سینک مستر S27A950D یک نمایشگر 27 اینچی سه بعدی است که دارای روشنایی 300cd/m2 و نرخ کنتراست دینامیک 5,000,000:1 است . این نمایشگر 120Hz دارای موتور 3D HyperReal برای نمایش عکس های سه بعدی است . قطر این نمایشگر 11.4mm است و با قیمت $567.24 ( باید به یورو تبدیل شود ) در اروپا عرضه شده است . همراه با این نمایشگر یک عینک سه بعدی هم به خریدار داده می شود . &lt;br&gt;&lt;br&gt;Imagine the advantages of going big without slowing down. The big 19&quot; 941BW monitor combines wide aspect ratio with fast pixel response time, for bigger images, more room to work and crisp motion. In addition, the exclusive MagicBright 2, MagicColor and MagicTune technologies help deliver the ideal image in every situation, while sleek, narrow bezels and adjustable stands deliver style just the way you want it. With the Samsung 941BW widescreen analog/digital LCD monitor, it''s not hard to imagine.', '', 'سامسونگ سینک مستر S27A950D ', '', ''),
+(34, 2, 'آی پاد شافل', '&lt;p&gt;آی ‌پاد شافل نام كوچك‌ترین پخش‌كننده موسیقی دیجیتال شركت اپل است كه نخستین بار سال 2005 میلادی معرفی شد. نسخه اولیه آی‌ پاد شافل به شكل یو‌اس‌بی فلش بود اما نسل‌های بعدی شبیه آی‌پاد نانو و آی‌پاد مینی طراحی و ساخته شد. نسل دوم آی‌ پاد شافل دو مدل یك و دو گیگابایت دارد. نسل سوم آن نیز فناوری VoiceOver دارد كه نام آهنگ، خواننده و آلبوم را به 20 زبان مختلف به کاربر اعلام می‌کند. این قابلیت در نسل چهارم&amp;nbsp; از 25 زبان پشتیبانی می‌کند و کلید فیزیکی هم دارد.&lt;br&gt;&lt;br&gt;Born to be worn.&lt;br&gt;&lt;br&gt;Clip on the worlds most wearable music player and take up to 240 songs with you anywhere. Choose from five colors including four new hues to make your musical fashion statement.&lt;br&gt;&lt;br&gt;Random meets rhythm.&lt;br&gt;&lt;br&gt;With iTunes autofill, iPod shuffle can deliver a new musical experience every time you sync. For more randomness, you can shuffle songs during playback with the slide of a switch.&lt;br&gt;Everything is easy.&lt;br&gt;&lt;br&gt;Charge and sync with the included USB dock. Operate the iPod shuffle controls with one hand. Enjoy up to 12 hours straight of skip-free music playback.&lt;br&gt;&lt;/p&gt;', '', 'آی پاد شافل', '', ''),
+(43, 2, 'مک بوک', 'مک‌بوک یکی از سری لپ تاپ‌های تولیدی شرکت اپل بوده است. مک‌بوک که در ماه مه سال ۲۰۰۶ توسط شرکت اپل معرفی شد، در واقع جایگزینی برای لپ تاپ‌های iBook G4 و لپ تاپ‌های ۱۲ اینچی سری پاوربوک همین شرکت بود که وجه تشابه آن‌ها استفاده از پردازنده‌های ساخت شرکت اینتل می‌باشد. شرکت اپل، مک‌بوک را در راستای اهدافی مانند آموزش و فروش در بازارهای مصرف ارائه نمود و در اکتبر سال ۲۰۰۸ با معرفی این برند بعنوان یکی از پرفروشترین لپ تاپ‌های آمریکا توسط گروه ان‌پی‌دی، شرکت اپل به یکی از عمده اهداف خود در ارائه این سری از لپ تاپ‌ها نایل شد.&lt;br&gt;&lt;br&gt;Intel Core 2 Duo processor&lt;br&gt;&lt;br&gt;Powered by an Intel Core 2 Duo processor at speeds up to 2.16GHz, the new MacBook is the fastest ever.&lt;br&gt;&lt;br&gt;1GB memory, larger hard drives&lt;br&gt;&lt;br&gt;The new MacBook now comes with 1GB of memory standard and larger hard drives for the entire line perfect for running more of your favorite applications and storing growing media collections.&lt;br&gt;&lt;br&gt;Sleek, 1.08-inch-thin design&lt;br&gt;&lt;br&gt;MacBook makes it easy to hit the road thanks to its tough polycarbonate case, built-in wireless technologies, and innovative MagSafe Power Adapter that releases automatically if someone accidentally trips on the cord.&lt;br&gt;&lt;br&gt;Built-in iSight camera&lt;br&gt;&lt;br&gt;Right out of the box, you can have a video chat with friends or family,2 record a video at your desk, or take fun pictures with Photo Booth&lt;br&gt;', '', 'مک بوک', '', ''),
+(31, 2, 'نیکون دی 300 اس', 'عرضه‌ی نیکون D300s در بازار بسیار تاثیرگذار بود و به عقیده‌ی بسیاری بهترین دوربین نیمه حرفه‌ای است که می‌توان در بازار یافت. تعداد بسیاری از ویژگی‌ها، که ما اکنون در دوربین D300s می‌بینیم همان‌هایی هستند که به مدل D300 اضافه شده‌اند. یکی از این ویژگی‌های بسیار خوب که به این دوربین اضافه شده است فوکوس خودکار کنتراست‌یاب (Contrast-Detection Autofocus) است که در زمانی که بر روی مود فیلم‌برداری قرار دارد فعال می‌شود و این در DSLR نیکون ویژگی کاملا جدیدی محسوب می‌شود. البته فوکوس خودکار چندان سریعی ندارد همچنین لازم است شما برای ضبط صدای فاصله‌ی دور از یک میکروفون خارجی استفاده کنید چرا که میکروفون داخلی قویی ندارد.&lt;br&gt;&lt;br&gt;Engineered with pro-level features and performance, the 12.3-effective-megapixel D300 combines brand new technologies with advanced features inherited from Nikon''s newly announced D3 professional digital SLR camera to offer serious photographers remarkable performance combined with agility.&lt;br&gt;&lt;br&gt;Similar to the D3, the D300 features Nikon''s exclusive EXPEED Image Processing System that is central to driving the speed and processing power needed for many of the camera''s new features. The D300 features a new 51-point autofocus system with Nikon''s 3D Focus Tracking feature and two new LiveView shooting modes that allow users to frame a photograph using the camera''s high-resolution LCD monitor. The D300 shares a similar Scene Recognition System as is found in the D3; it promises to greatly enhance the accuracy of autofocus, autoexposure, and auto white balance by recognizing the subject or scene being photographed and applying this information to the calculations for the three functions.&lt;br&gt;&lt;br&gt;The D300 reacts with lightning speed, powering up in a mere 0.13 seconds and shooting with an imperceptible 45-millisecond shutter release lag time. The D300 is capable of shooting at a rapid six frames per second and can go as fast as eight frames per second when using the optional MB-D10 multi-power battery pack. In continuous bursts, the D300 can shoot up to 100 shots at full 12.3-megapixel resolution. (NORMAL-LARGE image setting, using a SanDisk Extreme IV 1GB CompactFlash card.)&lt;br&gt;&lt;br&gt;The D300 incorporates a range of innovative technologies and features that will significantly improve the accuracy, control, and performance photographers can get from their equipment. Its new Scene Recognition System advances the use of Nikon''s acclaimed 1,005-segment sensor to recognize colors and light patterns that help the camera determine the subject and the type of scene being photographed before a picture is taken. This information is used to improve the accuracy of autofocus, autoexposure, and auto white balance functions in the D300. For example, the camera can track moving subjects better and by identifying them, it can also automatically select focus points faster and with greater accuracy. It can also analyze highlights and more accurately determine exposure, as well as infer light sources to deliver more accurate white balance detection.&lt;br&gt;', '', 'نیکون دی 300 اس', '', ''),
+(49, 2, 'سامسونگ گلکسی تب 10.1', 'صفحه نمایش AMOLED این تبلت عمق رنگ مشکی بسیار خوبی را فراهم می آورد و رنگ ها را بسیار درخشان و شفاف به نمایش می گذارد. گلکسی تب 7.7 نازکترین تبلت در رده هفت اینچی ها بوده و دارای قابلیت هایی چون امکان افزایش حافظه، کارایی بسیار خوب بازی ها، سنسور IR برای تبدیل تبلت به یک کنترل از راه دور هوشمند است. &lt;br&gt;&lt;br&gt;نکات منفی: مهمترین نکته قیمت بالای این تبلت است که بیش از یک میلیون تومان برای یک تبلت هفت اینچی باید هزینه کنید. و البته عدم وجود پورت های مهمی چون HDMI و USB را هم به این داستان اضافه کنید. &lt;br&gt;&lt;br&gt;قیمت: مدل ۱۶ گیگابایتی، یک میلیون و پنجاه هزار تومان &lt;br&gt;&lt;br&gt;نتیجه گیری: این تبلت صفحه نمایشی زیبا و کارایی بسیار خوبی را برای تان به ارمغان می آورد و اگر هزینه آن برای تان سنگین نباشد، می تواند انتخاب کاملا مناسبی باشد.&lt;br&gt;&lt;br&gt;Samsung Galaxy Tab 10.1, is the world’s thinnest tablet, measuring 8.6 mm thickness, running with Android 3.0 Honeycomb OS on a 1GHz dual-core Tegra 2 processor, similar to its younger brother Samsung Galaxy Tab 8.9.&lt;br&gt;&lt;br&gt;Samsung Galaxy Tab 10.1 gives pure Android 3.0 experience, adding its new TouchWiz UX or TouchWiz 4.0 – includes a live panel, which lets you to customize with different content, such as your pictures, bookmarks, and social feeds, sporting a 10.1 inches WXGA capacitive touch screen with 1280 x 800 pixels of resolution, equipped with 3 megapixel rear camera with LED flash and a 2 megapixel front camera, HSPA+ connectivity up to 21Mbps, 720p HD video recording capability, 1080p HD playback, DLNA support, Bluetooth 2.1, USB 2.0, gyroscope, Wi-Fi 802.11 a/b/g/n, micro-SD slot, 3.5mm headphone jack, and SIM slot, including the Samsung Stick – a Bluetooth microphone that can be carried in a pocket like a pen and sound dock with powered subwoofer.&lt;br&gt;&lt;br&gt;Samsung Galaxy Tab 10.1 will come in 16GB / 32GB / 64GB verities and pre-loaded with Social Hub, Reader’s Hub, Music Hub and Samsung Mini Apps Tray – which gives you access to more commonly used apps to help ease multitasking and it is capable of Adobe Flash Player 10.2, powered by 6860mAh battery that gives you 10hours of video-playback time. äö', '', 'سامسونگ Galaxy Tab 7.7', 'سامسونگ Galaxy Tab 7.7 با صفحه نمایش AMOLED', ''),
+(42, 2, 'سینما  30 اینچی اپل', 'سینما سی اینچی اپل با رزولوشن بسیار عالی HD 2560 x 1600&amp;nbsp; است. این سینما با این ابعاد جالب محیطی مناسب برای دسترسی راحت تر به امکانات را به همراه داشته است. همراه شدن این دستگاه با مک، هر آنچه که نیاز شماست را به همراه خواهد داشت.&lt;br&gt;&lt;br&gt;&amp;nbsp;The 30-inch Apple Cinema HD Display delivers an amazing 2560 x 1600 pixel resolution. Designed specifically for the creative professional, this display provides more space for easier access to all the tools and palettes needed to edit, format and composite your work. Combine this display with a Mac Pro, MacBook Pro, or PowerMac G5 and there''s no limit to what you can achieve. The Cinema HD features an active-matrix liquid crystal display that produces flicker-free images that deliver twice the brightness, twice the sharpness and twice the contrast ratio of a typical CRT display. Unlike other flat panels, it''s designed with a pure digital interface to deliver distortion-free images that never need adjusting. With over 4 million digital pixels, the display is uniquely suited for scientific and technical applications such as visualizing molecular structures or analyzing geological data. Offering accurate, brilliant color performance, the Cinema HD delivers up to 16.7 million colors across a wide gamut allowing you to see subtle nuances between colors from soft pastels to rich jewel tones. A wide viewing angle ensures uniform color from edge to edge. Apple''s ColorSync technology allows you to create custom profiles to maintain consistent color onscreen and in print. The result: You can confidently use this display in all your color-critical applications. Housed in a new aluminum design, the display has a very thin bezel that enhances visual accuracy. Each display features two FireWire 400 ports and two USB 2.0 ports, making attachment of desktop peripherals, such as iSight, iPod, digital and still cameras, hard drives, printers and scanners, even more accessible and convenient. Taking advantage of the much thinner and lighter footprint of an LCD, the new displays support the VESA (Video Electronics Standards Association) mounting interface standard. Customers with the optional Cinema Display VESA Mount Adapter kit gain the flexibility to mount their display in locations most appropriate for their work environment. The Cinema HD features a single cable design with elegant breakout for the USB 2.0, FireWire 400 and a pure digital connection using the industry standard Digital Video Interface (DVI) interface. The DVI connection allows for a direct pure-digital connection.&lt;br&gt;Features:&lt;br&gt;&lt;br&gt;Unrivaled display performance&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 30-inch (viewable) active-matrix liquid crystal display provides breathtaking image quality and vivid, richly saturated color.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Support for 2560-by-1600 pixel resolution for display of high definition still and video imagery.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Wide-format design for simultaneous display of two full pages of text and graphics.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Industry standard DVI connector for direct attachment to Mac- and Windows-based desktops and notebooks&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Incredibly wide (170 degree) horizontal and vertical viewing angle for maximum visibility and color performance.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Lightning-fast pixel response for full-motion digital video playback.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Support for 16.7 million saturated colors, for use in all graphics-intensive applications.&lt;br&gt;&lt;br&gt;Simple setup and operation&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Single cable with elegant breakout for connection to DVI, USB and FireWire ports&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Built-in two-port USB 2.0 hub for easy connection of desktop peripheral devices.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Two FireWire 400 ports to support iSight and other desktop peripherals&lt;br&gt;&lt;br&gt;Sleek, elegant design&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Huge virtual workspace, very small footprint.&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Narrow Bezel design to minimize visual impact of using dual displays&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Unique hinge design for effortless adjustment&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Support for VESA mounting solutions (Apple Cinema Display VESA Mount Adapter sold separately)&lt;br&gt;&lt;br&gt;Technical specifications&lt;br&gt;&lt;br&gt;Screen size (diagonal viewable image size)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Apple Cinema HD Display: 30 inches (29.7-inch viewable)&lt;br&gt;&lt;br&gt;Screen type&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Thin film transistor (TFT) active-matrix liquid crystal display (AMLCD)&lt;br&gt;&lt;br&gt;Resolutions&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 2560 x 1600 pixels (optimum resolution)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 2048 x 1280&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1920 x 1200&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1280 x 800&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 1024 x 640&lt;br&gt;&lt;br&gt;Display colors (maximum)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 16.7 million&lt;br&gt;&lt;br&gt;Viewing angle (typical)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 170° horizontal; 170° vertical&lt;br&gt;&lt;br&gt;Brightness (typical)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 30-inch Cinema HD Display: 400 cd/m2&lt;br&gt;&lt;br&gt;Contrast ratio (typical)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 700:1&lt;br&gt;&lt;br&gt;Response time (typical)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 16 ms&lt;br&gt;&lt;br&gt;Pixel pitch&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; 30-inch Cinema HD Display: 0.250 mm&lt;br&gt;&lt;br&gt;Screen treatment&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Antiglare hardcoat&lt;br&gt;&lt;br&gt;User controls (hardware and software)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Display Power,&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; System sleep, wake&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Brightness&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Monitor tilt&lt;br&gt;&lt;br&gt;Connectors and cables&lt;br&gt;Cable&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; DVI (Digital Visual Interface)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; FireWire 400&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; USB 2.0&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; DC power (24 V)&lt;br&gt;&lt;br&gt;Connectors&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Two-port, self-powered USB 2.0 hub&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Two FireWire 400 ports&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Kensington security port&lt;br&gt;&lt;br&gt;VESA mount adapter&lt;br&gt;Requires optional Cinema Display VESA Mount Adapter (M9649G/A)&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Compatible with VESA FDMI (MIS-D, 100, C) compliant mounting solutions&lt;br&gt;&lt;br&gt;Electrical requirements&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Input voltage: 100-240 VAC 50-60Hz&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Maximum power when operating: 150W&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Energy saver mode: 3W or less&lt;br&gt;&lt;br&gt;Environmental requirements&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Operating temperature: 50° to 95° F (10° to 35° C)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Storage temperature: -40° to 116° F (-40° to 47° C)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Operating humidity: 20% to 80% noncondensing&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Maximum operating altitude: 10,000 feet&lt;br&gt;&lt;br&gt;Agency approvals&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; FCC Part 15 Class B&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; EN55022 Class B&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; EN55024&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; VCCI Class B&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; AS/NZS 3548 Class B&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; CNS 13438 Class B&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ICES-003 Class B&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ISO 13406 part 2&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; MPR II&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; IEC 60950&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; UL 60950&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; CSA 60950&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; EN60950&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; ENERGY STAR&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; TCO ''03&lt;br&gt;&lt;br&gt;Size and weight&lt;br&gt;30-inch Apple Cinema HD Display&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Height: 21.3 inches (54.3 cm)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Width: 27.2 inches (68.8 cm)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Depth: 8.46 inches (21.5 cm)&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Weight: 27.5 pounds (12.5 kg)&lt;br&gt;&lt;br&gt;System Requirements&lt;br&gt;&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Mac Pro, all graphic options&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; MacBook Pro&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Power Mac G5 (PCI-X) with ATI Radeon 9650 or better or NVIDIA GeForce 6800 GT DDL or better&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Power Mac G5 (PCI Express), all graphics options&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; PowerBook G4 with dual-link DVI support&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; Windows PC and graphics card that supports DVI ports with dual-link digital bandwidth and VESA DDC standard for plug-and-play setup', '', 'سینما  30 اینچی اپل', 'سینما 30 اینچی اپل با رزولوشن باورنکردنی', ''),
+(30, 2, 'کانن EOS 5D', 'دوربین بسیار قدرتمند کانن با امکانات بسیار عالی، هر آنچه را که نیاز شماست، برآورده می کند. این دوربین با رزولوشن 12.9 مگاپیکسل واقعی، بهترین تصاویر را به همراه خواهد داشت.&lt;br&gt;&lt;br&gt;&amp;nbsp;Canon''s press material for the EOS 5D states that it ''defines (a) new D-SLR category'', while we''re not typically too concerned with marketing talk this particular statement is clearly pretty accurate. The EOS 5D is unlike any previous digital SLR in that it combines a full-frame (35 mm sized) high resolution sensor (12.8 megapixels) with a relatively compact body (slightly larger than the EOS 20D, although in your hand it feels noticeably ''chunkier''). The EOS 5D is aimed to slot in between the EOS 20D and the EOS-1D professional digital SLR''s, an important difference when compared to the latter is that the EOS 5D doesn''t have any environmental seals. While Canon don''t specifically refer to the EOS 5D as a ''professional'' digital SLR it will have obvious appeal to professionals who want a high quality digital SLR in a body lighter than the EOS-1D. It will also no doubt appeal to current EOS 20D owners (although lets hope they''ve not bought too many EF-S lenses...) äë&lt;br&gt;', '', 'کانن EOS 5D', 'دوربین canon کانن EOS 5D', '');
 
 -----------------------------------------------------------
 
@@ -2594,6 +2949,10 @@ CREATE TABLE `oc_product_filter` (
   `filter_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`filter_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_product_filter`
+--
 
 -----------------------------------------------------------
 
@@ -2772,6 +3131,10 @@ CREATE TABLE `oc_product_recurring` (
   PRIMARY KEY (`product_id`,`recurring_id`,`customer_group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_product_recurring`
+--
+
 -----------------------------------------------------------
 
 --
@@ -2926,6 +3289,10 @@ CREATE TABLE `oc_product_to_download` (
   PRIMARY KEY (`product_id`,`download_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_product_to_download`
+--
+
 -----------------------------------------------------------
 
 --
@@ -2939,6 +3306,10 @@ CREATE TABLE `oc_product_to_layout` (
   `layout_id` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_product_to_layout`
+--
 
 -----------------------------------------------------------
 
@@ -3001,6 +3372,10 @@ CREATE TABLE `oc_recurring` (
   PRIMARY KEY (`recurring_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_recurring`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3014,6 +3389,10 @@ CREATE TABLE `oc_recurring_description` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`recurring_id`,`language_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_recurring_description`
+--
 
 -----------------------------------------------------------
 
@@ -3045,6 +3424,10 @@ CREATE TABLE `oc_return` (
   PRIMARY KEY (`return_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_return`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3066,7 +3449,10 @@ CREATE TABLE `oc_return_action` (
 INSERT INTO `oc_return_action` (`return_action_id`, `language_id`, `name`) VALUES
 (1, 1, 'Refunded'),
 (2, 1, 'Credit Issued'),
-(3, 1, 'Replacement Sent');
+(3, 1, 'Replacement Sent'),
+(1, 2, 'برگردانده شد'),
+(2, 2, 'اعتبار صادر شد'),
+(3, 2, 'جایگزین ارسال شد');
 
 -----------------------------------------------------------
 
@@ -3084,6 +3470,10 @@ CREATE TABLE `oc_return_history` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`return_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_return_history`
+--
 
 -----------------------------------------------------------
 
@@ -3108,7 +3498,12 @@ INSERT INTO `oc_return_reason` (`return_reason_id`, `language_id`, `name`) VALUE
 (2, 1, 'Received Wrong Item'),
 (3, 1, 'Order Error'),
 (4, 1, 'Faulty, please supply details'),
-(5, 1, 'Other, please supply details');
+(5, 1, 'Other, please supply details'),
+(1, 2, 'عدم دریافت محصول'),
+(2, 2, 'دریافت محصول اشتباهی'),
+(3, 2, 'اشتباه در سفارش'),
+(4, 2, 'معیوب، جزئیات را بیان کنید'),
+(5, 2, 'سایر، جزئیات را بیان کنید');
 
 -----------------------------------------------------------
 
@@ -3130,8 +3525,11 @@ CREATE TABLE `oc_return_status` (
 
 INSERT INTO `oc_return_status` (`return_status_id`, `language_id`, `name`) VALUES
 (1, 1, 'Pending'),
+(2, 1, 'Awaiting Products'),
 (3, 1, 'Complete'),
-(2, 1, 'Awaiting Products');
+(1, 2, 'معلق'),
+(2, 2, 'محصولات در دست اقدام'),
+(3, 2, 'کامل شده');
 
 -----------------------------------------------------------
 
@@ -3153,6 +3551,10 @@ CREATE TABLE `oc_review` (
   PRIMARY KEY (`review_id`),
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_review`
+--
 
 -----------------------------------------------------------
 
@@ -3196,6 +3598,10 @@ CREATE TABLE `oc_session` (
   PRIMARY KEY (`session_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_session`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3218,11 +3624,82 @@ CREATE TABLE `oc_setting` (
 --
 
 INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALUES
-(0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(0, 'module_category', 'module_category_status', '1', 0),
+(0, 'module_account', 'module_account_status', '1', 0),
+
+(0, 'captcha_basic', 'captcha_basic_status', '1', 0),
+
+(0, 'payment_free_checkout', 'payment_free_checkout_status', '1', 0),
+(0, 'payment_free_checkout', 'free_checkout_order_status_id', '1', 0),
+(0, 'payment_free_checkout', 'payment_free_checkout_sort_order', '1', 0),
+(0, 'payment_cod', 'payment_cod_sort_order', '5', 0),
+(0, 'payment_cod', 'payment_cod_total', '0.01', 0),
+(0, 'payment_cod', 'payment_cod_order_status_id', '1', 0),
+(0, 'payment_cod', 'payment_cod_geo_zone_id', '0', 0),
+(0, 'payment_cod', 'payment_cod_status', '1', 0),
+
+(0, 'shipping_flat', 'shipping_flat_sort_order', '1', 0),
+(0, 'shipping_flat', 'shipping_flat_status', '1', 0),
+(0, 'shipping_flat', 'shipping_flat_geo_zone_id', '0', 0),
+(0, 'shipping_flat', 'shipping_flat_tax_class_id', '0', 0),
+(0, 'shipping_flat', 'shipping_flat_cost', '5000.00', 0),
+(0, 'shipping_citylink', 'shipping_citylink_tax_class_id', '0', 0),
+(0, 'shipping_citylink', 'shipping_citylink_geo_zone_id', '0', 0),
+(0, 'shipping_citylink', 'shipping_citylink_rate', '10:11.6,15:14.1,20:16.60,25:19.1,30:21.6,35:24.1,40:26.6,45:29.1,50:31.6,55:34.1,60:36.6,65:39.1,70:41.6,75:44.1,80:46.6,100:56.6,125:69.1,150:81.6,200:106.6', 0),
+(0, 'shipping_citylink', 'shipping_citylink_status', '1', 0),
+(0, 'shipping_citylink', 'shipping_citylink_sort_order', '2', 0),
+(0, 'shipping_item', 'shipping_item_cost', '4000', 0),
+(0, 'shipping_item', 'shipping_item_tax_class_id', '0', 0),
+(0, 'shipping_item', 'shipping_item_geo_zone_id', '0', 0),
+(0, 'shipping_item', 'shipping_item_status', '1', 0),
+(0, 'shipping_item', 'shipping_item_sort_order', '4', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_rate', '10:15.99,12:19.99,14:20.99,16:21.99,18:21.99,20:21.99,22:26.99,24:30.99,26:34.99,28:38.99,30:42.99,35:52.99,40:62.99,45:72.99,50:82.99,55:92.99,60:102.99,65:112.99,70:122.99,75:132.99,80:142.99,85:152.99,90:162.99,95:172.99,100:182.99', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_insurance', '150:0,500:12,1000:24,1500:36,2000:48,2500:60', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_display_weight', '0', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_display_insurance', '0', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_display_time', '0', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_tax_class_id', '0', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_geo_zone_id', '0', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_status', '1', 0),
+(0, 'shipping_parcelforce_48', 'shipping_parcelforce_48_sort_order', '5', 0),
+(0, 'shipping_weight', 'shipping_weight_8_status', '1', 0),
+(0, 'shipping_weight', 'shipping_weight_4_rate', '1:5000,2:6000,3:6500,4:7000,5:8000,20000:20000', 0),
+(0, 'shipping_weight', 'shipping_weight_8_rate', '1:4000,2:5000,3:5500,4:6000,5:7000,20000:18000', 0),
+(0, 'shipping_weight', 'shipping_weight_5_status', '1', 0),
+(0, 'shipping_weight', 'shipping_weight_5_rate', '1:6000,2:6500,3:7500,4:8000,5:8500,20000:30000', 0),
+(0, 'shipping_weight', 'shipping_weight_6_status', '0', 0),
+(0, 'shipping_weight', 'shipping_weight_6_rate', '1:4000,2:5000,3:5500,4:6000,5:7000,20000:18000', 0),
+(0, 'shipping_weight', 'shipping_weight_7_status', '0', 0),
+(0, 'shipping_weight', 'shipping_weight_3_rate', '', 0),
+(0, 'shipping_weight', 'shipping_weight_3_status', '0', 0),
+(0, 'shipping_weight', 'shipping_weight_7_rate', '1:4000,2:5000,3:5500,4:6000,5:7000,20000:18000', 0),
+(0, 'shipping_weight', 'shipping_weight_4_status', '1', 0),
+(0, 'shipping_weight', 'shipping_weight_tax_class_id', '0', 0),
+(0, 'shipping_weight', 'shipping_weight_status', '1', 0),
+(0, 'shipping_weight', 'shipping_weight_sort_order', '7', 0),
+(0, 'shipping_weight', 'shipping_weight_9_rate', '1:4000,2:5000,3:5500,4:6000,5:7000,20000:18000', 0),
+(0, 'shipping_weight', 'shipping_weight_9_status', '0', 0),
+
+(0, 'total_sub_total', 'sub_total_sort_order', '1', 0),
+(0, 'total_sub_total', 'total_sub_total_status', '1', 0),
+(0, 'total_tax', 'total_tax_status', '1', 0),
+(0, 'total_tax', 'total_tax_sort_order', '5', 0),
+(0, 'total_total', 'total_total_sort_order', '9', 0),
+(0, 'total_total', 'total_total_status', '1', 0),
+(0, 'total_credit', 'total_credit_sort_order', '7', 0),
+(0, 'total_credit', 'total_credit_status', '1', 0),
+(0, 'total_reward', 'total_reward_sort_order', '2', 0),
+(0, 'total_reward', 'total_reward_status', '1', 0),
+(0, 'total_shipping', 'total_shipping_status', '1', 0),
+(0, 'total_shipping', 'total_shipping_estimator', '1', 0),
+(0, 'total_shipping', 'total_shipping_sort_order', '3', 0),
+(0, 'total_coupon', 'total_coupon_sort_order', '4', 0),
+(0, 'total_coupon', 'total_coupon_status', '1', 0),
+(0, 'total_voucher', 'total_voucher_sort_order', '8', 0),
+(0, 'total_voucher', 'total_voucher_status', '1', 0),
+
 (0, 'config', 'config_shared', '0', 0),
 (0, 'config', 'config_secure', '0', 0),
-(0, 'voucher', 'total_voucher_sort_order', '8', 0),
-(0, 'voucher', 'total_voucher_status', '1', 0),
 (0, 'config', 'config_fraud_detection', '0', 0),
 (0, 'config', 'config_ftp_status', '0', 0),
 (0, 'config', 'config_ftp_root', '', 0),
@@ -3230,17 +3707,21 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'config', 'config_ftp_username', '', 0),
 (0, 'config', 'config_ftp_port', '21', 0),
 (0, 'config', 'config_ftp_hostname', '', 0),
-(0, 'config', 'config_meta_title', 'Your Store', 0),
-(0, 'config', 'config_meta_description', 'My Store', 0),
+
+(0, 'config', 'config_meta_title', 'عنوان فروشگاه شما ...', 0),
+(0, 'config', 'config_meta_description', 'توضیحات شما برای گوگل', 0),
 (0, 'config', 'config_meta_keyword', '', 0),
 (0, 'config', 'config_theme', 'default', 0),
 (0, 'config', 'config_layout_id', '4', 0),
-(0, 'config', 'config_country_id', '222', 0),
-(0, 'config', 'config_zone_id', '3563', 0),
-(0, 'config', 'config_language', 'en-gb', 0),
-(0, 'config', 'config_admin_language', 'en-gb', 0),
-(0, 'config', 'config_currency', 'USD', 0),
-(0, 'config', 'config_currency_auto', '1', 0),
+(0, 'config', 'config_country_id', '101', 0),
+(0, 'config', 'config_zone_id', '1566', 0),
+(0, 'config', 'config_language', 'fa-ir', 0),
+(0, 'config', 'config_admin_language', 'fa-ir', 0),
+(0, 'config', 'config_currency', 'TOM', 0),
+(0, 'config', 'config_currency_auto', '0', 0),
+(0, 'config', 'config_shamsidate_status', '1', 0),
+(0, 'config', 'config_shamsidate_format', 'l d F Y - H:i:s', 0),
+
 (0, 'config', 'config_length_class_id', '1', 0),
 (0, 'config', 'config_weight_class_id', '1', 0),
 (0, 'config', 'config_product_count', '1', 0),
@@ -3252,14 +3733,16 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'config', 'config_tax', '1', 0),
 (0, 'config', 'config_tax_default', 'shipping', 0),
 (0, 'config', 'config_tax_customer', 'shipping', 0),
-(0, 'config', 'config_customer_online', '0', 0),
+
+(0, 'config', 'config_customer_online', '1', 0),
 (0, 'config', 'config_customer_activity', '0', 0),
 (0, 'config', 'config_customer_search', '0', 0),
 (0, 'config', 'config_customer_group_id', '1', 0),
 (0, 'config', 'config_customer_group_display', '["1"]', 1),
 (0, 'config', 'config_customer_price', '0', 0),
+
 (0, 'config', 'config_account_id', '3', 0),
-(0, 'config', 'config_invoice_prefix', 'INV-2013-00', 0),
+(0, 'config', 'config_invoice_prefix', 'INV-2017-00', 0),
 (0, 'config', 'config_api_id', '1', 0),
 (0, 'config', 'config_cart_weight', '1', 0),
 (0, 'config', 'config_checkout_guest', '1', 0),
@@ -3267,39 +3750,45 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'config', 'config_order_status_id', '1', 0),
 (0, 'config', 'config_processing_status', '["5","1","2","12","3"]', 1),
 (0, 'config', 'config_complete_status', '["5","3"]', 1),
+
 (0, 'config', 'config_stock_display', '0', 0),
 (0, 'config', 'config_stock_warning', '0', 0),
 (0, 'config', 'config_stock_checkout', '0', 0),
+
 (0, 'config', 'config_affiliate_approval', '0', 0),
 (0, 'config', 'config_affiliate_auto', '0', 0),
 (0, 'config', 'config_affiliate_commission', '5', 0),
+
 (0, 'config', 'config_affiliate_id', '4', 0),
 (0, 'config', 'config_return_id', '0', 0),
 (0, 'config', 'config_return_status_id', '2', 0),
 (0, 'config', 'config_logo', 'catalog/logo.png', 0),
 (0, 'config', 'config_icon', 'catalog/cart.png', 0),
 (0, 'config', 'config_comment', '', 0),
-(0, 'config', 'config_open', '', 0),
+(0, 'config', 'config_open', '9 صبح تا 10 شب', 0),
 (0, 'config', 'config_image', '', 0),
 (0, 'config', 'config_fax', '', 0),
 (0, 'config', 'config_telephone', '123456789', 0),
-(0, 'config', 'config_email', 'demo@opencart.com', 0),
+(0, 'config', 'config_email', 'demo@opencartfarsi.com', 0),
 (0, 'config', 'config_geocode', '', 0),
-(0, 'config', 'config_owner', 'Your Name', 0),
-(0, 'config', 'config_address', 'Address 1', 0),
-(0, 'config', 'config_name', 'Your Store', 0),
+(0, 'config', 'config_owner', 'نام صاحب فروشگاه', 0),
+(0, 'config', 'config_address', 'آدرس فروشگاه \r\n(فروشگاه ساز اپن کارت فارسی دات کام)', 0),
+(0, 'config', 'config_name', 'نام فروشگاه شما ...', 0),
 (0, 'config', 'config_seo_url', '0', 0),
+
 (0, 'config', 'config_file_max_size', '300000', 0),
 (0, 'config', 'config_file_ext_allowed', 'zip\r\ntxt\r\npng\r\njpe\r\njpeg\r\njpg\r\ngif\r\nbmp\r\nico\r\ntiff\r\ntif\r\nsvg\r\nsvgz\r\nzip\r\nrar\r\nmsi\r\ncab\r\nmp3\r\nqt\r\nmov\r\npdf\r\npsd\r\nai\r\neps\r\nps\r\ndoc', 0),
 (0, 'config', 'config_file_mime_allowed', 'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf', 0),
+(0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai''hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
 (0, 'config', 'config_maintenance', '0', 0),
 (0, 'config', 'config_password', '1', 0),
 (0, 'config', 'config_encryption', '', 0),
 (0, 'config', 'config_compression', '0', 0),
-(0, 'config', 'config_error_display', '1', 0),
+(0, 'config', 'config_error_display', '0', 0),
 (0, 'config', 'config_error_log', '1', 0),
-(0, 'config', 'config_error_filename', 'error.log', 0),
+(0, 'config', 'config_error_filename', 'ocferror.log', 0),
 (0, 'config', 'config_google_analytics', '', 0),
+
 (0, 'config', 'config_mail_engine', 'mail', 0),
 (0, 'config', 'config_mail_parameter', '', 0),
 (0, 'config', 'config_mail_smtp_hostname', '', 0),
@@ -3308,40 +3797,11 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'config', 'config_mail_smtp_port', '25', 0),
 (0, 'config', 'config_mail_smtp_timeout', '5', 0),
 (0, 'config', 'config_mail_alert_email', '', 0),
-(0, 'config', 'config_mail_alert', '["order"]', 1),
+(0, 'config', 'config_mail_alert', '["order","review"]', 1),
 (0, 'config', 'config_captcha', 'basic', 0),
-(0, 'config', 'config_captcha_page', '["review","return","contact"]', 1),
+(0, 'config', 'config_captcha_page', '["register","guest","review","return","contact","admin"]', 1),
 (0, 'config', 'config_login_attempts', '5', 0),
-(0, 'payment_free_checkout', 'payment_free_checkout_status', '1', 0),
-(0, 'payment_free_checkout', 'free_checkout_order_status_id', '1', 0),
-(0, 'payment_free_checkout', 'payment_free_checkout_sort_order', '1', 0),
-(0, 'payment_cod', 'payment_cod_sort_order', '5', 0),
-(0, 'payment_cod', 'payment_cod_total', '0.01', 0),
-(0, 'payment_cod', 'payment_cod_order_status_id', '1', 0),
-(0, 'payment_cod', 'payment_cod_geo_zone_id', '0', 0),
-(0, 'payment_cod', 'payment_cod_status', '1', 0),
-(0, 'shipping_flat', 'shipping_flat_sort_order', '1', 0),
-(0, 'shipping_flat', 'shipping_flat_status', '1', 0),
-(0, 'shipping_flat', 'shipping_flat_geo_zone_id', '0', 0),
-(0, 'shipping_flat', 'shipping_flat_tax_class_id', '9', 0),
-(0, 'shipping_flat', 'shipping_flat_cost', '5.00', 0),
-(0, 'total_shipping', 'total_shipping_sort_order', '3', 0),
-(0, 'total_sub_total', 'sub_total_sort_order', '1', 0),
-(0, 'total_sub_total', 'total_sub_total_status', '1', 0),
-(0, 'total_tax', 'total_tax_status', '1', 0),
-(0, 'total_total', 'total_total_sort_order', '9', 0),
-(0, 'total_total', 'total_total_status', '1', 0),
-(0, 'total_tax', 'total_tax_sort_order', '5', 0),
-(0, 'total_credit', 'total_credit_sort_order', '7', 0),
-(0, 'total_credit', 'total_credit_status', '1', 0),
-(0, 'total_reward', 'total_reward_sort_order', '2', 0),
-(0, 'total_reward', 'total_reward_status', '1', 0),
-(0, 'total_shipping', 'total_shipping_status', '1', 0),
-(0, 'total_shipping', 'total_shipping_estimator', '1', 0),
-(0, 'total_coupon', 'total_coupon_sort_order', '4', 0),
-(0, 'total_coupon', 'total_coupon_status', '1', 0),
-(0, 'module_category', 'module_category_status', '1', 0),
-(0, 'module_account', 'module_account_status', '1', 0),
+
 (0, 'theme_default', 'theme_default_product_limit', '15', 0),
 (0, 'theme_default', 'theme_default_product_description_length', '100', 0),
 (0, 'theme_default', 'theme_default_image_thumb_width', '228', 0),
@@ -3366,6 +3826,7 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'theme_default', 'theme_default_image_location_width', '268', 0),
 (0, 'theme_default', 'theme_default_directory', 'default', 0),
 (0, 'theme_default', 'theme_default_status', '1', 0),
+
 (0, 'dashboard_activity', 'dashboard_activity_status', '1', 0),
 (0, 'dashboard_activity', 'dashboard_activity_sort_order', '7', 0),
 (0, 'dashboard_sale', 'dashboard_sale_status', '1', 0),
@@ -3390,6 +3851,7 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'dashboard_recent', 'dashboard_recent_sort_order', '8', 0),
 (0, 'dashboard_activity', 'dashboard_activity_width', '4', 0),
 (0, 'dashboard_recent', 'dashboard_recent_width', '8', 0),
+
 (0, 'report_customer_activity', 'report_customer_activity_status', '1', 0),
 (0, 'report_customer_activity', 'report_customer_activity_sort_order', '1', 0),
 (0, 'report_customer_order', 'report_customer_order_status', '1', 0),
@@ -3416,6 +3878,7 @@ INSERT INTO `oc_setting` (`store_id`, `code`, `key`, `value`, `serialized`) VALU
 (0, 'report_product_purchased', 'report_product_purchased_sort_order', '11', 0),
 (0, 'report_marketing', 'report_marketing_status', '1', 0),
 (0, 'report_marketing', 'report_marketing_sort_order', '12', 0),
+
 (0, 'developer', 'developer_theme', '1', 0),
 (0, 'developer', 'developer_sass', '1', 0);
 
@@ -3438,10 +3901,14 @@ CREATE TABLE `oc_stock_status` (
 --
 
 INSERT INTO `oc_stock_status` (`stock_status_id`, `language_id`, `name`) VALUES
+(5, 1, 'Out Of Stock'),
+(6, 1, '2-3 Days'),
 (7, 1, 'In Stock'),
 (8, 1, 'Pre-Order'),
-(5, 1, 'Out Of Stock'),
-(6, 1, '2-3 Days');
+(5, 2, 'عدم موجودی در انبار'),
+(6, 2, '2 تا 3 روز دیگر'),
+(7, 2, 'در انبار(موجود)'),
+(8, 2, 'پیش سفارش');
 
 -----------------------------------------------------------
 
@@ -3457,6 +3924,10 @@ CREATE TABLE `oc_store` (
   `ssl` varchar(255) NOT NULL,
   PRIMARY KEY (`store_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_store`
+--
 
 -----------------------------------------------------------
 
@@ -3479,8 +3950,8 @@ CREATE TABLE `oc_tax_class` (
 --
 
 INSERT INTO `oc_tax_class` (`tax_class_id`, `title`, `description`, `date_added`, `date_modified`) VALUES
-(9, 'Taxable Goods', 'Taxed goods', '2009-01-06 23:21:53', '2011-09-23 14:07:50'),
-(10, 'Downloadable Products', 'Downloadable', '2011-09-21 22:19:39', '2011-09-22 10:27:36');
+(9, 'محصولات مشمول مالیات', 'محصولاتی که مالیات به آنها تعلق می گیرد', '2017-06-24 23:21:53', '2017-07-24 14:07:50'),
+(10, 'محصولات دانلودی', 'مالیات محصولات دانلودی', '2017-06-24 22:19:39', '2017-07-24 10:27:36');
 
 -----------------------------------------------------------
 
@@ -3505,8 +3976,8 @@ CREATE TABLE `oc_tax_rate` (
 --
 
 INSERT INTO `oc_tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `date_added`, `date_modified`) VALUES
-(86, 3, 'VAT (20%)', '20.0000', 'P', '2011-03-09 21:17:10', '2011-09-22 22:24:29'),
-(87, 3, 'Eco Tax (-2.00)', '2.0000', 'F', '2011-09-21 21:49:23', '2011-09-23 00:40:19');
+(86, 3, 'بر ارزش افزوده (20%)', '20.0000', 'P', '2017-06-24 21:17:10', '2017-07-24 22:24:29'),
+(87, 3, 'مالیات ثابت (-2.00)', '2.0000', 'F', '2017-06-24 21:49:23', '2017-07-24 00:40:19');
 
 -----------------------------------------------------------
 
@@ -3572,6 +4043,10 @@ CREATE TABLE `oc_theme` (
   PRIMARY KEY (`theme_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_theme`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3590,6 +4065,10 @@ CREATE TABLE `oc_translation` (
   PRIMARY KEY (`translation_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_translation`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3605,6 +4084,10 @@ CREATE TABLE `oc_upload` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`upload_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_upload`
+--
 
 -----------------------------------------------------------
 
@@ -3629,73 +4112,140 @@ CREATE TABLE `oc_seo_url` (
 --
 
 INSERT INTO `oc_seo_url` (`seo_url_id`, `store_id`, `language_id`, `query`, `keyword`) VALUES
-(824, 0, 1, 'product_id=48', 'ipod-classic'),
-(836, 0, 1, 'category_id=20', 'desktops'),
-(834, 0, 1, 'category_id=26', 'pc'),
-(835, 0, 1, 'category_id=27', 'mac'),
-(730, 0, 1, 'manufacturer_id=8', 'apple'),
-(772, 0, 1, 'information_id=4', 'about_us'),
-(768, 0, 1, 'product_id=42', 'test'),
-(789, 0, 1, 'category_id=34', 'mp3-players'),
-(781, 0, 1, 'category_id=36', 'test2'),
-(774, 0, 1, 'category_id=18', 'laptop-notebook'),
-(775, 0, 1, 'category_id=46', 'macs'),
-(776, 0, 1, 'category_id=45', 'windows'),
-(777, 0, 1, 'category_id=25', 'component'),
-(778, 0, 1, 'category_id=29', 'mouse'),
-(779, 0, 1, 'category_id=28', 'monitor'),
-(780, 0, 1, 'category_id=35', 'test1'),
-(782, 0, 1, 'category_id=30', 'printer'),
-(783, 0, 1, 'category_id=31', 'scanner'),
-(784, 0, 1, 'category_id=32', 'web-camera'),
-(785, 0, 1, 'category_id=57', 'tablet'),
-(786, 0, 1, 'category_id=17', 'software'),
-(787, 0, 1, 'category_id=24', 'smartphone'),
-(788, 0, 1, 'category_id=33', 'camera'),
-(790, 0, 1, 'category_id=43', 'test11'),
-(791, 0, 1, 'category_id=44', 'test12'),
-(792, 0, 1, 'category_id=47', 'test15'),
-(793, 0, 1, 'category_id=48', 'test16'),
-(794, 0, 1, 'category_id=49', 'test17'),
-(795, 0, 1, 'category_id=50', 'test18'),
-(796, 0, 1, 'category_id=51', 'test19'),
-(797, 0, 1, 'category_id=52', 'test20'),
-(798, 0, 1, 'category_id=58', 'test25'),
-(799, 0, 1, 'category_id=53', 'test21'),
-(800, 0, 1, 'category_id=54', 'test22'),
-(801, 0, 1, 'category_id=55', 'test23'),
-(802, 0, 1, 'category_id=56', 'test24'),
-(803, 0, 1, 'category_id=38', 'test4'),
-(804, 0, 1, 'category_id=37', 'test5'),
-(805, 0, 1, 'category_id=39', 'test6'),
-(806, 0, 1, 'category_id=40', 'test7'),
-(807, 0, 1, 'category_id=41', 'test8'),
-(808, 0, 1, 'category_id=42', 'test9'),
-(809, 0, 1, 'product_id=30', 'canon-eos-5d'),
-(840, 0, 1, 'product_id=47', 'hp-lp3065'),
-(811, 0, 1, 'product_id=28', 'htc-touch-hd'),
-(812, 0, 1, 'product_id=43', 'macbook'),
-(813, 0, 1, 'product_id=44', 'macbook-air'),
-(814, 0, 1, 'product_id=45', 'macbook-pro'),
-(816, 0, 1, 'product_id=31', 'nikon-d300'),
-(817, 0, 1, 'product_id=29', 'palm-treo-pro'),
-(818, 0, 1, 'product_id=35', 'product-8'),
-(819, 0, 1, 'product_id=49', 'samsung-galaxy-tab-10-1'),
-(820, 0, 1, 'product_id=33', 'samsung-syncmaster-941bw'),
-(821, 0, 1, 'product_id=46', 'sony-vaio'),
-(837, 0, 1, 'product_id=41', 'imac'),
-(823, 0, 1, 'product_id=40', 'iphone'),
-(825, 0, 1, 'product_id=36', 'ipod-nano'),
-(826, 0, 1, 'product_id=34', 'ipod-shuffle'),
-(827, 0, 1, 'product_id=32', 'ipod-touch'),
-(828, 0, 1, 'manufacturer_id=9', 'canon'),
-(829, 0, 1, 'manufacturer_id=5', 'htc'),
-(830, 0, 1, 'manufacturer_id=7', 'hewlett-packard'),
-(831, 0, 1, 'manufacturer_id=6', 'palm'),
-(832, 0, 1, 'manufacturer_id=10', 'sony'),
-(841, 0, 1, 'information_id=6', 'delivery'),
-(842, 0, 1, 'information_id=3', 'privacy'),
-(843, 0, 1, 'information_id=5', 'terms');
+(NULL, 0, 1, 'information_id=3', 'privacy'),
+(NULL, 0, 1, 'information_id=4', 'about-opencartfarsi-website'),
+(NULL, 0, 1, 'information_id=5', 'terms'),
+(NULL, 0, 1, 'information_id=6', 'delivery'),
+(NULL, 0, 2, 'information_id=3', 'شرایط-عضویت'),
+(NULL, 0, 2, 'information_id=4', 'درباره-فروشگاه-ساز-اپن-کارت-فارسی'),
+(NULL, 0, 2, 'information_id=5', 'شرایط-خرید'),
+(NULL, 0, 2, 'information_id=6', 'راهنمای-خرید'),
+(NULL, 0, 1, 'manufacturer_id=5', 'htc'),
+(NULL, 0, 1, 'manufacturer_id=6', 'palm'),
+(NULL, 0, 1, 'manufacturer_id=7', 'hewlett-packard'),
+(NULL, 0, 1, 'manufacturer_id=8', 'apple'),
+(NULL, 0, 1, 'manufacturer_id=9', 'canon'),
+(NULL, 0, 1, 'manufacturer_id=10', 'sony'),
+(NULL, 0, 2, 'manufacturer_id=5', 'اچ-تی-سی'),
+(NULL, 0, 2, 'manufacturer_id=6', 'پالم'),
+(NULL, 0, 2, 'manufacturer_id=7', 'اچ-پی'),
+(NULL, 0, 2, 'manufacturer_id=8', 'اپل'),
+(NULL, 0, 2, 'manufacturer_id=9', 'کانن'),
+(NULL, 0, 2, 'manufacturer_id=10', 'سونی'),
+(NULL, 0, 1, 'category_id=20', 'desktops'),
+(NULL, 0, 1, 'category_id=26', 'pc'),
+(NULL, 0, 1, 'category_id=27', 'mac'),
+(NULL, 0, 1, 'category_id=34', 'mp3-players'),
+(NULL, 0, 1, 'category_id=36', 'test2'),
+(NULL, 0, 1, 'category_id=18', 'laptop-notebook'),
+(NULL, 0, 1, 'category_id=46', 'macs'),
+(NULL, 0, 1, 'category_id=45', 'windows'),
+(NULL, 0, 1, 'category_id=25', 'component'),
+(NULL, 0, 1, 'category_id=29', 'mouse'),
+(NULL, 0, 1, 'category_id=28', 'monitor'),
+(NULL, 0, 1, 'category_id=35', 'test1'),
+(NULL, 0, 1, 'category_id=30', 'printer'),
+(NULL, 0, 1, 'category_id=31', 'scanner'),
+(NULL, 0, 1, 'category_id=32', 'web-camera'),
+(NULL, 0, 1, 'category_id=57', 'tablet'),
+(NULL, 0, 1, 'category_id=17', 'software'),
+(NULL, 0, 1, 'category_id=24', 'smartphone'),
+(NULL, 0, 1, 'category_id=33', 'camera'),
+(NULL, 0, 1, 'category_id=43', 'test11'),
+(NULL, 0, 1, 'category_id=44', 'test12'),
+(NULL, 0, 1, 'category_id=47', 'test15'),
+(NULL, 0, 1, 'category_id=48', 'test16'),
+(NULL, 0, 1, 'category_id=49', 'test17'),
+(NULL, 0, 1, 'category_id=50', 'test18'),
+(NULL, 0, 1, 'category_id=51', 'test19'),
+(NULL, 0, 1, 'category_id=52', 'test20'),
+(NULL, 0, 1, 'category_id=58', 'test25'),
+(NULL, 0, 1, 'category_id=53', 'test21'),
+(NULL, 0, 1, 'category_id=54', 'test22'),
+(NULL, 0, 1, 'category_id=55', 'test23'),
+(NULL, 0, 1, 'category_id=56', 'test24'),
+(NULL, 0, 1, 'category_id=38', 'test4'),
+(NULL, 0, 1, 'category_id=37', 'test5'),
+(NULL, 0, 1, 'category_id=39', 'test6'),
+(NULL, 0, 1, 'category_id=40', 'test7'),
+(NULL, 0, 1, 'category_id=41', 'test8'),
+(NULL, 0, 1, 'category_id=42', 'test9'),
+(NULL, 0, 2, 'category_id=20', 'رومیزی-ها'),
+(NULL, 0, 2, 'category_id=26', 'کامپیوتر'),
+(NULL, 0, 2, 'category_id=27', 'مک'),
+(NULL, 0, 2, 'category_id=34', 'پخش-کننده-های-صوتی'),
+(NULL, 0, 2, 'category_id=36', 'تست-2'),
+(NULL, 0, 2, 'category_id=18', 'لپ-تاپ-ها-و-نوت-بوک-ها'),
+(NULL, 0, 2, 'category_id=46', 'مک-ها'),
+(NULL, 0, 2, 'category_id=45', 'ویندوزها'),
+(NULL, 0, 2, 'category_id=25', 'کامپوننت-ها'),
+(NULL, 0, 2, 'category_id=29', 'موس-و-میکروفون'),
+(NULL, 0, 2, 'category_id=28', 'مانیتورها'),
+(NULL, 0, 2, 'category_id=35', 'تست-1'),
+(NULL, 0, 2, 'category_id=30', 'پرینترها'),
+(NULL, 0, 2, 'category_id=31', 'اسکنرها'),
+(NULL, 0, 2, 'category_id=32', 'وب-کم-ها'),
+(NULL, 0, 2, 'category_id=57', 'تبلت-ها'),
+(NULL, 0, 2, 'category_id=17', 'نرم-افزار'),
+(NULL, 0, 2, 'category_id=24', 'گوشی-های-هوشمند'),
+(NULL, 0, 2, 'category_id=33', 'دوربین-ها'),
+(NULL, 0, 2, 'category_id=43', 'تست-11'),
+(NULL, 0, 2, 'category_id=44', 'تست-12'),
+(NULL, 0, 2, 'category_id=47', 'تست-15'),
+(NULL, 0, 2, 'category_id=48', 'تست-16'),
+(NULL, 0, 2, 'category_id=49', 'تست-17'),
+(NULL, 0, 2, 'category_id=50', 'تست-18'),
+(NULL, 0, 2, 'category_id=51', 'تست-19'),
+(NULL, 0, 2, 'category_id=52', 'تست-20'),
+(NULL, 0, 2, 'category_id=58', 'تست-25'),
+(NULL, 0, 2, 'category_id=53', 'تست-21'),
+(NULL, 0, 2, 'category_id=54', 'تست-22'),
+(NULL, 0, 2, 'category_id=55', 'تست-23'),
+(NULL, 0, 2, 'category_id=56', 'تست-24'),
+(NULL, 0, 2, 'category_id=38', 'تست-4'),
+(NULL, 0, 2, 'category_id=37', 'تست-5'),
+(NULL, 0, 2, 'category_id=39', 'تست-6'),
+(NULL, 0, 2, 'category_id=40', 'تست-7'),
+(NULL, 0, 2, 'category_id=41', 'تست-8'),
+(NULL, 0, 2, 'category_id=42', 'تست-9'),
+(NULL, 0, 1, 'product_id=30', 'canon-eos-5d'),
+(NULL, 0, 1, 'product_id=47', 'hp-lp3065'),
+(NULL, 0, 1, 'product_id=28', 'htc-touch-hd'),
+(NULL, 0, 1, 'product_id=43', 'macbook'),
+(NULL, 0, 1, 'product_id=44', 'macbook-air'),
+(NULL, 0, 1, 'product_id=45', 'macbook-pro'),
+(NULL, 0, 1, 'product_id=31', 'nikon-d300'),
+(NULL, 0, 1, 'product_id=29', 'palm-treo-pro'),
+(NULL, 0, 1, 'product_id=35', 'product-8'),
+(NULL, 0, 1, 'product_id=49', 'samsung-galaxy-tab-10-1'),
+(NULL, 0, 1, 'product_id=33', 'samsung-syncmaster-941bw'),
+(NULL, 0, 1, 'product_id=46', 'sony-vaio'),
+(NULL, 0, 1, 'product_id=41', 'imac'),
+(NULL, 0, 1, 'product_id=40', 'iphone'),
+(NULL, 0, 1, 'product_id=36', 'ipod-nano'),
+(NULL, 0, 1, 'product_id=34', 'ipod-shuffle'),
+(NULL, 0, 1, 'product_id=32', 'ipod-touch'),
+(NULL, 0, 1, 'product_id=42', 'apple-cinema-30'),
+(NULL, 0, 1, 'product_id=48', 'ipod-classic'),
+(NULL, 0, 2, 'product_id=30', 'کانن-eos-5d'),
+(NULL, 0, 2, 'product_id=47', 'لپ تاپ-اچ-پی-4530'),
+(NULL, 0, 2, 'product_id=28', 'اچ-تی-سی-تاچ-اچ-دی'),
+(NULL, 0, 2, 'product_id=43', 'مک-بوک'),
+(NULL, 0, 2, 'product_id=44', 'مک-بوک-ایر'),
+(NULL, 0, 2, 'product_id=45', 'مک-بوک-پرو'),
+(NULL, 0, 2, 'product_id=31', 'نیکون-دی-300'),
+(NULL, 0, 2, 'product_id=29', 'پالم-ترو-پرو'),
+(NULL, 0, 2, 'product_id=35', 'محصول-8'),
+(NULL, 0, 2, 'product_id=49', 'سامسونگ-گلکسی-تب-10-1'),
+(NULL, 0, 2, 'product_id=33', 'سامسونگ-سینک-مستر-941bw'),
+(NULL, 0, 2, 'product_id=46', 'سونی-وایو'),
+(NULL, 0, 2, 'product_id=41', 'آی-مک'),
+(NULL, 0, 2, 'product_id=40', 'آیفون'),
+(NULL, 0, 2, 'product_id=36', 'آی-پاد-نانو'),
+(NULL, 0, 2, 'product_id=34', 'آی-پاد-شافل'),
+(NULL, 0, 2, 'product_id=32', 'آی-پاد-تاچ'),
+(NULL, 0, 2, 'product_id=42', 'سینما-30-اینچی-اپل'),
+(NULL, 0, 2, 'product_id=48', 'آی-پاد-کلاسیک');
 
 -----------------------------------------------------------
 
@@ -3721,6 +4271,10 @@ CREATE TABLE `oc_user` (
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_user`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3740,8 +4294,8 @@ CREATE TABLE `oc_user_group` (
 --
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'Administrator', '{"access":["catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/developer","common\\/filemanager","common\\/profile","common\\/security","customer\\/custom_field","customer\\/customer","customer\\/customer_approval","customer\\/customer_group","design\\/banner","design\\/layout","design\\/theme","design\\/translation","design\\/seo_url","event\\/statistics","event\\/theme","extension\\/analytics\\/google","extension\\/captcha\\/basic","extension\\/captcha\\/google","extension\\/dashboard\\/activity","extension\\/dashboard\\/chart","extension\\/dashboard\\/customer","extension\\/dashboard\\/map","extension\\/dashboard\\/online","extension\\/dashboard\\/order","extension\\/dashboard\\/recent","extension\\/dashboard\\/sale","extension\\/extension\\/analytics","extension\\/extension\\/captcha","extension\\/extension\\/dashboard","extension\\/extension\\/feed","extension\\/extension\\/fraud","extension\\/extension\\/menu","extension\\/extension\\/module","extension\\/extension\\/payment","extension\\/extension\\/report","extension\\/extension\\/shipping","extension\\/extension\\/theme","extension\\/extension\\/total","extension\\/feed\\/google_base","extension\\/feed\\/google_sitemap","extension\\/feed\\/openbaypro","extension\\/fraud\\/fraudlabspro","extension\\/fraud\\/ip","extension\\/fraud\\/maxmind","extension\\/marketing\\/remarketing","extension\\/module\\/account","extension\\/module\\/amazon_login","extension\\/module\\/amazon_pay","extension\\/module\\/banner","extension\\/module\\/bestseller","extension\\/module\\/carousel","extension\\/module\\/category","extension\\/module\\/divido_calculator","extension\\/module\\/ebay_listing","extension\\/module\\/featured","extension\\/module\\/filter","extension\\/module\\/google_hangouts","extension\\/module\\/html","extension\\/module\\/information","extension\\/module\\/klarna_checkout_module","extension\\/module\\/latest","extension\\/module\\/laybuy_layout","extension\\/module\\/pilibaba_button","extension\\/module\\/pp_button","extension\\/module\\/pp_login","extension\\/module\\/sagepay_direct_cards","extension\\/module\\/sagepay_server_cards","extension\\/module\\/slideshow","extension\\/module\\/special","extension\\/module\\/store","extension\\/openbay\\/amazon","extension\\/openbay\\/amazon_listing","extension\\/openbay\\/amazon_product","extension\\/openbay\\/amazonus","extension\\/openbay\\/amazonus_listing","extension\\/openbay\\/amazonus_product","extension\\/openbay\\/ebay","extension\\/openbay\\/ebay_profile","extension\\/openbay\\/ebay_template","extension\\/openbay\\/etsy","extension\\/openbay\\/etsy_product","extension\\/openbay\\/etsy_shipping","extension\\/openbay\\/etsy_shop","extension\\/openbay\\/fba","extension\\/payment\\/amazon_login_pay","extension\\/payment\\/authorizenet_aim","extension\\/payment\\/authorizenet_sim","extension\\/payment\\/bank_transfer","extension\\/payment\\/bluepay_hosted","extension\\/payment\\/bluepay_redirect","extension\\/payment\\/cardconnect","extension\\/payment\\/cardinity","extension\\/payment\\/cheque","extension\\/payment\\/cod","extension\\/payment\\/divido","extension\\/payment\\/eway","extension\\/payment\\/firstdata","extension\\/payment\\/firstdata_remote","extension\\/payment\\/free_checkout","extension\\/payment\\/g2apay","extension\\/payment\\/globalpay","extension\\/payment\\/globalpay_remote","extension\\/payment\\/klarna_account","extension\\/payment\\/klarna_checkout","extension\\/payment\\/klarna_invoice","extension\\/payment\\/laybuy","extension\\/payment\\/liqpay","extension\\/payment\\/nochex","extension\\/payment\\/paymate","extension\\/payment\\/paypoint","extension\\/payment\\/payza","extension\\/payment\\/perpetual_payments","extension\\/payment\\/pilibaba","extension\\/payment\\/pp_express","extension\\/payment\\/pp_payflow","extension\\/payment\\/pp_payflow_iframe","extension\\/payment\\/pp_pro","extension\\/payment\\/pp_pro_iframe","extension\\/payment\\/pp_standard","extension\\/payment\\/realex","extension\\/payment\\/realex_remote","extension\\/payment\\/sagepay_direct","extension\\/payment\\/sagepay_server","extension\\/payment\\/sagepay_us","extension\\/payment\\/securetrading_pp","extension\\/payment\\/securetrading_ws","extension\\/payment\\/skrill","extension\\/payment\\/twocheckout","extension\\/payment\\/web_payment_software","extension\\/payment\\/worldpay","extension\\/module\\/pp_braintree_button","extension\\/payment\\/pp_braintree","extension\\/report\\/customer_activity","extension\\/report\\/customer_order","extension\\/report\\/customer_reward","extension\\/report\\/customer_search","extension\\/report\\/customer_transaction","extension\\/report\\/marketing","extension\\/report\\/product_purchased","extension\\/report\\/product_viewed","extension\\/report\\/sale_coupon","extension\\/report\\/sale_order","extension\\/report\\/sale_return","extension\\/report\\/sale_shipping","extension\\/report\\/sale_tax","extension\\/shipping\\/auspost","extension\\/shipping\\/citylink","extension\\/shipping\\/ec_ship","extension\\/shipping\\/fedex","extension\\/shipping\\/flat","extension\\/shipping\\/free","extension\\/shipping\\/item","extension\\/shipping\\/parcelforce_48","extension\\/shipping\\/pickup","extension\\/shipping\\/royal_mail","extension\\/shipping\\/ups","extension\\/shipping\\/usps","extension\\/shipping\\/weight","extension\\/theme\\/default","extension\\/total\\/coupon","extension\\/total\\/credit","extension\\/total\\/handling","extension\\/total\\/klarna_fee","extension\\/total\\/low_order_fee","extension\\/total\\/reward","extension\\/total\\/shipping","extension\\/total\\/sub_total","extension\\/total\\/tax","extension\\/total\\/total","extension\\/total\\/voucher","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","mail\\/affiliate","mail\\/customer","mail\\/forgotten","mail\\/return","mail\\/reward","mail\\/transaction","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","marketplace\\/api","marketplace\\/event","marketplace\\/extension","marketplace\\/install","marketplace\\/installer","marketplace\\/marketplace","marketplace\\/modification","marketplace\\/openbay","report\\/online","report\\/report","report\\/statistics","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","startup\\/error","startup\\/event","startup\\/login","startup\\/permission","startup\\/router","startup\\/sass","startup\\/startup","tool\\/backup","tool\\/log","tool\\/upload","user\\/api","user\\/user","user\\/user_permission"],"modify":["catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/developer","common\\/filemanager","common\\/profile","common\\/security","customer\\/custom_field","customer\\/customer","customer\\/customer_approval","customer\\/customer_group","design\\/banner","design\\/layout","design\\/theme","design\\/translation","design\\/seo_url","event\\/statistics","event\\/theme","extension\\/analytics\\/google","extension\\/captcha\\/basic","extension\\/captcha\\/google","extension\\/dashboard\\/activity","extension\\/dashboard\\/chart","extension\\/dashboard\\/customer","extension\\/dashboard\\/map","extension\\/dashboard\\/online","extension\\/dashboard\\/order","extension\\/dashboard\\/recent","extension\\/dashboard\\/sale","extension\\/extension\\/analytics","extension\\/extension\\/captcha","extension\\/extension\\/dashboard","extension\\/extension\\/feed","extension\\/extension\\/fraud","extension\\/extension\\/menu","extension\\/extension\\/module","extension\\/extension\\/payment","extension\\/extension\\/report","extension\\/extension\\/shipping","extension\\/extension\\/theme","extension\\/extension\\/total","extension\\/feed\\/google_base","extension\\/feed\\/google_sitemap","extension\\/feed\\/openbaypro","extension\\/fraud\\/fraudlabspro","extension\\/fraud\\/ip","extension\\/fraud\\/maxmind","extension\\/marketing\\/remarketing","extension\\/module\\/account","extension\\/module\\/amazon_login","extension\\/module\\/amazon_pay","extension\\/module\\/banner","extension\\/module\\/bestseller","extension\\/module\\/carousel","extension\\/module\\/category","extension\\/module\\/divido_calculator","extension\\/module\\/ebay_listing","extension\\/module\\/featured","extension\\/module\\/filter","extension\\/module\\/google_hangouts","extension\\/module\\/html","extension\\/module\\/information","extension\\/module\\/klarna_checkout_module","extension\\/module\\/latest","extension\\/module\\/laybuy_layout","extension\\/module\\/pilibaba_button","extension\\/module\\/pp_button","extension\\/module\\/pp_login","extension\\/module\\/sagepay_direct_cards","extension\\/module\\/sagepay_server_cards","extension\\/module\\/slideshow","extension\\/module\\/special","extension\\/module\\/store","extension\\/openbay\\/amazon","extension\\/openbay\\/amazon_listing","extension\\/openbay\\/amazon_product","extension\\/openbay\\/amazonus","extension\\/openbay\\/amazonus_listing","extension\\/openbay\\/amazonus_product","extension\\/openbay\\/ebay","extension\\/openbay\\/ebay_profile","extension\\/openbay\\/ebay_template","extension\\/openbay\\/etsy","extension\\/openbay\\/etsy_product","extension\\/openbay\\/etsy_shipping","extension\\/openbay\\/etsy_shop","extension\\/openbay\\/fba","extension\\/payment\\/amazon_login_pay","extension\\/payment\\/authorizenet_aim","extension\\/payment\\/authorizenet_sim","extension\\/payment\\/bank_transfer","extension\\/payment\\/bluepay_hosted","extension\\/payment\\/bluepay_redirect","extension\\/payment\\/cardconnect","extension\\/payment\\/cardinity","extension\\/payment\\/cheque","extension\\/payment\\/cod","extension\\/payment\\/divido","extension\\/payment\\/eway","extension\\/payment\\/firstdata","extension\\/payment\\/firstdata_remote","extension\\/payment\\/free_checkout","extension\\/payment\\/g2apay","extension\\/payment\\/globalpay","extension\\/payment\\/globalpay_remote","extension\\/payment\\/klarna_account","extension\\/payment\\/klarna_checkout","extension\\/payment\\/klarna_invoice","extension\\/payment\\/laybuy","extension\\/payment\\/liqpay","extension\\/payment\\/nochex","extension\\/payment\\/paymate","extension\\/payment\\/paypoint","extension\\/payment\\/payza","extension\\/payment\\/perpetual_payments","extension\\/payment\\/pilibaba","extension\\/payment\\/pp_express","extension\\/payment\\/pp_payflow","extension\\/payment\\/pp_payflow_iframe","extension\\/payment\\/pp_pro","extension\\/payment\\/pp_pro_iframe","extension\\/payment\\/pp_standard","extension\\/payment\\/realex","extension\\/payment\\/realex_remote","extension\\/payment\\/sagepay_direct","extension\\/payment\\/sagepay_server","extension\\/payment\\/sagepay_us","extension\\/payment\\/securetrading_pp","extension\\/payment\\/securetrading_ws","extension\\/payment\\/skrill","extension\\/payment\\/twocheckout","extension\\/payment\\/web_payment_software","extension\\/payment\\/worldpay","extension\\/module\\/pp_braintree_button","extension\\/payment\\/pp_braintree","extension\\/report\\/customer_activity","extension\\/report\\/customer_order","extension\\/report\\/customer_reward","extension\\/report\\/customer_search","extension\\/report\\/customer_transaction","extension\\/report\\/marketing","extension\\/report\\/product_purchased","extension\\/report\\/product_viewed","extension\\/report\\/sale_coupon","extension\\/report\\/sale_order","extension\\/report\\/sale_return","extension\\/report\\/sale_shipping","extension\\/report\\/sale_tax","extension\\/shipping\\/auspost","extension\\/shipping\\/citylink","extension\\/shipping\\/ec_ship","extension\\/shipping\\/fedex","extension\\/shipping\\/flat","extension\\/shipping\\/free","extension\\/shipping\\/item","extension\\/shipping\\/parcelforce_48","extension\\/shipping\\/pickup","extension\\/shipping\\/royal_mail","extension\\/shipping\\/ups","extension\\/shipping\\/usps","extension\\/shipping\\/weight","extension\\/theme\\/default","extension\\/total\\/coupon","extension\\/total\\/credit","extension\\/total\\/handling","extension\\/total\\/klarna_fee","extension\\/total\\/low_order_fee","extension\\/total\\/reward","extension\\/total\\/shipping","extension\\/total\\/sub_total","extension\\/total\\/tax","extension\\/total\\/total","extension\\/total\\/voucher","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","mail\\/affiliate","mail\\/customer","mail\\/forgotten","mail\\/return","mail\\/reward","mail\\/transaction","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","marketplace\\/event","marketplace\\/api","marketplace\\/extension","marketplace\\/install","marketplace\\/installer","marketplace\\/marketplace","marketplace\\/modification","marketplace\\/openbay","report\\/online","report\\/report","report\\/statistics","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","startup\\/error","startup\\/event","startup\\/login","startup\\/permission","startup\\/router","startup\\/sass","startup\\/startup","tool\\/backup","tool\\/log","tool\\/upload","user\\/api","user\\/user","user\\/user_permission"]}'),
-(10, 'Demonstration', '');
+(1, 'مدیریت ارشد', '{"access":["catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/developer","common\\/filemanager","common\\/profile","common\\/security","customer\\/custom_field","customer\\/customer","customer\\/customer_approval","customer\\/customer_group","design\\/banner","design\\/layout","design\\/theme","design\\/translation","design\\/seo_url","event\\/statistics","event\\/theme","extension\\/analytics\\/google","extension\\/captcha\\/basic","extension\\/captcha\\/google","extension\\/dashboard\\/activity","extension\\/dashboard\\/chart","extension\\/dashboard\\/customer","extension\\/dashboard\\/map","extension\\/dashboard\\/online","extension\\/dashboard\\/order","extension\\/dashboard\\/recent","extension\\/dashboard\\/sale","extension\\/extension\\/analytics","extension\\/extension\\/captcha","extension\\/extension\\/dashboard","extension\\/extension\\/feed","extension\\/extension\\/fraud","extension\\/extension\\/menu","extension\\/extension\\/module","extension\\/extension\\/payment","extension\\/extension\\/report","extension\\/extension\\/shipping","extension\\/extension\\/theme","extension\\/extension\\/total","extension\\/feed\\/google_base","extension\\/feed\\/google_sitemap","extension\\/feed\\/openbaypro","extension\\/fraud\\/fraudlabspro","extension\\/fraud\\/ip","extension\\/fraud\\/maxmind","extension\\/marketing\\/remarketing","extension\\/module\\/account","extension\\/module\\/amazon_login","extension\\/module\\/amazon_pay","extension\\/module\\/banner","extension\\/module\\/bestseller","extension\\/module\\/carousel","extension\\/module\\/category","extension\\/module\\/divido_calculator","extension\\/module\\/ebay_listing","extension\\/module\\/featured","extension\\/module\\/filter","extension\\/module\\/google_hangouts","extension\\/module\\/html","extension\\/module\\/information","extension\\/module\\/klarna_checkout_module","extension\\/module\\/latest","extension\\/module\\/laybuy_layout","extension\\/module\\/pilibaba_button","extension\\/module\\/pp_button","extension\\/module\\/pp_login","extension\\/module\\/sagepay_direct_cards","extension\\/module\\/sagepay_server_cards","extension\\/module\\/slideshow","extension\\/module\\/special","extension\\/module\\/store","extension\\/openbay\\/amazon","extension\\/openbay\\/amazon_listing","extension\\/openbay\\/amazon_product","extension\\/openbay\\/amazonus","extension\\/openbay\\/amazonus_listing","extension\\/openbay\\/amazonus_product","extension\\/openbay\\/ebay","extension\\/openbay\\/ebay_profile","extension\\/openbay\\/ebay_template","extension\\/openbay\\/etsy","extension\\/openbay\\/etsy_product","extension\\/openbay\\/etsy_shipping","extension\\/openbay\\/etsy_shop","extension\\/openbay\\/fba","extension\\/payment\\/amazon_login_pay","extension\\/payment\\/authorizenet_aim","extension\\/payment\\/authorizenet_sim","extension\\/payment\\/bank_transfer","extension\\/payment\\/bluepay_hosted","extension\\/payment\\/bluepay_redirect","extension\\/payment\\/cardconnect","extension\\/payment\\/cardinity","extension\\/payment\\/cheque","extension\\/payment\\/cod","extension\\/payment\\/divido","extension\\/payment\\/eway","extension\\/payment\\/firstdata","extension\\/payment\\/firstdata_remote","extension\\/payment\\/free_checkout","extension\\/payment\\/g2apay","extension\\/payment\\/globalpay","extension\\/payment\\/globalpay_remote","extension\\/payment\\/klarna_account","extension\\/payment\\/klarna_checkout","extension\\/payment\\/klarna_invoice","extension\\/payment\\/laybuy","extension\\/payment\\/liqpay","extension\\/payment\\/nochex","extension\\/payment\\/paymate","extension\\/payment\\/paypoint","extension\\/payment\\/payza","extension\\/payment\\/perpetual_payments","extension\\/payment\\/pilibaba","extension\\/payment\\/pp_express","extension\\/payment\\/pp_payflow","extension\\/payment\\/pp_payflow_iframe","extension\\/payment\\/pp_pro","extension\\/payment\\/pp_pro_iframe","extension\\/payment\\/pp_standard","extension\\/payment\\/realex","extension\\/payment\\/realex_remote","extension\\/payment\\/sagepay_direct","extension\\/payment\\/sagepay_server","extension\\/payment\\/sagepay_us","extension\\/payment\\/securetrading_pp","extension\\/payment\\/securetrading_ws","extension\\/payment\\/skrill","extension\\/payment\\/twocheckout","extension\\/payment\\/web_payment_software","extension\\/payment\\/worldpay","extension\\/module\\/pp_braintree_button","extension\\/payment\\/pp_braintree","extension\\/report\\/customer_activity","extension\\/report\\/customer_order","extension\\/report\\/customer_reward","extension\\/report\\/customer_search","extension\\/report\\/customer_transaction","extension\\/report\\/marketing","extension\\/report\\/product_purchased","extension\\/report\\/product_viewed","extension\\/report\\/sale_coupon","extension\\/report\\/sale_order","extension\\/report\\/sale_return","extension\\/report\\/sale_shipping","extension\\/report\\/sale_tax","extension\\/shipping\\/auspost","extension\\/shipping\\/citylink","extension\\/shipping\\/ec_ship","extension\\/shipping\\/fedex","extension\\/shipping\\/flat","extension\\/shipping\\/free","extension\\/shipping\\/item","extension\\/shipping\\/parcelforce_48","extension\\/shipping\\/pickup","extension\\/shipping\\/royal_mail","extension\\/shipping\\/ups","extension\\/shipping\\/usps","extension\\/shipping\\/weight","extension\\/theme\\/default","extension\\/total\\/coupon","extension\\/total\\/credit","extension\\/total\\/handling","extension\\/total\\/klarna_fee","extension\\/total\\/low_order_fee","extension\\/total\\/reward","extension\\/total\\/shipping","extension\\/total\\/sub_total","extension\\/total\\/tax","extension\\/total\\/total","extension\\/total\\/voucher","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","mail\\/affiliate","mail\\/customer","mail\\/forgotten","mail\\/return","mail\\/reward","mail\\/transaction","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","marketplace\\/api","marketplace\\/event","marketplace\\/extension","marketplace\\/install","marketplace\\/installer","marketplace\\/marketplace","marketplace\\/modification","marketplace\\/openbay","report\\/online","report\\/report","report\\/statistics","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","startup\\/error","startup\\/event","startup\\/login","startup\\/permission","startup\\/router","startup\\/sass","startup\\/startup","tool\\/backup","tool\\/log","tool\\/upload","user\\/api","user\\/user","user\\/user_permission"],"modify":["catalog\\/attribute","catalog\\/attribute_group","catalog\\/category","catalog\\/download","catalog\\/filter","catalog\\/information","catalog\\/manufacturer","catalog\\/option","catalog\\/product","catalog\\/recurring","catalog\\/review","common\\/column_left","common\\/developer","common\\/filemanager","common\\/profile","common\\/security","customer\\/custom_field","customer\\/customer","customer\\/customer_approval","customer\\/customer_group","design\\/banner","design\\/layout","design\\/theme","design\\/translation","design\\/seo_url","event\\/statistics","event\\/theme","extension\\/analytics\\/google","extension\\/captcha\\/basic","extension\\/captcha\\/google","extension\\/dashboard\\/activity","extension\\/dashboard\\/chart","extension\\/dashboard\\/customer","extension\\/dashboard\\/map","extension\\/dashboard\\/online","extension\\/dashboard\\/order","extension\\/dashboard\\/recent","extension\\/dashboard\\/sale","extension\\/extension\\/analytics","extension\\/extension\\/captcha","extension\\/extension\\/dashboard","extension\\/extension\\/feed","extension\\/extension\\/fraud","extension\\/extension\\/menu","extension\\/extension\\/module","extension\\/extension\\/payment","extension\\/extension\\/report","extension\\/extension\\/shipping","extension\\/extension\\/theme","extension\\/extension\\/total","extension\\/feed\\/google_base","extension\\/feed\\/google_sitemap","extension\\/feed\\/openbaypro","extension\\/fraud\\/fraudlabspro","extension\\/fraud\\/ip","extension\\/fraud\\/maxmind","extension\\/marketing\\/remarketing","extension\\/module\\/account","extension\\/module\\/amazon_login","extension\\/module\\/amazon_pay","extension\\/module\\/banner","extension\\/module\\/bestseller","extension\\/module\\/carousel","extension\\/module\\/category","extension\\/module\\/divido_calculator","extension\\/module\\/ebay_listing","extension\\/module\\/featured","extension\\/module\\/filter","extension\\/module\\/google_hangouts","extension\\/module\\/html","extension\\/module\\/information","extension\\/module\\/klarna_checkout_module","extension\\/module\\/latest","extension\\/module\\/laybuy_layout","extension\\/module\\/pilibaba_button","extension\\/module\\/pp_button","extension\\/module\\/pp_login","extension\\/module\\/sagepay_direct_cards","extension\\/module\\/sagepay_server_cards","extension\\/module\\/slideshow","extension\\/module\\/special","extension\\/module\\/store","extension\\/openbay\\/amazon","extension\\/openbay\\/amazon_listing","extension\\/openbay\\/amazon_product","extension\\/openbay\\/amazonus","extension\\/openbay\\/amazonus_listing","extension\\/openbay\\/amazonus_product","extension\\/openbay\\/ebay","extension\\/openbay\\/ebay_profile","extension\\/openbay\\/ebay_template","extension\\/openbay\\/etsy","extension\\/openbay\\/etsy_product","extension\\/openbay\\/etsy_shipping","extension\\/openbay\\/etsy_shop","extension\\/openbay\\/fba","extension\\/payment\\/amazon_login_pay","extension\\/payment\\/authorizenet_aim","extension\\/payment\\/authorizenet_sim","extension\\/payment\\/bank_transfer","extension\\/payment\\/bluepay_hosted","extension\\/payment\\/bluepay_redirect","extension\\/payment\\/cardconnect","extension\\/payment\\/cardinity","extension\\/payment\\/cheque","extension\\/payment\\/cod","extension\\/payment\\/divido","extension\\/payment\\/eway","extension\\/payment\\/firstdata","extension\\/payment\\/firstdata_remote","extension\\/payment\\/free_checkout","extension\\/payment\\/g2apay","extension\\/payment\\/globalpay","extension\\/payment\\/globalpay_remote","extension\\/payment\\/klarna_account","extension\\/payment\\/klarna_checkout","extension\\/payment\\/klarna_invoice","extension\\/payment\\/laybuy","extension\\/payment\\/liqpay","extension\\/payment\\/nochex","extension\\/payment\\/paymate","extension\\/payment\\/paypoint","extension\\/payment\\/payza","extension\\/payment\\/perpetual_payments","extension\\/payment\\/pilibaba","extension\\/payment\\/pp_express","extension\\/payment\\/pp_payflow","extension\\/payment\\/pp_payflow_iframe","extension\\/payment\\/pp_pro","extension\\/payment\\/pp_pro_iframe","extension\\/payment\\/pp_standard","extension\\/payment\\/realex","extension\\/payment\\/realex_remote","extension\\/payment\\/sagepay_direct","extension\\/payment\\/sagepay_server","extension\\/payment\\/sagepay_us","extension\\/payment\\/securetrading_pp","extension\\/payment\\/securetrading_ws","extension\\/payment\\/skrill","extension\\/payment\\/twocheckout","extension\\/payment\\/web_payment_software","extension\\/payment\\/worldpay","extension\\/module\\/pp_braintree_button","extension\\/payment\\/pp_braintree","extension\\/report\\/customer_activity","extension\\/report\\/customer_order","extension\\/report\\/customer_reward","extension\\/report\\/customer_search","extension\\/report\\/customer_transaction","extension\\/report\\/marketing","extension\\/report\\/product_purchased","extension\\/report\\/product_viewed","extension\\/report\\/sale_coupon","extension\\/report\\/sale_order","extension\\/report\\/sale_return","extension\\/report\\/sale_shipping","extension\\/report\\/sale_tax","extension\\/shipping\\/auspost","extension\\/shipping\\/citylink","extension\\/shipping\\/ec_ship","extension\\/shipping\\/fedex","extension\\/shipping\\/flat","extension\\/shipping\\/free","extension\\/shipping\\/item","extension\\/shipping\\/parcelforce_48","extension\\/shipping\\/pickup","extension\\/shipping\\/royal_mail","extension\\/shipping\\/ups","extension\\/shipping\\/usps","extension\\/shipping\\/weight","extension\\/theme\\/default","extension\\/total\\/coupon","extension\\/total\\/credit","extension\\/total\\/handling","extension\\/total\\/klarna_fee","extension\\/total\\/low_order_fee","extension\\/total\\/reward","extension\\/total\\/shipping","extension\\/total\\/sub_total","extension\\/total\\/tax","extension\\/total\\/total","extension\\/total\\/voucher","localisation\\/country","localisation\\/currency","localisation\\/geo_zone","localisation\\/language","localisation\\/length_class","localisation\\/location","localisation\\/order_status","localisation\\/return_action","localisation\\/return_reason","localisation\\/return_status","localisation\\/stock_status","localisation\\/tax_class","localisation\\/tax_rate","localisation\\/weight_class","localisation\\/zone","mail\\/affiliate","mail\\/customer","mail\\/forgotten","mail\\/return","mail\\/reward","mail\\/transaction","marketing\\/contact","marketing\\/coupon","marketing\\/marketing","marketplace\\/event","marketplace\\/api","marketplace\\/extension","marketplace\\/install","marketplace\\/installer","marketplace\\/marketplace","marketplace\\/modification","marketplace\\/openbay","report\\/online","report\\/report","report\\/statistics","sale\\/order","sale\\/recurring","sale\\/return","sale\\/voucher","sale\\/voucher_theme","setting\\/setting","setting\\/store","startup\\/error","startup\\/event","startup\\/login","startup\\/permission","startup\\/router","startup\\/sass","startup\\/startup","tool\\/backup","tool\\/log","tool\\/upload","user\\/api","user\\/user","user\\/user_permission"]}'),
+(10, 'دمو نمایشی', '');
 
 -----------------------------------------------------------
 
@@ -3766,6 +4320,10 @@ CREATE TABLE `oc_voucher` (
   PRIMARY KEY (`voucher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Dumping data for table `oc_voucher`
+--
+
 -----------------------------------------------------------
 
 --
@@ -3781,6 +4339,10 @@ CREATE TABLE `oc_voucher_history` (
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`voucher_history_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `oc_voucher_history`
+--
 
 -----------------------------------------------------------
 
@@ -3825,7 +4387,10 @@ CREATE TABLE `oc_voucher_theme_description` (
 INSERT INTO `oc_voucher_theme_description` (`voucher_theme_id`, `language_id`, `name`) VALUES
 (6, 1, 'Christmas'),
 (7, 1, 'Birthday'),
-(8, 1, 'General');
+(8, 1, 'General'),
+(6, 2, 'عید نوروز'),
+(7, 2, 'تولد'),
+(8, 2, 'معمولی');
 
 -----------------------------------------------------------
 
@@ -3873,7 +4438,11 @@ INSERT INTO `oc_weight_class_description` (`weight_class_id`, `language_id`, `ti
 (1, 1, 'Kilogram', 'kg'),
 (2, 1, 'Gram', 'g'),
 (5, 1, 'Pound ', 'lb'),
-(6, 1, 'Ounce', 'oz');
+(6, 1, 'Ounce', 'oz'),
+(1, 2, 'کیلوگرم', 'kg'),
+(2, 2, 'گرم', 'g'),
+(5, 2, 'پوند', 'lb'),
+(6, 2, 'اونس', 'oz');
 
 -----------------------------------------------------------
 
@@ -5371,37 +5940,37 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1535, 100, 'Sumatera Selatan', 'SS', 1),
 (1536, 100, 'Sumatera Utara', 'SU', 1),
 (1537, 100, 'Yogyakarta', 'YO', 1),
-(1538, 101, 'Tehran', 'TEH', 1),
-(1539, 101, 'Qom', 'QOM', 1),
-(1540, 101, 'Markazi', 'MKZ', 1),
-(1541, 101, 'Qazvin', 'QAZ', 1),
-(1542, 101, 'Gilan', 'GIL', 1),
-(1543, 101, 'Ardabil', 'ARD', 1),
-(1544, 101, 'Zanjan', 'ZAN', 1),
-(1545, 101, 'East Azarbaijan', 'EAZ', 1),
-(1546, 101, 'West Azarbaijan', 'WEZ', 1),
-(1547, 101, 'Kurdistan', 'KRD', 1),
-(1548, 101, 'Hamadan', 'HMD', 1),
-(1549, 101, 'Kermanshah', 'KRM', 1),
-(1550, 101, 'Ilam', 'ILM', 1),
-(1551, 101, 'Lorestan', 'LRS', 1),
-(1552, 101, 'Khuzestan', 'KZT', 1),
-(1553, 101, 'Chahar Mahaal and Bakhtiari', 'CMB', 1),
-(1554, 101, 'Kohkiluyeh and Buyer Ahmad', 'KBA', 1),
-(1555, 101, 'Bushehr', 'BSH', 1),
-(1556, 101, 'Fars', 'FAR', 1);
+(1538, 101, 'تهران', 'TEH', 1),
+(1539, 101, 'قم', 'QOM', 1),
+(1540, 101, 'مرکزی', 'MKZ', 1),
+(1541, 101, 'قزوین', 'QAZ', 1),
+(1542, 101, 'گیلان', 'GIL', 1),
+(1543, 101, 'اردبیل', 'ARD', 1),
+(1544, 101, 'زنجان', 'ZAN', 1),
+(1545, 101, 'آذربایجان شرقی', 'EAZ', 1),
+(1546, 101, 'آذربایجان غربی', 'WEZ', 1),
+(1547, 101, 'کردستان', 'KRD', 1),
+(1548, 101, 'همدان', 'HMD', 1),
+(1549, 101, 'کرمانشاه', 'KRM', 1),
+(1550, 101, 'ایلام', 'ILM', 1),
+(1551, 101, 'لرستان', 'LRS', 1),
+(1552, 101, 'خوزستان', 'KZT', 1),
+(1553, 101, 'جهار محال و بختیاری', 'CMB', 1),
+(1554, 101, 'کهگیلویه و بویر احمد', 'KBA', 1),
+(1555, 101, 'بوشهر', 'BSH', 1),
+(1556, 101, 'فارس', 'FAR', 1);
 INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
-(1557, 101, 'Hormozgan', 'HRM', 1),
-(1558, 101, 'Sistan and Baluchistan', 'SBL', 1),
-(1559, 101, 'Kerman', 'KRB', 1),
-(1560, 101, 'Yazd', 'YZD', 1),
-(1561, 101, 'Esfahan', 'EFH', 1),
-(1562, 101, 'Semnan', 'SMN', 1),
-(1563, 101, 'Mazandaran', 'MZD', 1),
-(1564, 101, 'Golestan', 'GLS', 1),
-(1565, 101, 'North Khorasan', 'NKH', 1),
-(1566, 101, 'Razavi Khorasan', 'RKH', 1),
-(1567, 101, 'South Khorasan', 'SKH', 1),
+(1557, 101, 'هرمزگان', 'HRM', 1),
+(1558, 101, 'سیستان و بلوچستان', 'SBL', 1),
+(1559, 101, 'کرمان', 'KRB', 1),
+(1560, 101, 'یزد', 'YZD', 1),
+(1561, 101, 'اصفهان', 'EFH', 1),
+(1562, 101, 'سمنان', 'SMN', 1),
+(1563, 101, 'مازندران', 'MZD', 1),
+(1564, 101, 'گلستان', 'GLS', 1),
+(1565, 101, 'خراسان شمالی', 'NKH', 1),
+(1566, 101, 'خراسان رضوی', 'RKH', 1),
+(1567, 101, 'خراسان جنوبی', 'SKH', 1),
 (1568, 102, 'Baghdad', 'BD', 1),
 (1569, 102, 'Salah ad Din', 'SD', 1),
 (1570, 102, 'Diyala', 'DY', 1),
@@ -5446,17 +6015,6 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (1609, 103, 'Westmeath', 'WE', 1),
 (1610, 103, 'Wexford', 'WX', 1),
 (1611, 103, 'Wicklow', 'WI', 1),
-(1612, 104, 'Be''er Sheva', 'BS', 1),
-(1613, 104, 'Bika''at Hayarden', 'BH', 1),
-(1614, 104, 'Eilat and Arava', 'EA', 1),
-(1615, 104, 'Galil', 'GA', 1),
-(1616, 104, 'Haifa', 'HA', 1),
-(1617, 104, 'Jehuda Mountains', 'JM', 1),
-(1618, 104, 'Jerusalem', 'JE', 1),
-(1619, 104, 'Negev', 'NE', 1),
-(1620, 104, 'Semaria', 'SE', 1),
-(1621, 104, 'Sharon', 'SH', 1),
-(1622, 104, 'Tel Aviv (Gosh Dan)', 'TA', 1),
 (3860, 105, 'Caltanissetta', 'CL', 1),
 (3842, 105, 'Agrigento', 'AG', 1),
 (3843, 105, 'Alessandria', 'AL', 1),
@@ -7741,7 +8299,7 @@ INSERT INTO `oc_zone` (`zone_id`, `country_id`, `name`, `code`, `status`) VALUES
 (3966, 190, 'Goriška', '11', 1),
 (3967, 190, 'Obalno-kraška', '12', 1),
 (3968, 33, 'Ruse', '', 1),
-(3969, 101, 'Alborz', 'ALB', 1),
+(3969, 101, 'البرز', 'ALB', 1),
 (3970, 21, 'Brussels-Capital Region', 'BRU', 1),
 (3971, 138, 'Aguascalientes', 'AG', 1),
 (3973, 242, 'Andrijevica', '01', 1),
@@ -8029,112 +8587,10 @@ CREATE TABLE `oc_zone_to_geo_zone` (
 --
 
 INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id`, `geo_zone_id`, `date_added`, `date_modified`) VALUES
-(1, 222, 0, 4, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 222, 3513, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 222, 3514, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 222, 3515, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(5, 222, 3516, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(6, 222, 3517, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(7, 222, 3518, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(8, 222, 3519, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(9, 222, 3520, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, 222, 3521, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(11, 222, 3522, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(12, 222, 3523, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(13, 222, 3524, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(14, 222, 3525, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 222, 3526, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 222, 3527, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 222, 3528, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 222, 3529, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(19, 222, 3530, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 222, 3531, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(21, 222, 3532, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(22, 222, 3533, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(23, 222, 3534, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(24, 222, 3535, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(25, 222, 3536, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(26, 222, 3537, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(27, 222, 3538, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(28, 222, 3539, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(29, 222, 3540, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(30, 222, 3541, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(31, 222, 3542, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(32, 222, 3543, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(33, 222, 3544, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(34, 222, 3545, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(35, 222, 3546, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(36, 222, 3547, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(37, 222, 3548, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(38, 222, 3549, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(39, 222, 3550, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(40, 222, 3551, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(41, 222, 3552, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(42, 222, 3553, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(43, 222, 3554, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(44, 222, 3555, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(45, 222, 3556, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(46, 222, 3557, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(47, 222, 3558, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(48, 222, 3559, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(49, 222, 3560, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(50, 222, 3561, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(51, 222, 3562, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(52, 222, 3563, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(53, 222, 3564, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(54, 222, 3565, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(55, 222, 3566, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(56, 222, 3567, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(57, 222, 3568, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(58, 222, 3569, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(59, 222, 3570, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(60, 222, 3571, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(61, 222, 3572, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(62, 222, 3573, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(63, 222, 3574, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(64, 222, 3575, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(65, 222, 3576, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(66, 222, 3577, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(67, 222, 3578, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(68, 222, 3579, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(69, 222, 3580, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(70, 222, 3581, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(71, 222, 3582, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(72, 222, 3583, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(73, 222, 3584, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(74, 222, 3585, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(75, 222, 3586, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(76, 222, 3587, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(77, 222, 3588, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(78, 222, 3589, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(79, 222, 3590, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(80, 222, 3591, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(81, 222, 3592, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(82, 222, 3593, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(83, 222, 3594, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(84, 222, 3595, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(85, 222, 3596, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(86, 222, 3597, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(87, 222, 3598, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(88, 222, 3599, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(89, 222, 3600, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(90, 222, 3601, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(91, 222, 3602, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(92, 222, 3603, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(93, 222, 3604, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(94, 222, 3605, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(95, 222, 3606, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(96, 222, 3607, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(97, 222, 3608, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(98, 222, 3609, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(99, 222, 3610, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(100, 222, 3611, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(101, 222, 3612, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(102, 222, 3949, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(103, 222, 3950, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(104, 222, 3951, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(105, 222, 3952, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(106, 222, 3953, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(107, 222, 3954, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(108, 222, 3955, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(109, 222, 3972, 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 101, 0, 4, '2014-07-05 05:46:41', '0000-00-00 00:00:00'),
+(2, 101, 0, 3, '2014-07-05 05:47:24', '0000-00-00 00:00:00'),
+(3, 101, 1538, 5, '2014-07-05 06:41:28', '0000-00-00 00:00:00'),
+(4, 101, 3969, 6, '2014-07-05 06:42:04', '0000-00-00 00:00:00'),
+(5, 101, 1561, 7, '2014-07-05 06:42:32', '0000-00-00 00:00:00'),
+(6, 101, 1566, 8, '2014-07-05 06:43:08', '0000-00-00 00:00:00'),
+(7, 101, 1556, 9, '2014-07-05 06:44:05', '0000-00-00 00:00:00');

@@ -7,11 +7,11 @@ $_['site_ssl']             = false;
 $_['url_autostart']        = true;
 
 // Language
-$_['language_directory']   = 'en-gb';
-$_['language_autoload']    = array('en-gb');
+$_['language_directory']   = 'fa-ir';
+$_['language_autoload']    = array('en-gb','fa-ir');
 
 // Date
-$_['date_timezone']        = 'UTC';
+$_['date_timezone']        = 'Asia/Tehran';
 
 // Database
 $_['db_engine']            = 'mysqli'; // mpdo, mssql, mysql, mysqli or postgre
@@ -52,7 +52,7 @@ $_['template_cache']       = false;
 // Error
 $_['error_display']        = true;
 $_['error_log']            = true;
-$_['error_filename']       = 'error.log';
+$_['error_filename']       = 'ocferror.log';
 
 // Reponse
 $_['response_header']      = array('Content-Type: text/html; charset=utf-8');

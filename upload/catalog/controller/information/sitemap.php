@@ -16,6 +16,8 @@ class ControllerInformationSitemap extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('information/sitemap')
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$this->load->model('catalog/category');
 		$this->load->model('catalog/product');

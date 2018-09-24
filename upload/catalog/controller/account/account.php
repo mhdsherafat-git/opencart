@@ -30,7 +30,11 @@ class ControllerAccountAccount extends Controller {
 		} else {
 			$data['success'] = '';
 		} 
-		
+
+		$data['heading_title'] = $this->language->get('heading_title');
+
+		$data['text_wishlist'] = $this->language->get('text_wishlist');
+
 		$data['edit'] = $this->url->link('account/edit', '', true);
 		$data['password'] = $this->url->link('account/password', '', true);
 		$data['address'] = $this->url->link('account/address', '', true);

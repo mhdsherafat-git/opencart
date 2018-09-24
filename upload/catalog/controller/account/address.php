@@ -145,6 +145,8 @@ class ControllerAccountAddress extends Controller {
 			'text' => $this->language->get('heading_title'),
 			'href' => $this->url->link('account/address', '', true)
 		);
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -247,6 +249,8 @@ class ControllerAccountAddress extends Controller {
 				'href' => $this->url->link('account/address/edit', 'address_id=' . $this->request->get['address_id'], true)
 			);
 		}
+		
+		$data['heading_title'] = $this->language->get('heading_title');
 
 		$data['text_address'] = !isset($this->request->get['address_id']) ? $this->language->get('text_address_add') : $this->language->get('text_address_edit');
 

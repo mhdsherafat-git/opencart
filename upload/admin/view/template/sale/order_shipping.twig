@@ -4,11 +4,20 @@
 <meta charset="UTF-8" />
 <title>{{ title }}</title>
 <base href="{{ base }}" />
+{% if direction == 'rtl' %}
+<link href="view/javascript/bootstrap/css/bootstrap-rtl.css" rel="stylesheet" media="all" />
+{% else %}
 <link href="view/javascript/bootstrap/css/bootstrap.css" rel="stylesheet" media="all" />
+{% endif %}
 <script type="text/javascript" src="view/javascript/jquery/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="view/javascript/bootstrap/js/bootstrap.min.js"></script>
+{% if direction == 'rtl' %}
+<link href="view/javascript/font-awesome/css/font-awesome-rtl.min.css" type="text/css" rel="stylesheet" />
+<link type="text/css" href="view/stylesheet/stylesheet-rtl.css" rel="stylesheet" media="all" />
+{% else %}
 <link href="view/javascript/font-awesome/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
 <link type="text/css" href="view/stylesheet/stylesheet.css" rel="stylesheet" media="all" />
+{% endif %}
 </head>
 <body>
 <div class="container">

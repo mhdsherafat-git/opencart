@@ -32,6 +32,8 @@ class ControllerAccountTracking extends Controller {
 				'text' => $this->language->get('heading_title'),
 				'href' => $this->url->link('account/tracking', '', true)
 			);
+			
+			$data['heading_title'] = $this->language->get('heading_title');
 	
 			$data['text_description'] = sprintf($this->language->get('text_description'), $this->config->get('config_name'));
 	
